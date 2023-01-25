@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import JobCardList from "./JobCardList";
-import JoblyApi from "./api";
+import JobCardList from "../Jobs/JobCardList";
+import JoblyApi from "../Helpers/api";
 
 /** CompanyDetail component renders a company's details and jobs.
  *
@@ -27,10 +27,6 @@ function CompanyDetail() {
 
   /** Fetch company details and jobs when component mounts
    * and when handle changes.
-   *
-   * Sets state with company details and jobs.
-   *
-   * isLoading is set to false when data is fetched.
    * */
   useEffect(
     function fetchCompanyWhenMounted() {

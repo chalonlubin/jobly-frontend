@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import CompanyCard from "./CompanyCard";
-import SearchForm from "./SearchForm";
-import JoblyApi from "./api";
+import SearchForm from "../Common/SearchForm";
+import JoblyApi from "../Helpers/api";
 
 /** CompanyList component renders a list of companies.
  *
@@ -45,6 +45,7 @@ function CompanyList() {
     setCompanies((c) => ({ ...c, query: name }));
   }
 
+  // TODO: consider making <Loading />
   if (companies.isLoading) return <i>Loading...</i>;
 
   return (

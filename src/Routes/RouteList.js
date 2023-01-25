@@ -1,10 +1,10 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import Homepage from "./Homepage";
-import CompanyList from "./CompanyList";
-import CompanyDetail from "./CompanyDetail";
-import JobList from "./JobList";
-import NotFound from "./NotFound";
+import Homepage from "../Common/Homepage";
+import CompanyList from "../Companies/CompanyList";
+import CompanyDetail from "../Companies/CompanyDetail";
+import JobList from "../Jobs/JobList";
+import NotFound from "../Common/NotFound";
 
 
 /** Routes for Jobly app.
