@@ -3,6 +3,21 @@ import JobCardList from "./JobCardList";
 import JoblyApi from "./api";
 import SearchForm from "./SearchForm";
 
+/** JobList component renders a list of jobs.
+ *
+ * Props:
+ * - None
+ *
+ * State:
+ * - jobs: object with keys {
+ *   jobList: array of job objects,
+ *   isLoading: boolean,
+ *   query: string
+ * }
+ *
+ * App -> JobList -> JobCardList -> JobCard
+ *
+ * */
 function JobList() {
   const [jobs, setJobs] = useState({
     jobList: [],

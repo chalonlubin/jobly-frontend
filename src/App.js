@@ -4,6 +4,12 @@ import { BrowserRouter } from "react-router-dom";
 import NavBar from "./NavBar";
 import RouteList from "./RouteList";
 
+//TODO: Need to fix the favicon.
+// Giving error in console, tried to add a custom one but I broke it.
+
+/**
+ * App component that renders the navbar and routes.
+ */
 function App() {
   return (
     <div className="App">

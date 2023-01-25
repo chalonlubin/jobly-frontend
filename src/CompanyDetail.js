@@ -3,6 +3,21 @@ import { useParams } from "react-router-dom";
 import JobCardList from "./JobCardList";
 import JoblyApi from "./api";
 
+
+/** CompanyDetail component renders a company's details and jobs.
+ *
+ * Props:
+ * - handle: string from url params (e.g. "/companies/:handle")
+ *
+ * State:
+ * - company: object with keys {
+ *      data: {handle, name, description, logoUrl, jobs}.
+ *       isLoading: boolean
+ *  }
+ *
+ * CompanyList -> CompanyCard -> CompanyDetail
+ *
+ * */
 function CompanyDetail() {
   const { handle } = useParams();
 
@@ -11,6 +26,13 @@ function CompanyDetail() {
     isLoading: true,
   });
 
+  /** Fetch company details and jobs when component mounts
+   * and when handle changes.
+   *
+   * Sets state with company details and jobs.
+   *
+   * isLoading is set to false when data is fetched.
+   * */
   useEffect(
     function fetchCompanyWhenMounted() {
       async function fetchCompany() {
@@ -28,12 +50,12 @@ function CompanyDetail() {
 
   if (company.isLoading) return <i>Loading...</i>;
 
-  console.log(company);
-
   return (
     <div className="CompanyDetail">
-      <p>{company.data.name}</p>
-      <p>{company.data.description}</p>
+      <h5 className="text-uppercase mt-5 p-3 font-weight-bold fs-2">
+        {company.data.name}
+      </h5>
+      <p className="font-italic">{company.data.description}</p>
       <JobCardList from={CompanyDetail} jobs={company.data.jobs} />
     </div>
   );

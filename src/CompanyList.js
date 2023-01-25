@@ -3,6 +3,21 @@ import CompanyCard from "./CompanyCard";
 import SearchForm from "./SearchForm";
 import JoblyApi from "./api";
 
+/** CompanyList component renders a list of companies.
+ *
+ * Props:
+ * - None
+ *
+ * State:
+ * - companies: object with keys {
+ *     companyList: array of company objects,
+ *     isLoading: boolean,
+ *     query: string
+ * }
+ *
+ * App -> CompanyList -> CompanyCard
+ *
+ * */
 function CompanyList() {
   const [companies, setCompanies] = useState({
     companyList: [],

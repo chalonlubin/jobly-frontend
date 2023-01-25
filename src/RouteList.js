@@ -6,18 +6,19 @@ import CompanyDetail from "./CompanyDetail";
 import JobList from "./JobList";
 import NotFound from "./NotFound";
 
-/**
- * RouteList: component to render routes
+
+/** Routes for Jobly app.
  *
  * Props:
- * - dogs: array of dog objects [{dog}, ...]
+ * - none
  *
  * State:
  * - none
  *
- * App -> RouteList
- */
-
+ * App -> Routes ->
+ *      { Homepage, CompanyList, CompanyDetail, JobList, NotFound }
+ *
+ * */
 function RouteList() {
   return (
     <Routes>
