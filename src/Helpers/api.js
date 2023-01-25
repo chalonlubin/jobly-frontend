@@ -14,16 +14,16 @@ class JoblyApi {
   // Remember, the backend needs to be authorized with a token
   // We're providing a token you can use to interact with the backend API
   // DON'T MODIFY THIS TOKEN
-  static token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ" +
-    "SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0." +
-    "FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc";
+  // static token =
+  //   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ" +
+  //   "SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0." +
+  //   "FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc";
 
-  static async request(endpoint, data = {}, method = "get") {
+  static async request(endpoint, data = {}, method = "get", token) {
     console.debug("API Call:", endpoint, data, method);
 
     const url = `${BASE_URL}/${endpoint}`;
-    const headers = { Authorization: `Bearer ${JoblyApi.token}` };
+    const headers = { Authorization: `Bearer ${token}` };
     const params = method === "get" ? data : {};
 
     try {
@@ -81,7 +81,28 @@ class JoblyApi {
     return res.jobs;
   }
 
-  // TODO: put/patch/delete
+  /************************************** User  */
+
+  /** Register a user. */
+  static async registerUser(signUpData) {
+    const res = await this.request(`auth/register`, signUpData, "post");
+
+    return res.token;
+  }
+
+  /** Logs a user in.  */
+  static async loginUser(loginData) {
+    const res = await this.request(`auth/token`, loginData, "post");
+
+    return res.token;
+  }
+
+  //** Get's user details. */
+  static async getUser(token, username) {
+    const res = await this.request(`users/${username}`, {}, "get", token);
+
+    return res.user;
+  }
 }
 
 export default JoblyApi;
