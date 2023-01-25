@@ -1,12 +1,10 @@
-
 import React from "react";
-import { Routes, Route, Navigate, useParams } from "react-router-dom";
-import Homepage from "./Homepage"
-import Companies from "./Companies";
+import { Routes, Route } from "react-router-dom";
+import Homepage from "./Homepage";
+import CompanyList from "./CompanyList";
+import CompanyDetail from "./CompanyDetail";
 import Jobs from "./Jobs";
-import Company from "./Company"
 import NotFound from "./NotFound";
-
 
 /**
  * RouteList: component to render routes
@@ -24,11 +22,10 @@ function RouteList() {
   return (
     <Routes>
       <Route path="/" element={<Homepage />} />
-      <Route path="/companies" element={<Companies />} />
-      <Route path="/companies/:company" element={<Company />} />
+      <Route path="/companies" element={<CompanyList />} />
+      <Route path="/companies/:company" element={<CompanyDetail />} />
       <Route path="/jobs" element={<Jobs />} />
       <Route path="*" element={<NotFound />} />
-
     </Routes>
   );
 }
