@@ -13,6 +13,7 @@ function SearchForm({ search }) {
   }
 
   function handleSubmit(evt) {
+    console.log(formData);
     evt.preventDefault();
     search(formData.query);
     setFormData(initialFormState);

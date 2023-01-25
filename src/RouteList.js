@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Homepage from "./Homepage";
 import CompanyList from "./CompanyList";
 import CompanyDetail from "./CompanyDetail";
-import Jobs from "./Jobs";
+import JobList from "./JobList";
 import NotFound from "./NotFound";
 
 /**
@@ -23,8 +23,8 @@ function RouteList() {
     <Routes>
       <Route path="/" element={<Homepage />} />
       <Route path="/companies" element={<CompanyList />} />
-      <Route path="/companies/:company" element={<CompanyDetail />} />
-      <Route path="/jobs" element={<Jobs />} />
+      <Route path="/companies/:handle" element={<CompanyDetail />} />
+      <Route path="/jobs" element={<JobList />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

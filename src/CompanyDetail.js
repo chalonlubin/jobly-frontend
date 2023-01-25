@@ -1,39 +1,40 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import JobCardList from "./JobCardList";
-
-const SAMPLE_COMPANY_WITH_JOBS = {
-  handle: "mejia-scott-ryan",
-  name: "Mejia, Scott and Ryan",
-  description:
-    "General traditional late situation discussion dog. Before best up strategy about direction.",
-  numEmployees: null,
-  logoUrl: "/logos/logo4.png",
-  jobs: [
-    {
-      id: 28,
-      title: "Research officer, government",
-      salary: 167000,
-      equity: "0",
-    },
-    {
-      id: 33,
-      title: "Museum/gallery conservator",
-      salary: 82000,
-      equity: "0",
-    },
-    {
-      id: 44,
-      title: "Therapist, occupational",
-      salary: 82000,
-      equity: null,
-    },
-  ],
-};
+import JoblyApi from "./api";
 
 function CompanyDetail() {
+  const { handle } = useParams();
+
+  const [company, setCompany] = useState({
+    data: {},
+    isLoading: true,
+  });
+
+  useEffect(
+    function fetchCompanyWhenMounted() {
+      async function fetchCompany() {
+        const companyResult = await JoblyApi.getCompany(handle);
+        setCompany((c) => ({
+          ...c,
+          data: companyResult,
+          isLoading: false,
+        }));
+      }
+      fetchCompany();
+    },
+    [handle]
+  );
+
+  if (company.isLoading) return <i>Loading...</i>;
+
+  console.log(company);
+
   return (
     <div className="CompanyDetail">
-      <JobCardList jobs={SAMPLE_COMPANY_WITH_JOBS.jobs} />
+      <p>{company.data.name}</p>
+      <p>{company.data.description}</p>
+      <JobCardList from={CompanyDetail} jobs={company.data.jobs} />
     </div>
   );
 }
