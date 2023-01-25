@@ -40,6 +40,7 @@ function CompanyList() {
     [companies.query]
   );
 
+  // search for companies by name
   function search(name) {
     setCompanies((c) => ({ ...c, query: name }));
   }

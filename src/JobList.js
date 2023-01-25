@@ -40,8 +40,9 @@ function JobList() {
     [jobs.query]
   );
 
-  function search(name) {
-    setJobs((c) => ({ ...c, query: name }));
+  // search for jobs by title
+  function search(title) {
+    setJobs((c) => ({ ...c, query: title }));
   }
 
   if (jobs.isLoading) return <i>Loading...</i>;

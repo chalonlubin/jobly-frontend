@@ -1,9 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-
-
-
 /** Renders the navbar.
  *
  * Props: none

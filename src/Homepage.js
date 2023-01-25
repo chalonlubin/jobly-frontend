@@ -12,7 +12,7 @@ import "./Homepage.css"
  * */
 function Homepage() {
   return (
-    <section class="Homepage">
+    <section className="Homepage">
       <div className="Homepage-content">
         <h1 className="Homepage-title"> Jobly </h1>
         <h2 className="Homepage-subtitle"> Not your average job finder. </h2>

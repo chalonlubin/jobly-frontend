@@ -37,14 +37,28 @@ class JoblyApi {
 
   // Individual API routes
 
-  // TODO: include in docstring the returned values
-  /** Get details on a company by handle. */
+  /** Get details on a company by handle.
+   *
+   * Returns { handle, name, description, numEmployees, logoUrl, jobs }
+   * where jobs is [{ id, title, salary, equity }, ...]
+   *
+   * Throws NotFoundError if company not found.
+   *
+   */
   static async getCompany(handle) {
     const res = await this.request(`companies/${handle}`);
     return res.company;
   }
 
-  /** Get all companies or search for specific company(s). */
+  /** Get all companies or search for specific company(s).
+   *
+   * Returns [{ handle, name, description, numEmployees, logoUrl }, ...]
+   *
+   * If search is provided, filters to companies whose name contains search.
+   *
+   * Throws NotFoundError if no companies found.
+   *
+   */
   static async getCompanies(search) {
     // rename if needed
     const res = search
@@ -54,7 +68,15 @@ class JoblyApi {
     return res.companies;
   }
 
-  /** Get all jobs or specific job(s). */
+  /** Get all jobs or specific job(s).
+   *
+   * Returns [{ id, title, salary, equity, companyHandle, companyName }, ...]
+   *
+   * If search is provided, filters to jobs whose title contains search.
+   *
+   * Throws NotFoundError if no jobs found.
+   *
+   */
   static async getJobs(search) {
     const res = search
       ? await this.request(`jobs/`, { title: search })

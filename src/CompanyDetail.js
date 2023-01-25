@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import JobCardList from "./JobCardList";
 import JoblyApi from "./api";
 
-
 /** CompanyDetail component renders a company's details and jobs.
  *
  * Props:

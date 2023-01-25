@@ -24,7 +24,6 @@
 
 /* <iframe src="https://giphy.com/embed/HknSLLEbzZCoM" width="480" height="247" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/cat-smoke-cloud-HknSLLEbzZCoM">via GIPHY</a></p> */
 
-
 .Homepage-content {
   position: relative;
   font-family: "Monserrat", sans-serif;
@@ -38,7 +37,9 @@
   margin-bottom: 0;
   /* text-shadow: 8px 8px 0 rgba(255,0,180,0.5); */
   /* text-shadow: 5px 5px 0px #eee, 7px 7px 0px #707070; */
-  text-shadow: 0 0 10px rgb(147, 128, 128), 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #2431a9, 0 0 70px #ff00de, 0 0 80px #ff00de, 0 0 100px #ff00de, 0 0 150px #ff00de;
+  text-shadow: 0 0 10px rgb(147, 128, 128), 0 0 20px #fff, 0 0 30px #fff,
+    0 0 40px #2431a9, 0 0 70px #ff00de, 0 0 80px #ff00de, 0 0 100px #ff00de,
+    0 0 150px #ff00de;
 }
 .Homepage-subtitle {
   font-size: 2rem;
