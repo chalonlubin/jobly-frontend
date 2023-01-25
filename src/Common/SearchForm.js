@@ -47,7 +47,7 @@ function SearchForm({ search }) {
           onChange={handleChange}
           className="form-control border-secondary py-2"
         />
-        <button className="btn btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
+        <button className="btn btn-dark py-2" type="submit">Search</button>
       </div>
     </form>
     </div>

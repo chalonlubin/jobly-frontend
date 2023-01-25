@@ -22,7 +22,7 @@ function JobList() {
   const [jobs, setJobs] = useState({
     jobList: [],
     isLoading: true,
-    query: "",
+    query: null,
   });
 
   useEffect(

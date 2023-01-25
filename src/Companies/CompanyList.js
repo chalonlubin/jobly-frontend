@@ -22,12 +22,13 @@ function CompanyList() {
   const [companies, setCompanies] = useState({
     companyList: [],
     isLoading: true,
-    query: "",
+    query: null,
   });
 
   useEffect(
     function fetchCompaniesWhenMounted() {
       async function fetchCompanies() {
+        //TODO: Try/catch in all api calls
         const companiesResult = await JoblyApi.getCompanies(companies.query);
         setCompanies((c) => ({
           ...c,
