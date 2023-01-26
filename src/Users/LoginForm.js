@@ -20,7 +20,7 @@ function LoginForm({login}) {
   return (
     <form onSubmit={handleSubmit}>
       <div className="form-group row">
-        <label forHTML="username" className="col-sm-2 col-form-label">
+        <label htmlFor="username" className="col-sm-2 col-form-label">
           Username
         </label>
         <div class="col-sm-10">
@@ -33,7 +33,7 @@ function LoginForm({login}) {
         </div>
       </div>
       <div className="form-group row">
-        <label forHTML="password" className="col-sm-2 col-form-label">
+        <label htmlFor="password" className="col-sm-2 col-form-label">
           Password
         </label>
         <div class="col-sm-10">

@@ -32,14 +32,17 @@ function NavBar() {
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
           <div className="navbar-nav mx-auto">
-            <NavLink className="nav-link" to="/">
-              Home
-            </NavLink>
             <NavLink className="nav-link" to="/companies">
               Companies
             </NavLink>
             <NavLink className="nav-link" to="/jobs">
-              Jobs
+              Jobsƒ
+            </NavLink>
+            <NavLink className="nav-link" to="/login">
+              Login
+            </NavLink>
+            <NavLink className="nav-link" to="/signup">
+              Signup
             </NavLink>
           </div>
         </div>
