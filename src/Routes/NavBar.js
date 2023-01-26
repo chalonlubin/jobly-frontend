@@ -36,7 +36,7 @@ function NavBar() {
               Companies
             </NavLink>
             <NavLink className="nav-link" to="/jobs">
-              Jobsƒ
+              Jobs
             </NavLink>
             <NavLink className="nav-link" to="/login">
               Login

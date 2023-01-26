@@ -39,6 +39,10 @@ function App() {
   );
 
   //login
+  async function login(loginData) {
+    const res = await JoblyApi.loginUser(loginData);
+    setToken((t) => res);
+  }
   //logout
   //setUser
 
@@ -47,7 +51,7 @@ function App() {
       <userContext.Provider value={{ user }}>
         <BrowserRouter>
           <NavBar />
-          <RouteList token={token} signup={signup} />
+          <RouteList token={token} signup={signup} login={login} />
         </BrowserRouter>
       </userContext.Provider>
     </div>

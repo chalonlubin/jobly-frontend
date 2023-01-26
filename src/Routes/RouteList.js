@@ -23,14 +23,17 @@ import ProfileForm from "../Users/ProfileForm";
  *      }
  *
  * */
-function RouteList({ signup }) {
+function RouteList({ signup, login }) {
   return (
     <Routes>
       <Route path="/" element={<Homepage />} />
       <Route path="/companies" element={<CompanyList />} />
       <Route path="/companies/:handle" element={<CompanyDetail />} />
       <Route path="/jobs" element={<JobList />} />
-      <Route path="/signup" element={<SignupForm signup={signup} />} />
+      <Route
+        path="/signup"
+        element={<SignupForm signup={signup} login={login} />}
+      />
       <Route path="/login" element={<LoginForm />} />
       <Route path="/profile" element={<ProfileForm />} />
       <Route path="*" element={<NotFound />} />
