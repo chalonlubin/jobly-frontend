@@ -25,16 +25,14 @@ function SignupForm({ signup }) {
   /** Call search in parent & clear form. */
   function handleSubmit(evt) {
     evt.preventDefault();
-    signup(formData);
+    try {
+      signup(formData);
+    } catch (e) {
+      console.log(e);
+    }
+    navigate("/");
     // Alert user that they have signed up successfully or display errors?
   }
-
-  useEffect(() => {
-    if (user) {
-      navigate("/");
-    }
-    // TODO: ask about this
-  }, [user, navigate]);
 
   return (
     <div className="SignupForm pt-5">
@@ -109,7 +107,10 @@ function SignupForm({ signup }) {
                 />
               </div>
               <div className="d-grid mt-4">
-                <button className="btn btn-outline-dark " onClick={handleSubmit}>
+                <button
+                  className="btn btn-outline-dark "
+                  onClick={handleSubmit}
+                >
                   Submit
                 </button>
               </div>
