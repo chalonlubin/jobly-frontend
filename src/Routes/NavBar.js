@@ -17,56 +17,71 @@ function NavBar({ logout }) {
   //TODO: Add light/dark mode.
   // Will require state so I wanted to touch base with you first
   return (
-    <nav className="navbar fixed navbar-expand-lg navbar-dark bg-dark">
-      <div className="container-fluid fs-5">
+    <nav className="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+      <div className="container-fluid">
         <NavLink className="navbar-brand" to="/">
+          <img
+            src="logo512.png"
+            alt="jobs icon"
+            className="d-inline-block m-2"
+            width="30"
+            height="24"
+          ></img>
           Jobly
         </NavLink>
         <button
           className="navbar-toggler"
           type="button"
-          data-toggle="collapse"
-          data-target="#navbarNav"
-          aria-controls="navbarNav"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarTogglerDemo02"
+          aria-controls="navbarTogglerDemo02"
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse" id="navbarNav">
-          <div className="navbar-nav ms-auto">
-            {/* how do i group this?? */}
+        <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
+          <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+            {/* how do i group this?? Chalon - I gotchu! */}
             {user && (
-              <NavLink className="nav-link" to="/companies">
-                Companies
-              </NavLink>
-            )}
-            {user && (
-              <NavLink className="nav-link" to="/jobs">
-                Jobs
-              </NavLink>
+              <>
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/companies">
+                    Companies
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/jobs">
+                    Jobs
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/profile">
+                    Profile
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <button className="btn btn-link nav-link" onClick={logout}>
+                    Log Out {user.username}
+                  </button>
+                </li>
+              </>
             )}
             {!user && (
-              <NavLink className="nav-link" to="/login">
-                Login
-              </NavLink>
+              <>
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/login">
+                    Login
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/signup">
+                    Signup
+                  </NavLink>
+                </li>
+              </>
             )}
-            {!user && (
-              <NavLink className="nav-link" to="/signup">
-                Signup
-              </NavLink>
-            )}
-            {user && (
-              <NavLink className="nav-link" to="/profile">
-                Profile
-              </NavLink>
-            )}
-            {user && (
-              <button className="btn btn-link nav-link" onClick={logout}>
-                Logout {user.username}
-              </button>
-            )}
-          </div>
+          </ul>
         </div>
       </div>
     </nav>

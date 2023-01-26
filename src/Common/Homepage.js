@@ -19,18 +19,20 @@ function Homepage() {
     <section className="Homepage">
       <div className="Homepage-content">
         <h1 className="Homepage-title"> Jobly </h1>
-        <h2 className="Homepage-subtitle"> Not your average job finder. </h2>
         {!user && (
-          <div className="signuplogin d-flex justify-content-evenly">
-            <Link className="btn btn-outline-light opacity-75 m-4" to="/login">
+          <>
+        <h2 className="Homepage-subtitle"> A job search engine like no other. </h2>
+          <div className="d-flex justify-content-evenly">
+            <Link className="btn btn-outline-light btn-lg opacity-75 m-4" to="/login">
               Log in
             </Link>
-            <Link className="btn btn-outline-light opacity-75 m-4" to="/signup">
+            <Link className="btn btn-outline-light btn-lg opacity-75 m-4" to="/signup">
               Sign up
             </Link>
           </div>
+          </>
         )}
-        {user && <p>Welcome back, {user.username}!</p>}
+        {user && <h3 className="p-3 m-3">Welcome back, {user.username}!</h3>}
       </div>
     </section>
   );
