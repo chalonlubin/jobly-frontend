@@ -22,7 +22,7 @@ function App() {
   useEffect(
     function fetchUserWhenTokenUpdated() {
       async function fetchUser() {
-        const {username} = jose.decodeJwt(token);
+        const { username } = jose.decodeJwt(token);
         const res = await JoblyApi.getUser(token, username);
 
         setUser((u) => res);
