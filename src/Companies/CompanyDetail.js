@@ -47,10 +47,10 @@ function CompanyDetail() {
 
   return (
     <div className="CompanyDetail">
-      <h5 className="text-uppercase mt-5 p-3 font-weight-bold fs-2">
+      <h4 className="text-uppercase m-3 p-3 font-weight-bold fs-2 text-white">
         {company.data.name}
-      </h5>
-      <p className="font-italic">{company.data.description}</p>
+      </h4>
+      <p className="text-white m-2 p-2 fs-4 fst-italic text-center">{company.data.description}</p>
       <JobCardList from={CompanyDetail} jobs={company.data.jobs} />
     </div>
   );

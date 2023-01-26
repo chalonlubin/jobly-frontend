@@ -32,18 +32,28 @@ function App() {
     [token]
   );
 
-  //signup
+  /** Signup for site. */
   async function signup(signupData) {
     const res = await JoblyApi.registerUser(signupData);
     setToken((t) => res);
   }
 
-  //login
+
+  /** Login to site. */
   async function login(loginData) {
     const res = await JoblyApi.loginUser(loginData);
     setToken((t) => res);
   }
-  //logout
+
+  /** Update user profile. */
+  async function update(updateData) {
+    const { username, firstName, lastName, email } = updateData
+    console.log('user',user);
+    const res = await JoblyApi.updateUser(token, username, {firstName, lastName, email});
+    setUser((u) => res);
+  }
+
+  /** Logout of site. */
   async function logout() {
     setUser(null);
     setToken(null);
@@ -54,7 +64,7 @@ function App() {
       <userContext.Provider value={{ user }}>
         <BrowserRouter>
           <NavBar logout={logout} />
-          <RouteList token={token} signup={signup} login={login} />
+          <RouteList token={token} signup={signup} login={login} update={update} />
         </BrowserRouter>
       </userContext.Provider>
     </div>

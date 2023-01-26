@@ -23,7 +23,7 @@ import ProfileForm from "../Users/ProfileForm";
  *      }
  *
  * */
-function RouteList({ signup, login }) {
+function RouteList({ signup, login, update }) {
   return (
     <Routes>
       <Route path="/" element={<Homepage />} />
@@ -32,7 +32,7 @@ function RouteList({ signup, login }) {
       <Route path="/jobs" element={<JobList />} />
       <Route path="/signup" element={<SignupForm signup={signup} />} />
       <Route path="/login" element={<LoginForm login={login} />} />
-      <Route path="/profile" element={<ProfileForm />} />
+      <Route path="/profile" element={<ProfileForm update={update} />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

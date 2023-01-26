@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./SearchForm.css";
 
 /** SearchForm component renders a search form.
  *
@@ -33,21 +34,20 @@ function SearchForm({ search }) {
     setFormData(initialFormState);
   }
 
-  //TODO: CSS - Make the input responsive, doesn't shrink at smaller size.
-  // I could make it a bit better.
+
   return (
     <div className="SearchForm d-flex justify-content-center">
     <form onSubmit={handleSubmit}>
-      <div className="input-group mb-4 mt-4">
+      <div className="input-group mb-4 mt-5">
         <input
           type="search"
-          placeholder="Search..."
+          placeholder="What're you looking for?"
           name="query"
           value={formData.query}
           onChange={handleChange}
-          className="form-control border-secondary py-2"
+          className="SearchForm-bar rounded border-secondary py-3 px-3"
         />
-        <button className="btn btn-outline-light py-2" type="submit">Search</button>
+        <button className="btn btn-outline-light px-3 py-3" type="submit">Search</button>
       </div>
     </form>
     </div>

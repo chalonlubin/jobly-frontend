@@ -1,10 +1,19 @@
 import React, { useContext, useEffect, useState } from "react";
 import userContext from "./userContext";
 import { useNavigate } from "react-router-dom";
-import "./LoginForm.css";
+
 
 const INITIAL_FORM_DATA = { username: "", password: "" };
 
+/** Renders login form.
+ *
+ * Props: login function from parent (App)
+ *
+ * State: formData {username, password}
+ *
+ * App -> Routes -> LoginForm
+ *
+ */
 function LoginForm({ login }) {
   const navigate = useNavigate();
   const { user } = useContext(userContext);
@@ -21,6 +30,7 @@ function LoginForm({ login }) {
     evt.preventDefault();
     login(formData);
     setFormData(INITIAL_FORM_DATA);
+    // Alert user that they have logged in successfully or display errors?
   }
 
   useEffect(() => {
@@ -33,7 +43,7 @@ function LoginForm({ login }) {
   return (
     <div className="LoginForm pt-5">
       <div className="container col-md-6 offset-md-3 col-lg-4 offset-lg-4">
-        <h3 className="mb-3 text-center">Log In</h3>
+        <h3 className="mb-3 text-center fs-1">Log In</h3>
         <div className="card">
           <div className="card-body">
             <form onSubmit={handleSubmit}>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import CompanyCard from "./CompanyCard";
 import SearchForm from "../Common/SearchForm";
 import JoblyApi from "../Helpers/api";
+import "./CompanyList.css";
 
 /** CompanyList component renders a list of companies.
  *
@@ -52,6 +53,7 @@ function CompanyList() {
   return (
     <div className="CompanyList">
       <SearchForm search={search} />
+      <h4 className="m-3 p-3"> Select a company to see current job offerings. </h4>
       {companies.companyList.map((c) => (
         <CompanyCard key={c.handle} company={c} />
       ))}

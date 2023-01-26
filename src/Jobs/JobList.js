@@ -50,6 +50,7 @@ function JobList() {
   return (
     <div className="JobList">
       <SearchForm search={search} />
+      <div className="row"></div>
       <JobCardList from={"JobList"} jobs={jobs.jobList} search={search} />
     </div>
   );

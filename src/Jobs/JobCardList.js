@@ -14,7 +14,7 @@ import JobCard from "./JobCard";
 function JobCardList({ jobs, from }) {
   return (
     //TODO: Add no jobs found matching that search if no jobs are found.
-    <div className="JobCardList">
+    <div className="JobCardList row">
       {jobs.map((j) => {
         const company = from === "JobList" ? j.companyName : null;
         return <JobCard company={company} key={j.id} job={j} />;

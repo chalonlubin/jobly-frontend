@@ -17,7 +17,7 @@ function NavBar({ logout }) {
   //TODO: Add light/dark mode.
   // Will require state so I wanted to touch base with you first
   return (
-    <nav className="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+    <nav className="navbar sticky-top navbar-expand-lg navbar-dark bg-dark ">
       <div className="container-fluid">
         <NavLink className="navbar-brand" to="/">
           <img

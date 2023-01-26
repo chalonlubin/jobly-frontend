@@ -1,8 +1,20 @@
+/* Styles for all items in app.js */
+
 .App {
   display: block;
   margin: 0px;
   padding: 0px;
 }
+
+/* .card-body {
+  background-color: gainsboro;
+} */
+
+label {
+  font-weight: bold;
+  font-family: 'Roboto', sans-serif;
+}
+
 
 h3 {
   margin-top: 0px;

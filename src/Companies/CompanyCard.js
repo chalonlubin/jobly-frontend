@@ -15,18 +15,18 @@ function CompanyCard({ company }) {
   return (
     <div className="d-flex justify-content-center card-deck">
       <div className="CompanyCard card mx-3 my-3">
-        <div className="card-body text-center">
-          <div className="card-header">
+        <div className="card-body mx-2">
+
             <h5>{company.name}</h5>
-          </div>
-          <p>{company.description}</p>
           {company.logoUrl && (
             <img
-              className="d-none d-sm-block mx-auto"
+              className="float-end ms-5"
               src={company.logoUrl}
               alt={company.name}
             />
           )}
+
+          <p>{company.description}</p>
           <Link
             className="stretched-link"
             to={`/companies/${company.handle}`}

@@ -26,6 +26,7 @@ function SignupForm({ signup }) {
   function handleSubmit(evt) {
     evt.preventDefault();
     signup(formData);
+    // Alert user that they have signed up successfully or display errors?
   }
 
   useEffect(() => {
@@ -38,7 +39,7 @@ function SignupForm({ signup }) {
   return (
     <div className="SignupForm pt-5">
       <div className="container col-md-6 offset-md-3 col-lg-4 offset-lg-4">
-        <h3 className="mb-3 text-center">Sign Up</h3>
+        <h3 className="mb-3 text-center fs-1">Sign Up</h3>
         <div className="card">
           <div className="card-body">
             <form onSubmit={handleSubmit}>

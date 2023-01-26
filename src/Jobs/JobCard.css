@@ -1,4 +1,12 @@
+/* Styles for JobCard.js */
+
 .Job {
-  width: 75%;
-  height: 5%;
+  width: 335px;
+  height: 175px;
+}
+
+h5 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  font-family: 'Roboto', sans-serif;
 }
