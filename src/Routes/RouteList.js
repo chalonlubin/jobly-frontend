@@ -1,5 +1,5 @@
-import React from "react";
-import { Routes, Route } from "react-router-dom";
+import React, { useContext } from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Homepage from "../Common/Homepage";
 import CompanyList from "../Companies/CompanyList";
 import CompanyDetail from "../Companies/CompanyDetail";
@@ -8,6 +8,7 @@ import NotFound from "../Common/NotFound";
 import SignupForm from "../Users/SignupForm";
 import LoginForm from "../Users/LoginForm";
 import ProfileForm from "../Users/ProfileForm";
+import userContext from "../Users/userContext";
 
 /** Routes for Jobly app.
  *
@@ -24,6 +25,7 @@ import ProfileForm from "../Users/ProfileForm";
  *
  * */
 function RouteList({ signup, login, update, errors }) {
+  const { user } = useContext(userContext);
 
   // TODO: use if blocks to block off routes based on user context
   return (

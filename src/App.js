@@ -21,13 +21,12 @@ function App() {
     function fetchUserWhenTokenUpdated() {
       async function fetchUser() {
         const { username } = jwt_decode(token);
-        const user = await JoblyApi.getUser(token, username);
-
+        const user = await JoblyApi.getUser(username);
         setUser(user);
       }
       if (token) {
-        fetchUser();
         JoblyApi.token = token;
+        fetchUser();
       }
     },
     [token]
@@ -35,22 +34,15 @@ function App() {
 
   /** Signup for site. */
   async function signup(signupData) {
-    try {
-      const token = await JoblyApi.registerUser(signupData);
-      setToken(token);
-    } catch (e) {
-      setErrors(e);
-    }
+    const token = await JoblyApi.registerUser(signupData);
+    setToken(token);
   }
 
   /** Login to site. */
   async function login(loginData) {
-    try {
-      const token = await JoblyApi.loginUser(loginData);
-      setToken(token);
-    } catch (e) {
-      setErrors(e);
-    }
+    let token;
+    token = await JoblyApi.loginUser(loginData);
+    setToken(token);
   }
 
   /** Update user profile. */

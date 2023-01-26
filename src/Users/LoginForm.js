@@ -29,6 +29,8 @@ function LoginForm({ login }) {
   function handleSubmit(evt) {
     evt.preventDefault();
     login(formData);
+    navigate("/");
+
     // Alert user that they have logged in successfully or display errors?
   }
 
@@ -65,9 +67,11 @@ function LoginForm({ login }) {
                   required
                 />
               </div>
-              {errors && <div className="d-grid mt-4">
-                <Alert errors={errors} />
-              </div>}
+              {errors && (
+                <div className="d-grid mt-4">
+                  <Alert errors={errors} />
+                </div>
+              )}
               <div className="d-grid mt-4">
                 <button
                   className="btn btn-outline-dark "
