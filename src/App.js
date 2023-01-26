@@ -7,6 +7,7 @@ import NavBar from "./Routes/NavBar";
 import RouteList from "./Routes/RouteList";
 import JoblyApi from "./Helpers/api";
 import userContext from "./Users/userContext";
+import { Navigate } from "react-router-dom";
 
 /**
  * App component that renders the navbar and routes.
@@ -60,6 +61,7 @@ function App() {
     setUser(null);
     setToken(null);
     localStorage.removeItem("token");
+    return <Navigate to="/" />;
   }
 
   return (

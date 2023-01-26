@@ -19,7 +19,7 @@ import Alert from "../Common/Alert";
  *
  */
 function ProfileForm({ update }) {
-  const user = useContext(userContext);
+  const {user} = useContext(userContext);
 
   const [status, setStatus] = useState({
     updateMsg: [],
