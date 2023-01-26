@@ -34,7 +34,7 @@ function NavBar({ logout }) {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
-          <div className="navbar-nav mx-auto">
+          <div className="navbar-nav ms-auto">
             {/* how do i group this?? */}
             {user && (
               <NavLink className="nav-link" to="/companies">

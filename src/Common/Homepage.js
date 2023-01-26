@@ -22,10 +22,10 @@ function Homepage() {
         <h2 className="Homepage-subtitle"> Not your average job finder. </h2>
         {!user && (
           <div className="signuplogin d-flex justify-content-evenly">
-            <Link className="btn btn-primary" to="/login">
+            <Link className="btn btn-outline-light opacity-75 m-4" to="/login">
               Log in
             </Link>
-            <Link className="btn btn-primary" to="/signup">
+            <Link className="btn btn-outline-light opacity-75 m-4" to="/signup">
               Sign up
             </Link>
           </div>
