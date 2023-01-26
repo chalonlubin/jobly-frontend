@@ -1,8 +1,13 @@
-import { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import userContext from "./userContext";
+import { useNavigate } from "react-router-dom";
 
 const INITIAL_FORM_DATA = { username: "test", password: "test1" };
 
 function LoginForm({ login }) {
+  const navigate = useNavigate();
+  const { user } = useContext(userContext);
+
   const [formData, setFormData] = useState(INITIAL_FORM_DATA);
 
   /** Update form data field */
@@ -16,6 +21,13 @@ function LoginForm({ login }) {
     login(formData);
     setFormData(INITIAL_FORM_DATA);
   }
+
+  useEffect(() => {
+    if (user) {
+      navigate("/");
+    }
+    // TODO: ask about this
+  }, [user, navigate]);
 
   return (
     <div className="LoginForm">
@@ -46,6 +58,7 @@ function LoginForm({ login }) {
             />
           </div>
         </div>
+        <button>Submit</button>
       </form>
     </div>
   );

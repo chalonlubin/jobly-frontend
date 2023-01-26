@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
+import userContext from "../Users/userContext";
+
 import { NavLink } from "react-router-dom";
 
 /** Renders the navbar.
@@ -10,7 +12,8 @@ import { NavLink } from "react-router-dom";
  * App -> NavBar
  *
  * */
-function NavBar() {
+function NavBar({ logout }) {
+  const { user } = useContext(userContext);
   //TODO: Add light/dark mode.
   // Will require state so I wanted to touch base with you first
   return (
@@ -32,18 +35,37 @@ function NavBar() {
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
           <div className="navbar-nav mx-auto">
-            <NavLink className="nav-link" to="/companies">
-              Companies
-            </NavLink>
-            <NavLink className="nav-link" to="/jobs">
-              Jobs
-            </NavLink>
-            <NavLink className="nav-link" to="/login">
-              Login
-            </NavLink>
-            <NavLink className="nav-link" to="/signup">
-              Signup
-            </NavLink>
+            {/* how do i group this?? */}
+            {user && (
+              <NavLink className="nav-link" to="/companies">
+                Companies
+              </NavLink>
+            )}
+            {user && (
+              <NavLink className="nav-link" to="/jobs">
+                Jobs
+              </NavLink>
+            )}
+            {!user && (
+              <NavLink className="nav-link" to="/login">
+                Login
+              </NavLink>
+            )}
+            {!user && (
+              <NavLink className="nav-link" to="/signup">
+                Signup
+              </NavLink>
+            )}
+            {user && (
+              <NavLink className="nav-link" to="/profile">
+                Profile
+              </NavLink>
+            )}
+            {user && (
+              <button className="btn btn-link nav-link" onClick={logout}>
+                Logout {user.username}
+              </button>
+            )}
           </div>
         </div>
       </div>
