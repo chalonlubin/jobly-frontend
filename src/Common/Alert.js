@@ -1,4 +1,4 @@
-function Alert({errors}) {
+function Alert({ errors }) {
   return (
     <div className="Alert">
       {errors.map((e) => (

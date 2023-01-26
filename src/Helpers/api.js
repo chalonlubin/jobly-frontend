@@ -21,7 +21,6 @@ class JoblyApi {
     console.debug("API Call:", endpoint, data, method);
 
     const url = `${BASE_URL}/${endpoint}`;
-    console.log("🚀 ~ file: api.js:26 ~ JoblyApi ~ request ~ JoblyApi.token", JoblyApi.token)
     const headers = { Authorization: `Bearer ${JoblyApi.token}` };
     const params = method === "get" ? data : {};
 

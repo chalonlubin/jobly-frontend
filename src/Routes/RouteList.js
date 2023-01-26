@@ -31,12 +31,22 @@ function RouteList({ signup, login, update, errors }) {
   return (
     <Routes>
       <Route path="/" element={<Homepage />} />
-      <Route path="/companies" element={<CompanyList />} />
-      <Route path="/companies/:handle" element={<CompanyDetail />} />
-      <Route path="/jobs" element={<JobList />} />
-      <Route path="/signup" element={<SignupForm signup={signup} />} />
-      <Route path="/login" element={<LoginForm login={login} />} />
-      <Route path="/profile" element={<ProfileForm update={update} />} />
+      {user && (
+        <>
+          <Route path="/companies" element={<CompanyList />} />
+          <Route path="/companies/:handle" element={<CompanyDetail />} />
+          <Route path="/jobs" element={<JobList />} />
+          <Route path="/profile" element={<ProfileForm update={update} />} />
+        </>
+      )}
+      <Route
+        path="/signup"
+        element={!user ? <SignupForm signup={signup} /> : <Navigate to="/" />}
+      />
+      <Route
+        path="/login"
+        element={!user ? <LoginForm login={login} /> : <Navigate to="/" />}
+      />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

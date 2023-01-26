@@ -1,6 +1,6 @@
-import React, { useContext, useEffect, useState } from "react";
-import userContext from "./userContext";
-import { useNavigate } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import errorContext from "../Common/errorContext";
+import Alert from "../Common/Alert";
 
 const INITIAL_FORM_DATA = {
   username: "",
@@ -11,8 +11,7 @@ const INITIAL_FORM_DATA = {
 };
 
 function SignupForm({ signup }) {
-  const navigate = useNavigate();
-  const { user } = useContext(userContext);
+  const errors = useContext(errorContext);
 
   const [formData, setFormData] = useState(INITIAL_FORM_DATA);
 
@@ -25,13 +24,7 @@ function SignupForm({ signup }) {
   /** Call search in parent & clear form. */
   function handleSubmit(evt) {
     evt.preventDefault();
-    try {
-      signup(formData);
-    } catch (e) {
-      console.log(e);
-    }
-    navigate("/");
-    // Alert user that they have signed up successfully or display errors?
+    signup(formData);
   }
 
   return (
@@ -106,7 +99,12 @@ function SignupForm({ signup }) {
                   required
                 />
               </div>
-              <div className="d-grid mt-4">
+              {errors && (
+                <div className="d-grid mt-4">
+                  <Alert errors={errors} />
+                </div>
+              )}
+              <div className="d-grid mt-2">
                 <button
                   className="btn btn-outline-dark "
                   onClick={handleSubmit}

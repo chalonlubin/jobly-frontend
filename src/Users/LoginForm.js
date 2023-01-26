@@ -1,5 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useContext, useState } from "react";
 import errorContext from "../Common/errorContext";
 import Alert from "../Common/Alert";
 
@@ -15,7 +14,6 @@ const INITIAL_FORM_DATA = { username: "", password: "" };
  *
  */
 function LoginForm({ login }) {
-  const navigate = useNavigate();
   const errors = useContext(errorContext);
 
   const [formData, setFormData] = useState(INITIAL_FORM_DATA);
@@ -29,9 +27,6 @@ function LoginForm({ login }) {
   function handleSubmit(evt) {
     evt.preventDefault();
     login(formData);
-    navigate("/");
-
-    // Alert user that they have logged in successfully or display errors?
   }
 
   return (
@@ -72,7 +67,7 @@ function LoginForm({ login }) {
                   <Alert errors={errors} />
                 </div>
               )}
-              <div className="d-grid mt-4">
+              <div className="d-grid mt-2">
                 <button
                   className="btn btn-outline-dark "
                   onClick={handleSubmit}

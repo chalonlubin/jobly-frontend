@@ -27,6 +27,7 @@ function App() {
       if (token) {
         JoblyApi.token = token;
         fetchUser();
+        setErrors(null);
       }
     },
     [token]
@@ -34,21 +35,29 @@ function App() {
 
   /** Signup for site. */
   async function signup(signupData) {
-    const token = await JoblyApi.registerUser(signupData);
+    let token;
+    try {
+      token = await JoblyApi.registerUser(signupData);
+    } catch (e) {
+      setErrors(e);
+    }
     setToken(token);
   }
 
   /** Login to site. */
   async function login(loginData) {
     let token;
-    token = await JoblyApi.loginUser(loginData);
+    try {
+      token = await JoblyApi.loginUser(loginData);
+    } catch (e) {
+      setErrors(e);
+    }
     setToken(token);
   }
 
   /** Update user profile. */
   async function update(updateData) {
     const { username, firstName, lastName, email } = updateData;
-    console.log("user", user);
     const res = await JoblyApi.updateUser(token, username, {
       firstName,
       lastName,
