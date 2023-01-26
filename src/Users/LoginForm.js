@@ -1,6 +1,6 @@
-import React, { useContext, useState } from "react";
-import errorContext from "../Common/errorContext";
+import React, { useState } from "react";
 import Alert from "../Common/Alert";
+import { useNavigate} from "react-router-dom";
 
 const INITIAL_FORM_DATA = { username: "", password: "" };
 
@@ -14,8 +14,9 @@ const INITIAL_FORM_DATA = { username: "", password: "" };
  *
  */
 function LoginForm({ login }) {
-  const errors = useContext(errorContext);
+  const navigate = useNavigate();
 
+  const [errors, setErrors] = useState([]);
   const [formData, setFormData] = useState(INITIAL_FORM_DATA);
 
   /** Update form data field */
@@ -24,9 +25,14 @@ function LoginForm({ login }) {
     setFormData((f) => ({ ...f, [name]: value }));
   }
   /** Call search in parent & clear form. */
-  function handleSubmit(evt) {
+  async function handleSubmit(evt) {
     evt.preventDefault();
-    login(formData);
+    try {
+      await login(formData);
+      navigate("/");
+    } catch (e) {
+      setErrors(e);
+    }
   }
 
   return (
@@ -62,7 +68,7 @@ function LoginForm({ login }) {
                   required
                 />
               </div>
-              {errors && (
+              {errors.length !== 0 && (
                 <div className="d-grid mt-4">
                   <Alert errors={errors} />
                 </div>

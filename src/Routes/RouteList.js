@@ -39,15 +39,14 @@ function RouteList({ signup, login, update, errors }) {
           <Route path="/profile" element={<ProfileForm update={update} />} />
         </>
       )}
-      <Route
-        path="/signup"
-        element={!user ? <SignupForm signup={signup} /> : <Navigate to="/" />}
-      />
-      <Route
-        path="/login"
-        element={!user ? <LoginForm login={login} /> : <Navigate to="/" />}
-      />
-      <Route path="*" element={<NotFound />} />
+      {!user && (
+        <>
+          <Route path="/signup" element={<SignupForm signup={signup} />} />
+          <Route path="/login" element={<LoginForm login={login} />} />
+        </>
+      )}
+      <Route path="/notfound" element={<NotFound />} />
+      <Route path="*" element={<Navigate to="/notfound" />} />
     </Routes>
   );
 }
