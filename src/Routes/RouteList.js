@@ -23,7 +23,9 @@ import ProfileForm from "../Users/ProfileForm";
  *      }
  *
  * */
-function RouteList({ signup, login, update }) {
+function RouteList({ signup, login, update, errors }) {
+
+  // TODO: use if blocks to block off routes based on user context
   return (
     <Routes>
       <Route path="/" element={<Homepage />} />

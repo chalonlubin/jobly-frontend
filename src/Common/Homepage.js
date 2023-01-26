@@ -15,6 +15,9 @@ import { useContext } from "react";
 function Homepage() {
   const { user } = useContext(userContext);
 
+  // TODO: There's a scrolling issue on the homepage.
+  // It most likely has to do with the css.
+
   return (
     <section className="Homepage">
       <div className="Homepage-content">

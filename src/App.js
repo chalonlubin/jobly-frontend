@@ -1,16 +1,13 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import jwt_decode from "jwt-decode";
 import { BrowserRouter } from "react-router-dom";
 import { useState, useEffect } from "react";
 import NavBar from "./Routes/NavBar";
 import RouteList from "./Routes/RouteList";
 import JoblyApi from "./Helpers/api";
 import userContext from "./Users/userContext";
-import * as jose from "jose";
-
-// const CHALON_TOKEN =
-//   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QiLCJpc0FkbWluIjpmYWxzZSwiaWF0IjoxNjc0Njg1MDgyfQ.o5xkB0pNM7SHir_1Ql0UH4D_nzJW8eUmYzXiZP9bMs4";
-// const CHALON_USERNAME = "test";
+import errorContext from "./Common/errorContext";
 
 /**
  * App component that renders the navbar and routes.
@@ -18,38 +15,53 @@ import * as jose from "jose";
 function App() {
   const [token, setToken] = useState(null);
   const [user, setUser] = useState(null);
+  const [errors, setErrors] = useState(null);
 
   useEffect(
     function fetchUserWhenTokenUpdated() {
       async function fetchUser() {
-        const { username } = jose.decodeJwt(token);
-        const res = await JoblyApi.getUser(token, username);
+        const { username } = jwt_decode(token);
+        const user = await JoblyApi.getUser(token, username);
 
-        setUser((u) => res);
+        setUser(user);
       }
-      if (token) fetchUser();
+      if (token) {
+        fetchUser();
+        JoblyApi.token = token;
+      }
     },
     [token]
   );
 
   /** Signup for site. */
   async function signup(signupData) {
-    const res = await JoblyApi.registerUser(signupData);
-    setToken((t) => res);
+    try {
+      const token = await JoblyApi.registerUser(signupData);
+      setToken(token);
+    } catch (e) {
+      setErrors(e);
+    }
   }
-
 
   /** Login to site. */
   async function login(loginData) {
-    const res = await JoblyApi.loginUser(loginData);
-    setToken((t) => res);
+    try {
+      const token = await JoblyApi.loginUser(loginData);
+      setToken(token);
+    } catch (e) {
+      setErrors(e);
+    }
   }
 
   /** Update user profile. */
   async function update(updateData) {
-    const { username, firstName, lastName, email } = updateData
-    console.log('user',user);
-    const res = await JoblyApi.updateUser(token, username, {firstName, lastName, email});
+    const { username, firstName, lastName, email } = updateData;
+    console.log("user", user);
+    const res = await JoblyApi.updateUser(token, username, {
+      firstName,
+      lastName,
+      email,
+    });
     setUser((u) => res);
   }
 
@@ -62,10 +74,17 @@ function App() {
   return (
     <div className="App">
       <userContext.Provider value={{ user }}>
-        <BrowserRouter>
-          <NavBar logout={logout} />
-          <RouteList token={token} signup={signup} login={login} update={update} />
-        </BrowserRouter>
+        <errorContext.Provider value={errors}>
+          <BrowserRouter>
+            <NavBar logout={logout} />
+            <RouteList
+              signup={signup}
+              login={login}
+              update={update}
+              errors={errors}
+            />
+          </BrowserRouter>
+        </errorContext.Provider>
       </userContext.Provider>
     </div>
   );

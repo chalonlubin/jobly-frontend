@@ -19,6 +19,7 @@ import userContext from "./userContext";
  */
 function ProfileForm({ update }) {
   const { user } = useContext(userContext);
+
   const [formData, setFormData] = useState({
     username: user.username,
     firstName: user.firstName,

@@ -41,8 +41,7 @@ function NavBar({ logout }) {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
-          <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-            {/* how do i group this?? Chalon - I gotchu! */}
+          <ul className="navbar-nav ms-auto mb-2 mb-lg-0 d-flex align-items-center">
             {user && (
               <>
                 <li className="nav-item">
@@ -60,7 +59,7 @@ function NavBar({ logout }) {
                     Profile
                   </NavLink>
                 </li>
-                <li className="nav-item">
+                <li className="nav-item ">
                   <button className="btn btn-link nav-link" onClick={logout}>
                     Log Out {user.username}
                   </button>
