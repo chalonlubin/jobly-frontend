@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Alert from "../Common/Alert";
-import { useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const INITIAL_FORM_DATA = { username: "", password: "" };
 
@@ -70,7 +70,7 @@ function LoginForm({ login }) {
               </div>
               {errors.length !== 0 && (
                 <div className="d-grid mt-4">
-                  <Alert errors={errors} />
+                  <Alert alerts={errors} type={"danger"} />
                 </div>
               )}
               <div className="d-grid mt-2">

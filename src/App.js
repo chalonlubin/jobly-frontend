@@ -47,12 +47,12 @@ function App() {
   /** Update user profile. */
   async function update(updateData) {
     const { username, firstName, lastName, email } = updateData;
-    const res = await JoblyApi.updateUser(token, username, {
+    const user = await JoblyApi.updateUser(username, {
       firstName,
       lastName,
       email,
     });
-    setUser((u) => res);
+    setUser(user);
   }
 
   /** Logout of site. */
@@ -65,10 +65,10 @@ function App() {
   return (
     <div className="App">
       <userContext.Provider value={{ user }}>
-          <BrowserRouter>
-            <NavBar logout={logout} />
-            <RouteList signup={signup} login={login} update={update} />
-          </BrowserRouter>
+        <BrowserRouter>
+          <NavBar logout={logout} />
+          <RouteList signup={signup} login={login} update={update} />
+        </BrowserRouter>
       </userContext.Provider>
     </div>
   );

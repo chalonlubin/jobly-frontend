@@ -1,13 +1,11 @@
-function Alert({errors}) {
-  console.log("🚀 ~ file: Alert.js:2 ~ Alert ~ errors", errors)
-
+function Alert({ alerts, type }) {
   return (
     <div className="Alert">
-      {errors.map((e) => (
-        <div key={e} className="alert alert-danger" role="alert">
-          {e}
-        </div>
-      ))}
+      <div className={`alert alert-${type}`} role="alert">
+        {alerts.map((e) => (
+          <p className="mb-0 small" key={e}>{e}</p>
+        ))}
+      </div>
     </div>
   );
 }

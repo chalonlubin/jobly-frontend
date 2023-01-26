@@ -1,5 +1,6 @@
-import React, { useContext, useState } from "react";
+import React, { useState, useContext } from "react";
 import userContext from "./userContext";
+import Alert from "../Common/Alert";
 
 /** Form for user to update profile.
  *
@@ -18,7 +19,12 @@ import userContext from "./userContext";
  *
  */
 function ProfileForm({ update }) {
-  const { user } = useContext(userContext);
+  const user = useContext(userContext);
+
+  const [status, setStatus] = useState({
+    updateMsg: [],
+    errors: [],
+  });
 
   const [formData, setFormData] = useState({
     username: user.username,
@@ -34,10 +40,14 @@ function ProfileForm({ update }) {
   }
 
   /** Call search in parent (form does not change on submit.) */
-  function handleSubmit(evt) {
+  async function handleSubmit(evt) {
     evt.preventDefault();
-    update(formData);
-    // Alert user that profile has been updated or display errors?
+    try {
+      await update(formData);
+      setStatus({ updateMsg: ["Updated successfully."], errors: [] });
+    } catch (e) {
+      setStatus({ updateMsg: [], errors: e });
+    }
   }
 
   return (
@@ -59,7 +69,6 @@ function ProfileForm({ update }) {
                   disabled
                 />
               </div>
-
               <div className="mb-3">
                 <label htmlFor="username" className="form-label">
                   First Name
@@ -96,7 +105,17 @@ function ProfileForm({ update }) {
                   className="form-control"
                 />
               </div>
-              <div className="d-grid mt-4">
+              {status.updateMsg.length !== 0 && (
+                <div className="d-grid mt-4">
+                  <Alert alerts={status.updateMsg} type={"success"} />
+                </div>
+              )}
+              {status.errors.length !== 0 && (
+                <div className="d-grid mt-4">
+                  <Alert alerts={status.errors} type={"danger"} />
+                </div>
+              )}
+              <div className="d-grid mt-1">
                 <button
                   className="btn btn-outline-dark "
                   onClick={handleSubmit}

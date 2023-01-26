@@ -101,12 +101,12 @@ class JoblyApi {
     return res.user;
   }
 
-  // //** Update user details. */
-  // static async updateUser(token, username, userData) {
-  //   const res = await this.request(`users/${username}`, userData, "patch", token);
+  //** Update user details. */
+  static async updateUser(username, userData) {
+    const res = await this.request(`users/${username}`, userData, "patch");
 
-  //   return res.user;
-  // }
+    return res.user;
+  }
 }
 
 export default JoblyApi;
