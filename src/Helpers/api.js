@@ -53,11 +53,9 @@ class JoblyApi {
    * If search is provided, filters to companies whose name contains search.
    **/
   static async getCompanies(search) {
-    if (!search) {
-      const res = await this.request(`companies/`);
-      return res.companies;
-    }
-    const res = await this.request(`companies/`, { nameLike: search });
+    const res = search
+      ? await this.request(`companies/`, { nameLike: search })
+      : await this.request(`companies/`);
 
     return res.companies;
   }
@@ -69,11 +67,9 @@ class JoblyApi {
    * If search is provided, filters to jobs whose title contains search.
    **/
   static async getJobs(search) {
-    if (!search) {
-    const res = await this.request(`jobs/`);
-    return res.jobs;
-    }
-    const res = await this.request(`jobs/`, { title: search });
+    const res = search
+      ? await this.request(`jobs/`, { title: search })
+      : await this.request(`jobs/`);
     return res.jobs;
   }
 
@@ -89,7 +85,6 @@ class JoblyApi {
 
     return res.user;
   }
-
 
   /** Register a new user.
    *
