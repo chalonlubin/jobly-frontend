@@ -32,10 +32,7 @@ import Loader from "./Common/Loader";
  **/
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
-  const [user, setUser] = useState({ data: null, isLoading: true})
-
-  console.log("token", token);
-  console.log("user", user);
+  const [user, setUser] = useState({ data: null, isLoading: true });
 
   useEffect(
     function fetchUserWhenTokenUpdated() {
@@ -43,7 +40,8 @@ function App() {
         const { username } = jwt_decode(token);
         try {
           const user = await JoblyApi.getUser(username);
-          setUser({data: user, isLoading: false});
+          console.log(user);
+          setUser((u) => ({ ...u, data: user }));
         } catch (e) {
           console.error(e);
         }
@@ -51,8 +49,8 @@ function App() {
       if (token) {
         JoblyApi.token = token;
         fetchUser();
-        setUser(({data: user, isLoading: false }));
       }
+      setUser((u) => ({ ...u, isLoading: false }));
     },
     [token]
   );
@@ -81,14 +79,14 @@ function App() {
       lastName,
       email,
     });
-    setUser({...user, isLoading: false });
+    setUser({ data: user, isLoading: false });
     toast("👍 Update Successful!", TOAST_DEFAULTS);
   }
 
   /** Logout user, remove token from localStorage, update state */
   async function logout() {
     try {
-      setUser({data: null, isLoading: false});
+      setUser({ data: null, isLoading: false });
       setToken(null);
       localStorage.removeItem("token");
       toast("👋 Logout Successful!", TOAST_DEFAULTS);
@@ -102,7 +100,7 @@ function App() {
 
   return (
     <div className="App">
-      <userContext.Provider value={ user.data }>
+      <userContext.Provider value={{ user }}>
         <BrowserRouter>
           <ToastContainer />
           <NavBar logout={logout} />
