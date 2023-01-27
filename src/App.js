@@ -80,7 +80,7 @@ function App() {
   }
 
   /** Logout user, remove token from localStorage, update state */
-  async function logout() {
+  function logout() {
     setUser(null);
     setToken(null);
     localStorage.removeItem("token");
