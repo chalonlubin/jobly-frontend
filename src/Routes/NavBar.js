@@ -57,9 +57,10 @@ function NavBar({ logout }) {
                   </NavLink>
                 </li>
                 <li className="nav-item ">
-                  <button className="btn btn-link nav-link" onClick={logout}>
+                  {/* FIXME: Solved the bug where we kept getting 404 after logout.*/}
+                  <NavLink className="nav-link" onClick={logout} to="/">
                     Log Out {user.username}
-                  </button>
+                  </NavLink>
                 </li>
               </>
             )}

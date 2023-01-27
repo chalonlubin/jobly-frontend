@@ -4,7 +4,10 @@
 }
 
 .CompanyCard img {
-  width: 75px;
+  width: 70px;
+  position: relative;
+  right: auto;
+  bottom: 36px;
 }
 
 h5 {

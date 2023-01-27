@@ -72,6 +72,18 @@ class JoblyApi {
 
   /**************************************************************** User  */
 
+  /** Get user data
+   *
+   * Returns { username, firstName, lastName, email }
+   */
+
+  static async getUser(username) {
+    const res = await this.request(`users/${username}`);
+
+    return res.user;
+  }
+
+
   /** Register a new user.
    *
    * Returns a token.

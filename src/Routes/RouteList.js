@@ -36,9 +36,9 @@ function RouteList({ signup, login, update }) {
 
   return (
     <Routes>
-      <Route path="/" element={<Homepage />} />
       {user ? (
         <>
+          <Route path="/" element={<Homepage />} />
           <Route path="/companies" element={<CompanyList />} />
           <Route path="/companies/:handle" element={<CompanyDetail />} />
           <Route path="/jobs" element={<JobList />} />
@@ -48,6 +48,7 @@ function RouteList({ signup, login, update }) {
         </>
       ) : (
         <>
+          <Route path="/" element={<Homepage />} />
           <Route path="/signup" element={<SignupForm signup={signup} />} />
           <Route path="/login" element={<LoginForm login={login} />} />
         </>
