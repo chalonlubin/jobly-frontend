@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Alert from "../Common/Alert";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import TOAST_DEFAULTS from "../Helpers/toastSettings";
 
 /** LoginForm: Form for logging in.
  *
@@ -34,16 +35,7 @@ function LoginForm({ login }) {
       navigate("/");
     } catch (e) {
       setErrors(e);
-      toast(`❌ Login Failed`, {
-        position: "bottom-left",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-      });
+      toast(`❌ Login Failed`, TOAST_DEFAULTS);
     }
   }
 

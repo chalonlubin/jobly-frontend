@@ -11,7 +11,8 @@ import { NavLink } from "react-router-dom";
  * Routelist -> NavBar
  **/
 function NavBar({ logout }) {
-  const user = useContext(userContext).data;
+  const { user } = useContext(userContext);
+
   //TODO: Add light/dark mode.
   return (
     <nav className="navbar sticky-top navbar-expand-lg navbar-dark bg-dark ">
@@ -57,7 +58,6 @@ function NavBar({ logout }) {
                   </NavLink>
                 </li>
                 <li className="nav-item ">
-                  {/* FIXME: Solved the bug where we kept getting 404 after logout.*/}
                   <NavLink className="nav-link" onClick={logout} to="/">
                     Log Out {user.username}
                   </NavLink>

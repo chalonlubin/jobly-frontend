@@ -21,12 +21,16 @@ function JobList() {
   useEffect(
     function fetchJobsWhenMounted() {
       async function fetchJobs() {
-        const jobsResult = await JoblyApi.getJobs(jobs.query);
-        setJobs((j) => ({
-          ...j,
-          jobList: jobsResult,
-          isLoading: false,
-        }));
+        try {
+          const jobsResult = await JoblyApi.getJobs(jobs.query);
+          setJobs((j) => ({
+            ...j,
+            jobList: jobsResult,
+            isLoading: false,
+          }));
+        } catch (e) {
+          console.error(e);
+        }
       }
       fetchJobs();
     },
@@ -38,7 +42,6 @@ function JobList() {
     setJobs((c) => ({ ...c, query: title }));
   }
 
-  // add <Loading /> component
   if (jobs.isLoading) return <Loader />;
 
   return (

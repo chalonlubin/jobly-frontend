@@ -13,13 +13,6 @@ import userContext from "./Users/userContext";
 import TOAST_DEFAULTS from "./Helpers/toastSettings";
 import Loader from "./Common/Loader";
 
-//FIXME: add isLoading state to user? I think we do have to do this for most aysnc calls
-
-// Another note: When traveling between pages, most errors occur when we use the url bar, we can see flashes of the screen we try to go to...
-// Not sure the fix but I think if we implement a loader it may fix a lot of these issues. It could maybe have something to do with our token usage and how
-// we access the information.. not sure.
-// Also noticing that when we go to a random route when logged in, theres an odd delay then we hit the 404.
-
 /** App
  *
  * Props: n/a
@@ -32,25 +25,28 @@ import Loader from "./Common/Loader";
  **/
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
-  const [user, setUser] = useState({ data: null, isLoading: true });
+  const [user, setUser] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(
     function fetchUserWhenTokenUpdated() {
       async function fetchUser() {
-        const { username } = jwt_decode(token);
         try {
+          const { username } = jwt_decode(token);
           const user = await JoblyApi.getUser(username);
-          console.log(user);
-          setUser((u) => ({ ...u, data: user }));
+          setUser(user);
+          setIsLoading(false);
         } catch (e) {
+          toast("🚀 Database error", TOAST_DEFAULTS);
           console.error(e);
         }
       }
       if (token) {
         JoblyApi.token = token;
         fetchUser();
+      } else {
+        setIsLoading(false);
       }
-      setUser((u) => ({ ...u, isLoading: false }));
     },
     [token]
   );
@@ -79,24 +75,21 @@ function App() {
       lastName,
       email,
     });
-    setUser({ data: user, isLoading: false });
+    setUser(user);
     toast("👍 Update Successful!", TOAST_DEFAULTS);
   }
 
   /** Logout user, remove token from localStorage, update state */
   async function logout() {
-    try {
-      setUser({ data: null, isLoading: false });
-      setToken(null);
-      localStorage.removeItem("token");
-      toast("👋 Logout Successful!", TOAST_DEFAULTS);
-    } catch (e) {
-      console.log(e);
-    }
+    setUser(null);
+    setToken(null);
+    localStorage.removeItem("token");
+    toast("👋 Logout Successful!", TOAST_DEFAULTS);
+
     return <Navigate to="/" />;
   }
 
-  if (user.isLoading) return <Loader />;
+  if (isLoading) return <Loader />;
 
   return (
     <div className="App">
@@ -112,4 +105,3 @@ function App() {
 }
 
 export default App;
-export { TOAST_DEFAULTS };
