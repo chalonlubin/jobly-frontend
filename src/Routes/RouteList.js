@@ -10,7 +10,6 @@ import SignupForm from "../Users/SignupForm";
 import LoginForm from "../Users/LoginForm";
 import ProfileForm from "../Users/ProfileForm";
 import NotFoundPage from "../Common/NotFoundPage";
-import Loader from "../Common/Loader";
 
 /** RouteList: Routes for Jobly
  *
@@ -32,9 +31,8 @@ import Loader from "../Common/Loader";
  * If user is logged in, show all routes.
  * If not, show /signup and /login.
  **/
-function RouteList({ signup, login, update, isLoading }) {
+function RouteList({ signup, login, updateUser, isLoading }) {
   const { user } = useContext(userContext);
-  console.log("🚀 ~ file: RouteList.js:37 ~ RouteList ~ user", user)
 
   return (
     <Routes>
@@ -44,7 +42,10 @@ function RouteList({ signup, login, update, isLoading }) {
           <Route path="/companies" element={<CompanyList />} />
           <Route path="/companies/:handle" element={<CompanyDetail />} />
           <Route path="/jobs" element={<JobList />} />
-          <Route path="/profile" element={<ProfileForm update={update} />} />
+          <Route
+            path="/profile"
+            element={<ProfileForm updateUser={updateUser} />}
+          />
           <Route path="/signup" element={<Navigate to="/" />} />
           <Route path="/login" element={<Navigate to="/" />} />
         </>
