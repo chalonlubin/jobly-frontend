@@ -77,7 +77,8 @@ class JoblyApi {
 
   /** Get user data
    *
-   * Returns { username, firstName, lastName, email }
+   * Returns { username, firstName, lastName, email, isAdmin, applications }
+   *  applications is an array: [application,...]
    */
 
   static async getUser(username) {

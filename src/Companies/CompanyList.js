@@ -33,7 +33,6 @@ function CompanyList() {
           }));
         } catch (e) {
           // maybe do something else
-          toast("Database error. Please try again later.", TOAST_DEFAULTS);
           console.error(e);
         }
       }
@@ -49,7 +48,6 @@ function CompanyList() {
 
   if (companies.isLoading) return <Loader />;
 
-  //FIXME: Added additional logic here for when no search results.
   return (
     <div className="CompanyList">
       <SearchForm search={search} />

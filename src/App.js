@@ -11,6 +11,7 @@ import RouteList from "./Routes/RouteList";
 import JoblyApi from "./Helpers/api";
 import userContext from "./Users/userContext";
 import TOAST_DEFAULTS from "./Helpers/toastSettings";
+import Loader from "./Common/Loader";
 
 //FIXME: add isLoading state to user? I think we do have to do this for most aysnc calls
 
@@ -31,7 +32,7 @@ import TOAST_DEFAULTS from "./Helpers/toastSettings";
  **/
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({ data: null, isLoading: true})
 
   console.log("token", token);
   console.log("user", user);
@@ -42,14 +43,15 @@ function App() {
         const { username } = jwt_decode(token);
         try {
           const user = await JoblyApi.getUser(username);
-          setUser(user);
+          setUser({data: user, isLoading: false});
         } catch (e) {
           console.error(e);
         }
       }
-      if (token !== null) {
+      if (token) {
         JoblyApi.token = token;
         fetchUser();
+        setUser(({data: user, isLoading: false }));
       }
     },
     [token]
@@ -79,28 +81,28 @@ function App() {
       lastName,
       email,
     });
-    setUser(user);
-
+    setUser({...user, isLoading: false });
     toast("👍 Update Successful!", TOAST_DEFAULTS);
   }
 
   /** Logout user, remove token from localStorage, update state */
   async function logout() {
     try {
-      setUser(null);
+      setUser({data: null, isLoading: false});
       setToken(null);
       localStorage.removeItem("token");
       toast("👋 Logout Successful!", TOAST_DEFAULTS);
     } catch (e) {
       console.log(e);
     }
-
     return <Navigate to="/" />;
   }
 
+  if (user.isLoading) return <Loader />;
+
   return (
     <div className="App">
-      <userContext.Provider value={{ user }}>
+      <userContext.Provider value={ user.data }>
         <BrowserRouter>
           <ToastContainer />
           <NavBar logout={logout} />

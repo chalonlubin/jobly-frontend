@@ -28,11 +28,11 @@ function Job({ job, company }) {
             Equity: {`${(job.equity * 100).toFixed(1)}%`}
           </p>
           {/* For applications later, we can toggle with two images */}
-          <img
+          {/* <img
             src="/apply.png"
             alt="apply"
             className="Job-icon m-3 position-absolute bottom-0 end-0"
-          />
+          /> */}
         </div>
       </div>
     </div>
