@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import "./NotFoundPage.css";
 
 /** NotFoundPage: Renders a 404 page
  *
@@ -9,12 +9,30 @@ import { Link } from "react-router-dom";
  **/
 function NotFoundPage() {
   return (
-    <div className="NotFoundPage d-flex flex-column align-items-center justify-content-center mt-5">
-      <h3>Error 404: Page not found</h3>
-      <h3>
-        <Link to="/">Go Home</Link>
-      </h3>
-    </div>
+    <>
+      <figure>
+	<div class="sad-mac"></div>
+	<figcaption>
+		<span class="sr-text">Error 404: Not Found</span>
+		<span class="e"></span>
+		<span class="r"></span>
+		<span class="r"></span>
+		<span class="o"></span>
+		<span class="r"></span>
+		<span class="_4"></span>
+		<span class="_0"></span>
+		<span class="_4"></span>
+		<span class="n"></span>
+		<span class="o"></span>
+		<span class="t"></span>
+		<span class="f"></span>
+		<span class="o"></span>
+		<span class="u"></span>
+		<span class="n"></span>
+		<span class="d"></span>
+	</figcaption>
+</figure>
+    </>
   );
 }
 

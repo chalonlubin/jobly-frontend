@@ -11,7 +11,9 @@ function JobCardList({ jobs, from }) {
   return (
     <div className="JobCardList row">
       {jobs.length === 0 ? (
-        <p style={{ color: "white" }}>Sorry, no results were found!</p>
+        <div className="JobCardList-empty col-md-12 text-center mt-5 fs-2">
+          <h4 className="m-3 p-3">Sorry, no results were found!</h4>
+        </div>
       ) : (
         jobs.map((j) => {
           const company = from === "JobList" ? j.companyName : null;

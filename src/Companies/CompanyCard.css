@@ -1,6 +1,8 @@
 .CompanyCard {
   width: 75%;
   max-height: 10%;
+  border: rgb(177, 177, 177) solid 3px;
+  box-shadow: 1px 1px 1px 1px rgb(0, 0, 0);
 }
 
 .CompanyCard img {
@@ -13,5 +15,15 @@
 h5 {
   font-size: 1.5rem;
   font-weight: bold;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
+}
+
+.Job {
+  width: 350px;
+  height: 250px;
+}
+
+h4 {
+  color: white;
+  text-shadow: 2px 2px 4px #811de4;
 }

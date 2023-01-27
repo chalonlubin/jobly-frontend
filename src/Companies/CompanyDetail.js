@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import JobCardList from "../Jobs/JobCardList";
 import JoblyApi from "../Helpers/api";
+import Loader from "../Common/Loader";
 
 /** CompanyDetail: Renders company details and jobs
  *
@@ -37,7 +38,7 @@ function CompanyDetail() {
   );
 
   // make <Loading /> component
-  if (company.isLoading) return <i>Loading...</i>;
+  if (company.isLoading) return <Loader />;
 
   return (
     <div className="CompanyDetail">

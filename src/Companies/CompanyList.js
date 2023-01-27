@@ -50,8 +50,7 @@ function CompanyList() {
     <div className="CompanyList">
       <SearchForm search={search} />
       <h4 className="m-3 p-3">
-        {" "}
-        Select a company to see current job offerings.{" "}
+        Select a company to see current job offerings.
       </h4>
       {companies.companyList.map((c) => (
         <CompanyCard key={c.handle} company={c} />

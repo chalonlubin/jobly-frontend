@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Alert from "../Common/Alert";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 /** SignupForm: Form for signing up.
  *
@@ -39,6 +40,17 @@ function SignupForm({ signup }) {
       navigate("/");
     } catch (e) {
       setErrors(e);
+      //Can just display e here too, it is just kind of ugly.
+      toast("❌ Sign-up Failed!", {
+        position: "bottom-left",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
     }
   }
 
@@ -74,6 +86,11 @@ function SignupForm({ signup }) {
                   className="form-control"
                   required
                 />
+                <small className="form-text text-muted">
+                  Your password must be 5-20 characters long, contain letters
+                  and numbers, and must not contain spaces, special characters,
+                  or emoji.
+                </small>
               </div>
               <div className="mb-3">
                 <label htmlFor="username" className="form-label">

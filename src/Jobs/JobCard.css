@@ -1,12 +1,13 @@
 /* Styles for JobCard.js */
 
 .Job {
-  width: 335px;
-  height: 175px;
+  width: 350px;
+  height: 250px;
+  border: rgb(177, 177, 177) solid 3px;
+  box-shadow: 1px 1px 1px 1px rgb(0, 0, 0);
 }
 
-h5 {
-  font-size: 1.5rem;
-  font-weight: bold;
-  font-family: 'Roboto', sans-serif;
+h2 {
+  text-decoration: solid;
 }
+
