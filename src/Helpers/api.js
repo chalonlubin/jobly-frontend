@@ -75,18 +75,6 @@ class JoblyApi {
 
   /**************************************************************** User  */
 
-  /** Get user data
-   *
-   * Returns { username, firstName, lastName, email, isAdmin, applications }
-   *  applications is an array: [application,...]
-   */
-
-  static async getUser(username) {
-    const res = await this.request(`users/${username}`);
-
-    return res.user;
-  }
-
   /** Register a new user.
    *
    * Returns a token.
@@ -104,6 +92,18 @@ class JoblyApi {
     const res = await this.request(`auth/token`, loginData, "post");
 
     return res.token;
+  }
+
+  /** Get user data.
+   *
+   * Returns { username, firstName, lastName, email, isAdmin, applications }.
+   * where applications is [application, ...].
+   */
+
+  static async getUser(username) {
+    const res = await this.request(`users/${username}`);
+
+    return res.user;
   }
 
   /** Updates a user.

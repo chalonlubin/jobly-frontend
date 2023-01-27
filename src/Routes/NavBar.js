@@ -11,7 +11,7 @@ import { NavLink } from "react-router-dom";
  * Routelist -> NavBar
  **/
 function NavBar({ logout }) {
-  const { user } = useContext(userContext);
+  const user = useContext(userContext).data;
   //TODO: Add light/dark mode.
   return (
     <nav className="navbar sticky-top navbar-expand-lg navbar-dark bg-dark ">

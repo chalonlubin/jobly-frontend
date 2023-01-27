@@ -32,7 +32,8 @@ import NotFoundPage from "../Common/NotFoundPage";
  * If not, show /signup and /login.
  **/
 function RouteList({ signup, login, update }) {
-  const { user } = useContext(userContext);
+  const user = useContext(userContext).data;
+  console.log('user', user);
 
   return (
     <Routes>
