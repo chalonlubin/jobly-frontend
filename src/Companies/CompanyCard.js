@@ -21,7 +21,7 @@ function CompanyCard({ company }) {
               alt={company.name}
             />
           )}
-          <p>{company.description}</p>
+          <p className="fs-5 text-muted">{company.description}</p>
           <Link
             className="stretched-link"
             to={`/companies/${company.handle}`}

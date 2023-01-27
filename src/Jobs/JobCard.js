@@ -14,8 +14,8 @@ function Job({ job, company }) {
   return (
     <div className="d-flex justify-content-center col-xs-12 col-sm-10 col-md-6 col-lg-6 ">
       <div className="Job card mx-4 my-4 col-md-3 col-sm-6 col-xs-12">
-        <div className="card-body position-relative">
-          <h2 className="card-title fs-4 ">{job.title}</h2>
+        <div className="card-body position-relative text-start">
+          <h2 className="card-title fs-4 fw-bolder">{job.title}</h2>
           {company && (
             <p className="card-subtitle my-3 text-muted fs-5 ">{company}</p>
           )}

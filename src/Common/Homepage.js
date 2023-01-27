@@ -15,6 +15,7 @@ function Homepage() {
 
   // TODO: There's a scrolling issue on the homepage.
   // It most likely has to do with the css.
+  // I couldn't get it to mimic the issue, not sure how to fix.
 
   return (
     <section className="Homepage">

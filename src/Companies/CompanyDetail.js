@@ -37,7 +37,6 @@ function CompanyDetail() {
     [handle]
   );
 
-  // make <Loading /> component
   if (company.isLoading) return <Loader />;
 
   return (

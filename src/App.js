@@ -1,21 +1,30 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 
 import { useState, useEffect } from "react";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast } from "react-toastify";
 import { BrowserRouter, Navigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import NavBar from "./Routes/NavBar";
 import RouteList from "./Routes/RouteList";
 import JoblyApi from "./Helpers/api";
+import Loader from "./Common/Loader";
 import userContext from "./Users/userContext";
+import TOAST_DEFAULTS from "./Helpers/toastSettings";
 
+//FIXME: I think the hasLoaded has okay functionality, but I don't think this is the best way.
+// I'm being a bit lazy but I think we could probably just add it to the user state and pass it around that way I guess.
+
+// Another note: When traveling between pages, most errors occur when we use the url bar, we can see flashes of the screen we try to go to...
+// Not sure the fix but I think if we implement a loader it may fix a lot of these issues. It could maybe have something to do with our token usage and how
+// we access the information.. not sure.
+// Also noticing that when we go to a random route when logged in, theres an odd delay then we hit the 404.
 
 /** App
  *
  * Props: n/a
- * State: token, user
+ * State: token, user, hasLoaded
  *
  * App -> NavBar, RouteList
  *
@@ -25,21 +34,28 @@ import userContext from "./Users/userContext";
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [user, setUser] = useState(null);
+  const [hasLoaded, setHasLoaded] = useState(false);
 
-  console.log("token", token)
-  console.log("user", user)
+  console.log("token", token);
+  console.log("user", user);
 
   useEffect(
     function fetchUserWhenTokenUpdated() {
       async function fetchUser() {
         const { username } = jwt_decode(token);
-        const user = await JoblyApi.getUser(username);
-        setUser(user);
+        try {
+          const user = await JoblyApi.getUser(username);
+          setUser(user);
+        } catch (e) {
+          console.error(e);
+        }
       }
       if (token !== null) {
         JoblyApi.token = token;
         fetchUser();
+        setHasLoaded(true);
       }
+      setHasLoaded(true);
     },
     [token]
   );
@@ -49,16 +65,8 @@ function App() {
     const token = await JoblyApi.registerUser(signupData);
     localStorage.setItem("token", token);
     setToken(token);
-    toast('✅ Sign-up Successful!', {
-      position: "bottom-left",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
-      });
+    toast("✅ Sign-up Successful!", TOAST_DEFAULTS);
+    setHasLoaded(true);
   }
 
   /** Login user, store token in localStorage, update state */
@@ -66,16 +74,7 @@ function App() {
     const token = await JoblyApi.loginUser(loginData);
     localStorage.setItem("token", token);
     setToken(token);
-    toast('🚀 Login Successful!', {
-      position: "bottom-left",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
-      });
+    toast("🚀 Login Successful!", TOAST_DEFAULTS);
   }
 
   /** Update user, update state */
@@ -87,16 +86,8 @@ function App() {
       email,
     });
     setUser(user);
-    toast('👍 Update Successful!', {
-      position: "bottom-left",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
-      });
+    setHasLoaded(true);
+    toast("👍 Update Successful!", TOAST_DEFAULTS);
   }
 
   /** Logout user, remove token from localStorage, update state */
@@ -105,24 +96,14 @@ function App() {
       setUser(null);
       setToken(null);
       localStorage.removeItem("token");
-      toast('👋 Logout Successful!', {
-        position: "bottom-left",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-      });
-    } catch(e) {
-      console.log(e)
+      toast("👋 Logout Successful!", TOAST_DEFAULTS);
+    } catch (e) {
+      console.log(e);
     }
-    console.log("MADE IT TO LOGOUT!")
-
-    return (<Navigate to="/"/>);
+    setHasLoaded(true);
+    return <Navigate to="/" />;
   }
-
+  if (!hasLoaded) return <Loader />;
 
   return (
     <div className="App">
@@ -138,3 +119,4 @@ function App() {
 }
 
 export default App;
+export { TOAST_DEFAULTS };
