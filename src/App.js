@@ -4,7 +4,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 import { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
-import { BrowserRouter, Navigate } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import NavBar from "./Routes/NavBar";
 import RouteList from "./Routes/RouteList";
@@ -85,8 +85,6 @@ function App() {
     setToken(null);
     localStorage.removeItem("token");
     toast("👋 Logout Successful!", TOAST_DEFAULTS);
-
-    return <Navigate to="/" />;
   }
 
   if (isLoading) return <Loader />;
