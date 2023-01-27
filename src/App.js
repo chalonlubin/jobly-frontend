@@ -9,12 +9,10 @@ import jwt_decode from "jwt-decode";
 import NavBar from "./Routes/NavBar";
 import RouteList from "./Routes/RouteList";
 import JoblyApi from "./Helpers/api";
-import Loader from "./Common/Loader";
 import userContext from "./Users/userContext";
 import TOAST_DEFAULTS from "./Helpers/toastSettings";
 
-//FIXME: I think the hasLoaded has okay functionality, but I don't think this is the best way.
-// I'm being a bit lazy but I think we could probably just add it to the user state and pass it around that way I guess.
+//FIXME: add isLoading state to user? I think we do have to do this for most aysnc calls
 
 // Another note: When traveling between pages, most errors occur when we use the url bar, we can see flashes of the screen we try to go to...
 // Not sure the fix but I think if we implement a loader it may fix a lot of these issues. It could maybe have something to do with our token usage and how
@@ -24,7 +22,7 @@ import TOAST_DEFAULTS from "./Helpers/toastSettings";
 /** App
  *
  * Props: n/a
- * State: token, user, hasLoaded
+ * State: token, user
  *
  * App -> NavBar, RouteList
  *
@@ -34,7 +32,6 @@ import TOAST_DEFAULTS from "./Helpers/toastSettings";
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [user, setUser] = useState(null);
-  const [hasLoaded, setHasLoaded] = useState(false);
 
   console.log("token", token);
   console.log("user", user);
@@ -53,9 +50,7 @@ function App() {
       if (token !== null) {
         JoblyApi.token = token;
         fetchUser();
-        setHasLoaded(true);
       }
-      setHasLoaded(true);
     },
     [token]
   );
@@ -66,7 +61,6 @@ function App() {
     localStorage.setItem("token", token);
     setToken(token);
     toast("✅ Sign-up Successful!", TOAST_DEFAULTS);
-    setHasLoaded(true);
   }
 
   /** Login user, store token in localStorage, update state */
@@ -86,7 +80,7 @@ function App() {
       email,
     });
     setUser(user);
-    setHasLoaded(true);
+
     toast("👍 Update Successful!", TOAST_DEFAULTS);
   }
 
@@ -100,10 +94,9 @@ function App() {
     } catch (e) {
       console.log(e);
     }
-    setHasLoaded(true);
+
     return <Navigate to="/" />;
   }
-  if (!hasLoaded) return <Loader />;
 
   return (
     <div className="App">

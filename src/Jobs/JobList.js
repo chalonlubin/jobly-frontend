@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import JobCardList from "./JobCardList";
 import JoblyApi from "../Helpers/api";
 import SearchForm from "../Common/SearchForm";
+import Loader from "../Common/Loader";
 
 /** JobList: Renders list of jobs
  *
@@ -38,7 +39,7 @@ function JobList() {
   }
 
   // add <Loading /> component
-  if (jobs.isLoading) return <i>Loading...</i>;
+  if (jobs.isLoading) return <Loader />;
 
   return (
     <div className="JobList">
