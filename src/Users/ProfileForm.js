@@ -2,24 +2,15 @@ import React, { useState, useContext } from "react";
 import userContext from "./userContext";
 import Alert from "../Common/Alert";
 
-/** Form for user to update profile.
+/** ProfileForm: Form for updating user profile.
  *
- * Props:
- * - updateUser: function to update user (App)
+ * Props: update
+ * State: formData, status
  *
- * State:
- * - formData: object with keys {
- *   username,
- *   firstName,
- *   lastName,
- *   email
- *   }
- *
- *  App -> Routes -> ProfileForm
- *
- */
+ * App -> RouteList -> ProfileForm
+ **/
 function ProfileForm({ update }) {
-  const {user} = useContext(userContext);
+  const { user } = useContext(userContext);
 
   const [status, setStatus] = useState({
     updateMsg: [],
@@ -39,7 +30,11 @@ function ProfileForm({ update }) {
     setFormData((f) => ({ ...f, [name]: value }));
   }
 
-  /** Call search in parent (form does not change on submit.) */
+  /** Handle form submission:
+   * - try to update
+   *    - if update works, show success message
+   *    - if update fails, show error message
+   **/
   async function handleSubmit(evt) {
     evt.preventDefault();
     try {

@@ -1,3 +1,13 @@
+/** Alert: displays bootstrap alert(s)
+ *
+ * Props:
+ * - alerts: array of alerts to display
+ * - type: string: "success" or "danger"
+ *
+ * State: none
+ *
+ * App -> RouteList -> {SignupForm, LoginForm, ProfileForm} -> Alert
+ **/
 function Alert({ alerts, type }) {
   return (
     <div className="Alert">

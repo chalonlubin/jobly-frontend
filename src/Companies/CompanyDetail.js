@@ -3,20 +3,13 @@ import { useParams } from "react-router-dom";
 import JobCardList from "../Jobs/JobCardList";
 import JoblyApi from "../Helpers/api";
 
-/** CompanyDetail component renders a company's details and jobs.
+/** CompanyDetail: Renders company details and jobs
  *
- * Props:
- * - handle: string from url params (e.g. "/companies/:handle")
+ * Props: none
+ * State: company, isLoading
  *
- * State:
- * - company: object with keys {
- *      data: {handle, name, description, logoUrl, jobs}.
- *       isLoading: boolean
- *  }
- *
- * CompanyList -> CompanyCard -> CompanyDetail
- *
- * */
+ * App -> RouteList -> CompanyDetail
+ **/
 function CompanyDetail() {
   const { handle } = useParams();
 
@@ -43,6 +36,7 @@ function CompanyDetail() {
     [handle]
   );
 
+  // make <Loading /> component
   if (company.isLoading) return <i>Loading...</i>;
 
   return (

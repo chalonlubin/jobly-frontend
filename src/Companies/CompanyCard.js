@@ -1,22 +1,18 @@
 import { Link } from "react-router-dom";
 import "./CompanyCard.css";
 
-/** Renders a card for a company.
+/** CompanyCard: Renders a card for a company
  *
- * Props:
- * - company: object with keys {handle, name, description, logoUrl}
- *
+ * Props: company
  * State: none
  *
- * CompanyList -> CompanyCard
- *
- * */
+ * App -> RouteList -> CompanyList -> CompanyCard
+ **/
 function CompanyCard({ company }) {
   return (
     <div className="d-flex justify-content-center card-deck">
       <div className="CompanyCard card mx-3 my-3">
         <div className="card-body mx-2">
-
             <h5>{company.name}</h5>
           {company.logoUrl && (
             <img
@@ -25,7 +21,6 @@ function CompanyCard({ company }) {
               alt={company.name}
             />
           )}
-
           <p>{company.description}</p>
           <Link
             className="stretched-link"

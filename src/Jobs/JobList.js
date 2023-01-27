@@ -3,21 +3,13 @@ import JobCardList from "./JobCardList";
 import JoblyApi from "../Helpers/api";
 import SearchForm from "../Common/SearchForm";
 
-/** JobList component renders a list of jobs.
+/** JobList: Renders list of jobs
  *
- * Props:
- * - None
+ * Props: none
+ * State: jobList, isLoading, query
  *
- * State:
- * - jobs: object with keys {
- *   jobList: array of job objects,
- *   isLoading: boolean,
- *   query: string
- * }
- *
- * App -> JobList -> JobCardList -> JobCard
- *
- * */
+ * App -> JobList -> { JobCardList, SearchForm }
+ **/
 function JobList() {
   const [jobs, setJobs] = useState({
     jobList: [],
@@ -45,6 +37,7 @@ function JobList() {
     setJobs((c) => ({ ...c, query: title }));
   }
 
+  // add <Loading /> component
   if (jobs.isLoading) return <i>Loading...</i>;
 
   return (

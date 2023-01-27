@@ -39,10 +39,7 @@ class JoblyApi {
    *
    * Returns { handle, name, description, numEmployees, logoUrl, jobs }
    * where jobs is [{ id, title, salary, equity }, ...]
-   *
-   * Throws NotFoundError if company not found.
-   *
-   */
+   **/
   static async getCompany(handle) {
     const res = await this.request(`companies/${handle}`);
 
@@ -54,10 +51,7 @@ class JoblyApi {
    * Returns [{ handle, name, description, numEmployees, logoUrl }, ...]
    *
    * If search is provided, filters to companies whose name contains search.
-   *
-   * Throws NotFoundError if no companies found.
-   *
-   */
+   **/
   static async getCompanies(search) {
     const res = await this.request(`companies/`, { nameLike: search });
 
@@ -69,39 +63,38 @@ class JoblyApi {
    * Returns [{ id, title, salary, equity, companyHandle, companyName }, ...]
    *
    * If search is provided, filters to jobs whose title contains search.
-   *
-   * Throws NotFoundError if no jobs found.
-   *
-   */
+   **/
   static async getJobs(search) {
     const res = await this.request(`jobs/`, { title: search });
 
     return res.jobs;
   }
 
-  /************************************** User  */
+  /**************************************************************** User  */
 
-  /** Register a user. */
+  /** Register a new user.
+   *
+   * Returns a token.
+   **/
   static async registerUser(signupData) {
     const res = await this.request(`auth/register`, signupData, "post");
     return res.token;
   }
 
-  /** Logs a user in.  */
+  /** Login a user.
+   *
+   * Returns a token.
+   **/
   static async loginUser(loginData) {
     const res = await this.request(`auth/token`, loginData, "post");
 
     return res.token;
   }
 
-  //** Get's user details. */
-  static async getUser(username) {
-    const res = await this.request(`users/${username}`);
-
-    return res.user;
-  }
-
-  //** Update user details. */
+  /** Updates a user.
+   *
+   * Returns { username, firstName, lastName, email, isAdmin }.
+   **/
   static async updateUser(username, userData) {
     const res = await this.request(`users/${username}`, userData, "patch");
 

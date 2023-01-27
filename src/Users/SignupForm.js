@@ -2,19 +2,24 @@ import React, { useState } from "react";
 import Alert from "../Common/Alert";
 import { useNavigate } from "react-router-dom";
 
-const INITIAL_FORM_DATA = {
-  username: "",
-  password: "",
-  firstName: "",
-  lastName: "",
-  email: "",
-};
-
+/** SignupForm: Form for signing up.
+ *
+ * Props: signup
+ * State: formData, errors
+ *
+ * App -> RouteList -> SignupForm
+ **/
 function SignupForm({ signup }) {
   const navigate = useNavigate();
 
   const [errors, setErrors] = useState([]);
-  const [formData, setFormData] = useState(INITIAL_FORM_DATA);
+  const [formData, setFormData] = useState({
+    username: "",
+    password: "",
+    firstName: "",
+    lastName: "",
+    email: "",
+  });
 
   /** Update form data field */
   function handleChange(evt) {
@@ -22,7 +27,11 @@ function SignupForm({ signup }) {
     setFormData((f) => ({ ...f, [name]: value }));
   }
 
-  /** Call search in parent & clear form. */
+  /** Handle form submission:
+   * - try to signup
+   *    - if signup works, redirect to homepage
+   *    - if signup fails, show error message
+   **/
   async function handleSubmit(evt) {
     evt.preventDefault();
     try {

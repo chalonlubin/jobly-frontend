@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import userContext from "../Users/userContext";
 import { Routes, Route, Navigate } from "react-router-dom";
+
 import Homepage from "../Common/Homepage";
 import CompanyList from "../Companies/CompanyList";
 import CompanyDetail from "../Companies/CompanyDetail";
@@ -8,22 +9,28 @@ import JobList from "../Jobs/JobList";
 import SignupForm from "../Users/SignupForm";
 import LoginForm from "../Users/LoginForm";
 import ProfileForm from "../Users/ProfileForm";
-import NotFound from "../Common/NotFound";
+import NotFoundPage from "../Common/NotFoundPage";
 
-/** Routes for Jobly app.
+/** RouteList: Routes for Jobly
  *
- * Props:
- * - none
+ * Props: signup, login, update
+ * State: n/a
  *
- * State:
- * - none
+ * App -> RouteList
  *
- * App -> Routes ->
- *      { Homepage, CompanyList, CompanyDetail, JobList,
- *        NotFound, SignupForm, LoginForm, ProfileForm
- *      }
+ * Routes:
+ * - /: Homepage
+ * - /companies: CompanyList
+ * - /companies/:handle: CompanyDetail
+ * - /jobs: JobList
+ * - /profile: ProfileForm
+ * - /signup: SignupForm
+ * - /login: LoginForm
+ * - *: NotFoundPage
  *
- * */
+ * If user is logged in, show all routes.
+ * If not, show /signup and /login.
+ **/
 function RouteList({ signup, login, update }) {
   const { user } = useContext(userContext);
 
@@ -45,7 +52,7 @@ function RouteList({ signup, login, update }) {
           <Route path="/login" element={<LoginForm login={login} />} />
         </>
       )}
-      <Route path="*" element={<NotFound />} />
+      <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
 }

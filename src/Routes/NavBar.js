@@ -3,19 +3,16 @@ import userContext from "../Users/userContext";
 
 import { NavLink } from "react-router-dom";
 
-/** Renders the navbar.
+/** NavBar: Navigation bar for site
  *
- * Props: none
+ * Props: n/a
+ * State: n/a
  *
- * State: none
- *
- * App -> NavBar
- *
- * */
+ * Routelist -> NavBar
+ **/
 function NavBar({ logout }) {
   const { user } = useContext(userContext);
   //TODO: Add light/dark mode.
-  // Will require state so I wanted to touch base with you first
   return (
     <nav className="navbar sticky-top navbar-expand-lg navbar-dark bg-dark ">
       <div className="container-fluid">

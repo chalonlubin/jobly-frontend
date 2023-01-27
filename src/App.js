@@ -9,9 +9,16 @@ import JoblyApi from "./Helpers/api";
 import userContext from "./Users/userContext";
 import { Navigate } from "react-router-dom";
 
-/**
- * App component that renders the navbar and routes.
- */
+/** App
+ *
+ * Props: n/a
+ * State: token, user
+ *
+ * App -> NavBar, RouteList
+ *
+ * Context: userContext
+ * - user: { username, firstName, lastName, email }
+ **/
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [user, setUser] = useState(null);
@@ -31,21 +38,21 @@ function App() {
     [token]
   );
 
-  /** Signup for site. */
+  /** Signup user, store token in localStorage, update state */
   async function signup(signupData) {
     const token = await JoblyApi.registerUser(signupData);
     localStorage.setItem("token", token);
     setToken(token);
   }
 
-  /** Login to site. */
+  /** Login user, store token in localStorage, update state */
   async function login(loginData) {
     const token = await JoblyApi.loginUser(loginData);
     localStorage.setItem("token", token);
     setToken(token);
   }
 
-  /** Update user profile. */
+  /** Update user, update state */
   async function update(updateData) {
     const { username, firstName, lastName, email } = updateData;
     const user = await JoblyApi.updateUser(username, {
@@ -56,7 +63,7 @@ function App() {
     setUser(user);
   }
 
-  /** Logout of site. */
+  /** Logout user, remove token from localStorage, update state */
   async function logout() {
     setUser(null);
     setToken(null);

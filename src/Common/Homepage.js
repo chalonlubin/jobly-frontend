@@ -3,15 +3,13 @@ import { Link } from "react-router-dom";
 import userContext from "../Users/userContext";
 import { useContext } from "react";
 
-/** Renders the homepage.
+/** Homepage: Renders homepage for Jobly
  *
  * Props: none
- *
  * State: none
  *
- * App -> Homepage
- *
- * */
+ * App -> RouteList -> Homepage
+ **/
 function Homepage() {
   const { user } = useContext(userContext);
 

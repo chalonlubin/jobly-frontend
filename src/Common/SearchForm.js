@@ -1,20 +1,13 @@
 import { useState } from "react";
 import "./SearchForm.css";
 
-/** SearchForm component renders a search form.
+/** SearchForm: Form for searching for companies or jobs
  *
- * Props:
- * - search: function to call in parent.
- *  - search(query) => undefined
+ * Props: search
+ * State: formData
  *
- * State:
- * - formData: object with keys {
- *    [name]: value
- * }
- *
- * App -> SearchForm
- *
- * */
+ * App -> RouteList -> { CompanyList, JobList } -> SearchForm
+ **/
 function SearchForm({ search }) {
   const initialFormState = {
     query: "",

@@ -2,29 +2,30 @@ import React, { useState } from "react";
 import Alert from "../Common/Alert";
 import { useNavigate } from "react-router-dom";
 
-const INITIAL_FORM_DATA = { username: "", password: "" };
-
-/** Renders login form.
+/** LoginForm: Form for logging in.
  *
- * Props: login function from parent (App)
+ * Props: login
+ * State: formData, errors
  *
- * State: formData {username, password}
- *
- * App -> Routes -> LoginForm
- *
- */
+ * App -> RouteList -> LoginForm
+ **/
 function LoginForm({ login }) {
   const navigate = useNavigate();
 
   const [errors, setErrors] = useState([]);
-  const [formData, setFormData] = useState(INITIAL_FORM_DATA);
+  const [formData, setFormData] = useState({ username: "", password: "" });
 
   /** Update form data field */
   function handleChange(evt) {
     const { name, value } = evt.target;
     setFormData((f) => ({ ...f, [name]: value }));
   }
-  /** Call search in parent & clear form. */
+
+  /** Handle form submission:
+   * - try to login
+   *    - if login works, redirect to homepage
+   *    - if login fails, show error message
+   **/
   async function handleSubmit(evt) {
     evt.preventDefault();
     try {
