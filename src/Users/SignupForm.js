@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Alert from "../Common/Alert";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import TOAST_DEFAULTS from "../Helpers/toastSettings";
 
 /** SignupForm: Form for signing up.
  *
@@ -40,17 +41,7 @@ function SignupForm({ signup }) {
       navigate("/");
     } catch (e) {
       setErrors(e);
-      //Can just display e here too, it is just kind of ugly.
-      toast("❌ Sign-up Failed!", {
-        position: "bottom-left",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-      });
+      toast("❌ Sign-up Failed!", TOAST_DEFAULTS);
     }
   }
 
@@ -131,7 +122,7 @@ function SignupForm({ signup }) {
                   required
                 />
               </div>
-              {errors.length !== 0 && (
+              {errors.length > 0 && (
                 <div className="d-grid mt-4">
                   <Alert alerts={errors} type={"danger"} />
                 </div>

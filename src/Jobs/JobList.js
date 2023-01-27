@@ -3,6 +3,8 @@ import JobCardList from "./JobCardList";
 import JoblyApi from "../Helpers/api";
 import SearchForm from "../Common/SearchForm";
 import Loader from "../Common/Loader";
+import { toast } from "react-toastify";
+import TOAST_DEFAULTS from "../Helpers/toastSettings";
 
 /** JobList: Renders list of jobs
  *
@@ -29,7 +31,7 @@ function JobList() {
             isLoading: false,
           }));
         } catch (e) {
-          console.error(e);
+          toast("❌ Database error", TOAST_DEFAULTS);
         }
       }
       fetchJobs();

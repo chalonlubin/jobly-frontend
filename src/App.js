@@ -37,7 +37,7 @@ function App() {
           setUser(user);
           setIsLoading(false);
         } catch (e) {
-          toast("🚀 Database error", TOAST_DEFAULTS);
+          toast("Database error", TOAST_DEFAULTS);
           console.error(e);
         }
       }
@@ -68,7 +68,7 @@ function App() {
   }
 
   /** Update user, update state */
-  async function update(updateData) {
+  async function updateUser(updateData) {
     const { username, firstName, lastName, email } = updateData;
     const user = await JoblyApi.updateUser(username, {
       firstName,
@@ -95,7 +95,7 @@ function App() {
         <BrowserRouter>
           <ToastContainer />
           <NavBar logout={logout} />
-          <RouteList signup={signup} login={login} update={update} />
+          <RouteList signup={signup} login={login} updateUser={updateUser} />
         </BrowserRouter>
       </userContext.Provider>
     </div>

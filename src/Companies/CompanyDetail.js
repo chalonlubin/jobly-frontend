@@ -19,9 +19,6 @@ function CompanyDetail() {
     isLoading: true,
   });
 
-  /** Fetch company details and jobs when component mounts
-   * and when handle changes.
-   * */
   useEffect(
     function fetchCompanyWhenMounted() {
       async function fetchCompany() {

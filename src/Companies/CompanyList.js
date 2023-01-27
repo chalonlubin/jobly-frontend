@@ -4,7 +4,7 @@ import SearchForm from "../Common/SearchForm";
 import JoblyApi from "../Helpers/api";
 import Loader from "../Common/Loader";
 import { toast } from "react-toastify";
-import TOAST_DEFAULTS  from "../Helpers/toastSettings";
+import TOAST_DEFAULTS from "../Helpers/toastSettings";
 import "./CompanyList.css";
 
 /** CompanyList: Renders list of companies
@@ -32,8 +32,7 @@ function CompanyList() {
             isLoading: false,
           }));
         } catch (e) {
-          // maybe do something else
-          console.error(e);
+          toast("❌ Database error", TOAST_DEFAULTS);
         }
       }
       fetchCompanies();
@@ -51,7 +50,7 @@ function CompanyList() {
   return (
     <div className="CompanyList">
       <SearchForm search={search} />
-      <div className="CompanyList-empty col-md-12 text-center mt-5 fs-2">
+      <div className="CompanyList-empty col-md-12 text-center mt-2 fs-2">
         {companies.companyList.length === 0 ? (
           <h4 className="m-3 p-3">Sorry, no results were found!</h4>
         ) : (

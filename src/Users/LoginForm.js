@@ -72,7 +72,7 @@ function LoginForm({ login }) {
                   required
                 />
               </div>
-              {errors.length !== 0 && (
+              {errors.length > 0 && (
                 <div className="d-grid mt-4">
                   <Alert alerts={errors} type={"danger"} />
                 </div>

@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { toast } from "react-toastify";
+import TOAST_DEFAULTS from "../Helpers/toastSettings";
 import "./SearchForm.css";
 
 /** SearchForm: Form for searching for companies or jobs
@@ -27,25 +29,25 @@ function SearchForm({ search }) {
     setFormData(initialFormState);
   }
 
-
   return (
     <div className="SearchForm d-flex justify-content-center">
-    <form onSubmit={handleSubmit}>
-      <div className="input-group mb-4 mt-5">
-        <input
-          type="search"
-          placeholder="What're you looking for?"
-          name="query"
-          value={formData.query}
-          onChange={handleChange}
-          className="SearchForm-bar rounded border-secondary py-3 px-3"
-        />
-        <button className="btn btn-outline-light px-3 py-3" type="submit">Search</button>
-      </div>
-    </form>
+      <form onSubmit={handleSubmit}>
+        <div className="input-group mb-4 mt-5">
+          <input
+            type="search"
+            placeholder="What're you looking for?"
+            name="query"
+            value={formData.query}
+            onChange={handleChange}
+            className="SearchForm-bar rounded border-secondary py-3 px-3"
+          />
+          <button className="btn btn-outline-light px-3 py-3" type="submit">
+            Search
+          </button>
+        </div>
+      </form>
     </div>
   );
 }
 
 export default SearchForm;
-

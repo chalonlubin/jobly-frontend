@@ -1,6 +1,8 @@
 import React, { useState, useContext } from "react";
 import userContext from "./userContext";
 import Alert from "../Common/Alert";
+import { toast } from "react-toastify";
+import TOAST_DEFAULTS from "../Helpers/toastSettings";
 
 /** ProfileForm: Form for updating user profile.
  *
@@ -9,7 +11,7 @@ import Alert from "../Common/Alert";
  *
  * App -> RouteList -> ProfileForm
  **/
-function ProfileForm({ update }) {
+function ProfileForm({ updateUser }) {
   const { user } = useContext(userContext);
 
   const [status, setStatus] = useState({
@@ -38,10 +40,11 @@ function ProfileForm({ update }) {
   async function handleSubmit(evt) {
     evt.preventDefault();
     try {
-      await update(formData);
+      await updateUser(formData);
       setStatus({ updateMsg: ["Updated successfully."], errors: [] });
     } catch (e) {
       setStatus({ updateMsg: [], errors: e });
+      toast("❌ Update Failed!", TOAST_DEFAULTS);
     }
   }
 

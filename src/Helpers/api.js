@@ -75,29 +75,30 @@ class JoblyApi {
 
   /**************************************************************** User  */
 
+
   /** Register a new user.
    *
    * Returns a token.
-   **/
-  static async registerUser(signupData) {
-    const res = await this.request(`auth/register`, signupData, "post");
-    return res.token;
+  **/
+ static async registerUser(signupData) {
+   const res = await this.request(`auth/register`, signupData, "post");
+   return res.token;
   }
 
   /** Login a user.
    *
    * Returns a token.
-   **/
-  static async loginUser(loginData) {
-    const res = await this.request(`auth/token`, loginData, "post");
+  **/
+ static async loginUser(loginData) {
+   const res = await this.request(`auth/token`, loginData, "post");
 
-    return res.token;
+   return res.token;
   }
 
   /** Get user data.
    *
    * Returns { username, firstName, lastName, email, isAdmin, applications }.
-   * where applications is [application, ...].
+   * where applications is [application, ...]
    */
 
   static async getUser(username) {
@@ -109,8 +110,8 @@ class JoblyApi {
   /** Updates a user.
    *
    * Returns { username, firstName, lastName, email, isAdmin }.
-   **/
-  static async updateUser(username, userData) {
+  **/
+ static async updateUser(username, userData) {
     const res = await this.request(`users/${username}`, userData, "patch");
 
     return res.user;
