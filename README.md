@@ -2,7 +2,7 @@
 
 ## Features
 - RESTful API, containing database models with backend data validation via JSON schemas
-Managed authorization and authentication by utilizing middleware with JSON web tokens and password encryption with BCrypt
+- Managed authorization and authentication by utilizing middleware with JSON web tokens and password encryption with BCrypt
 
 
 ## Environment Setup
