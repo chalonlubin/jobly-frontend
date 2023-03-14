@@ -33,7 +33,7 @@ Node.js | Express | SQL | Postgres | React.js | HTML | CSS | Bootstrap
 
 ## Description
 
-Built in 3.5 days as part of a sprint w/ @petrachoir while attending Rithm School.
+Built in 3.5 days as part of a sprint w/ @yukdev while attending Rithm School.
 
 ## To Do
 - UX / UI improvments
