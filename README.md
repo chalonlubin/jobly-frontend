@@ -1,8 +1,14 @@
 # Jobly
 
-Job search full stack application. This repo is the react frontend. 
-The backend repo is: https://github.com/chalonlubin/jobly-backend
+Mock job search application. 
 
+Built in 6 days as part of two seperate sprint w/ @yukdev on the front end and @meyburdj on the back end while attending Rithm School.
+
+Backend Repo: https://github.com/chalonlubin/jobly-backend
+
+Demo: https://jobly-ccl.surge.sh/
+
+---
 
 ## Features
 - RESTful API with Node.js and Express, containing database models with backend data validation via JSON schemas
@@ -35,9 +41,6 @@ Will be running on localhost 3001.
 
 Node.js | Express | SQL | Postgres | React.js | HTML | CSS | Bootstrap
 
-## Description
-
-Built in 6 days as part of two seperate sprint w/ @yukdev on the front end and @meyburdj on the back end while attending Rithm School.
 
 ## To Do
 - UX / UI improvments
