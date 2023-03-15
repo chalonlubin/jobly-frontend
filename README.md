@@ -44,7 +44,7 @@ Will be running on localhost 3001.
 Node.js | Express | SQL | Postgres | React.js | HTML | CSS | Bootstrap
 
 
-## To Do
+## // TODO
 - UX / UI improvments
 - User messaging interface, possibly with websocket
 - Pagination
