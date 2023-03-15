@@ -8,6 +8,8 @@ Backend Repo: https://github.com/chalonlubin/jobly-backend
 
 Demo: https://jobly-ccl.surge.sh/
 
+Test Login: testuser/password
+
 ---
 
 ## Features
