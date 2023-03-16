@@ -1,6 +1,4 @@
 import { useState } from "react";
-import { toast } from "react-toastify";
-import TOAST_DEFAULTS from "../Helpers/toastSettings";
 import "./SearchForm.css";
 
 /** SearchForm: Form for searching for companies or jobs
