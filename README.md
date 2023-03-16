@@ -6,9 +6,9 @@ Built in 6 days as part of two seperate sprint w/ @yukdev on the front end and @
 
 Backend Repo: https://github.com/chalonlubin/jobly-backend
 
-Demo: https://jobly-ccl.surge.sh/
+Demo: https://jobly-cl.netlify.app/
 
-Test Login: testuser/password
+Test Login: guest/password
 
 ---
 
