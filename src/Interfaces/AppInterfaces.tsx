@@ -79,7 +79,11 @@ export interface JobListStateInterface {
   query: string | undefined;
 }
 
-export interface JobCardPropsInterface {
-  jobs: JobInterface[];
-  from: string;
+export interface JobPropsInterface {
+  job: JobInterface
+}
+
+
+export interface JobsInterface {
+  jobs: JobInterface[]
 }

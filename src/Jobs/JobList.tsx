@@ -12,7 +12,8 @@ import { JobListStateInterface } from "../Interfaces/AppInterfaces";
  * Props: none
  * State: jobList, isLoading, query
  *
- * App -> JobList -> { JobCardList, SearchForm }
+ * App ->  JobList -> JobCardList -> JobCard
+ * App -> CompanyDetail -> JobCardList -> JobCard
  **/
 function JobList(): JSX.Element {
   const [jobs, setJobs] = useState<JobListStateInterface>({
@@ -52,7 +53,7 @@ function JobList(): JSX.Element {
     <div className="JobList">
       <SearchForm searchFor={search} />
       <div className="row"></div>
-      <JobCardList from={"JobList"} jobs={jobs.jobList} />
+      <JobCardList jobs={jobs.jobList} />
     </div>
   );
 }

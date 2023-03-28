@@ -1,5 +1,5 @@
 import JobCard from "./JobCard";
-import { JobCardPropsInterface } from "../Interfaces/AppInterfaces";
+import { JobsInterface } from "../Interfaces/AppInterfaces";
 
 /** JobCardList: Renders a list of JobCards
  *
@@ -8,7 +8,7 @@ import { JobCardPropsInterface } from "../Interfaces/AppInterfaces";
  *
  * App -> { JobList, CompanyDetail } -> JobCardList -> JobCard
  **/
-function JobCardList({ jobs, from }:JobCardPropsInterface): JSX.Element{
+function JobCardList({ jobs }: JobsInterface ): JSX.Element{
   return (
     <div className="JobCardList row">
       {jobs.length === 0 ? (
@@ -16,9 +16,8 @@ function JobCardList({ jobs, from }:JobCardPropsInterface): JSX.Element{
           <h4 className="m-3 p-3">Sorry, no results were found!</h4>
         </div>
       ) : (
-        jobs.map((j) => {
-          const company = from === "JobList" ? j.companyName : null;
-          return <JobCard company={company} key={j.id} job={j} />;
+        jobs.map((job) => {
+          return <JobCard key={job.id} job={job}/>;
         })
       )}
     </div>
