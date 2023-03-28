@@ -1,5 +1,6 @@
+import { ToastOptions } from 'react-toastify';
 
-const TOAST_DEFAULTS = {
+const TOAST_DEFAULTS: ToastOptions = {
   position: "bottom-left",
   autoClose: 1500,
   hideProgressBar: false,
