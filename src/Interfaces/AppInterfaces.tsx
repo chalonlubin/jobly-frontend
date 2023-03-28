@@ -1,4 +1,25 @@
+/** Interfaces for Jobly Application */
 
+/************************************************** Routes */
+
+export interface RoutePropsInterface {
+  login: Function;
+  signUp: Function;
+  updateUser: Function;
+}
+
+/************************************************** Common   */
+
+export interface AlertPropsInterface {
+  alerts: string[];
+  type: "success" | "danger";
+}
+
+export interface SearchFormProps {
+  searchFor: (query: string) => void;
+}
+
+/************************************************** User  */
 
 export interface signUpDataInterface {
   username: string;
@@ -31,20 +52,11 @@ export interface UpdateDataInterface {
   email: string;
 }
 
-export interface RoutePropsInterface {
-  login?: Function,
-  signUp?: Function,
-  updateUser?: Function,
+export interface LoginFormPropsInterface {
+  login: Function;
 }
 
-export interface AlertPropsInterface {
-  alerts: string[];
-  type: "success" | "danger";
-}
-
-export interface SearchFormProps {
-  searchFor: (query: string) => void;
-}
+/************************************************** Companies  */
 
 export interface CompanyListInterface {
   handle: string;
@@ -63,15 +75,16 @@ export interface CompanyPropsInterface {
   jobs: [];
 }
 
-export interface JobInterface {
-    id: number,
-    title: string,
-    salary: number,
-    equity: string,
-    companyHandle: string,
-    companyName: string
-}
+/************************************************** Jobs  */
 
+export interface JobInterface {
+  id: number;
+  title: string;
+  salary: number;
+  equity: string;
+  companyHandle: string;
+  companyName: string;
+}
 
 export interface JobListStateInterface {
   jobList: JobInterface[];
@@ -80,10 +93,9 @@ export interface JobListStateInterface {
 }
 
 export interface JobPropsInterface {
-  job: JobInterface
+  job: JobInterface;
 }
 
-
 export interface JobsInterface {
-  jobs: JobInterface[]
+  jobs: JobInterface[];
 }
