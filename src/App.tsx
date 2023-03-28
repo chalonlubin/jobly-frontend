@@ -21,8 +21,6 @@ import {
 // Key name for storing token in localStorage for "remember me" re-login
 export const TOKEN_STORAGE_ID: string = "jobly-token";
 
-
-
 /** Jobly application.
  *
  * State:
@@ -46,7 +44,7 @@ function App(props: AppPropsInterface): JSX.Element {
   const [token, setToken] = useState<string | null>(
     localStorage.getItem(TOKEN_STORAGE_ID)
   );
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState<UserInterface | null>(null);
   const [applicationIds, setApplicationIds] = useState<Set<number>>(
     new Set<number>([])
   );
@@ -64,14 +62,13 @@ function App(props: AppPropsInterface): JSX.Element {
 
   useEffect(
     function loadUserInfo(): void {
-      async function getUser() {
+      async function getUser(): Promise<any> {
         if (token) {
           try {
             const { username } = jwt_decode(token) as { username: string };
             // Give token to API class so it can use it to call the API.
             JoblyApi.token = token;
-            let currentUser: UserInterface = await JoblyApi.getUser(username);
-
+            let currentUser: any = await JoblyApi.getUser(username);
             setUser(currentUser);
             setApplicationIds(new Set(currentUser.applications));
             setIsLoading(false);
@@ -116,7 +113,7 @@ function App(props: AppPropsInterface): JSX.Element {
   /** Handle user profile update */
   async function updateUser(updateData: UpdateDataInterface): Promise<void> {
     const { username, firstName, lastName, email } = updateData;
-    const user: UserInterface = await JoblyApi.updateUser(username, {
+    const user: any = await JoblyApi.updateUser(username, {
       firstName,
       lastName,
       email,
@@ -137,12 +134,17 @@ function App(props: AppPropsInterface): JSX.Element {
    * If user has applied, return with toast message.
    *
    * */
-  // function applyToJob(id: number) {
-  //   if (hasAppliedToJob(id)) return toast("👌 You've already applied.", TOAST_DEFAULTS);
-  //   JoblyApi.applyToJob(user.username, id);
-  //   setApplicationIds(new Set([...applicationIds, id]));
-  //   toast("👌 Application Successful", TOAST_DEFAULTS);
-  // }
+  function applyToJob(id: number) {
+    if (!user) {
+      return toast("❌ You need to be logged in to apply.", TOAST_DEFAULTS);
+    }
+    if (hasAppliedToJob(id))
+      return toast("👌 You've already applied.", TOAST_DEFAULTS);
+
+      JoblyApi.applyToJob(user.username, id);
+      setApplicationIds(new Set([...applicationIds, id]));
+      toast("👌 Application Successful", TOAST_DEFAULTS);
+  }
 
   /** Handle logout */
   function logout() {
@@ -157,17 +159,12 @@ function App(props: AppPropsInterface): JSX.Element {
   return (
     <div className="App">
       <userContext.Provider
-        value={{ user, setUser, hasAppliedToJob }}
-        // add later above: applyToJob
+        value={{ user, setUser, hasAppliedToJob, applyToJob }}
       >
         <BrowserRouter>
           <ToastContainer />
           <NavBar logout={logout} />
-          <RouteList
-            signup={signup}
-            login={login}
-            updateUser={updateUser}
-          />
+          <RouteList signup={signup} login={login} updateUser={updateUser} />
         </BrowserRouter>
       </userContext.Provider>
     </div>

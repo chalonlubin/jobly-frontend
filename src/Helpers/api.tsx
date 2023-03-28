@@ -1,23 +1,17 @@
-import axios from "axios";
+import axios, { AxiosRequestConfig } from "axios";
 
 const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001";
 
 /** API Class.
  *
  * Static class tying together methods used to get/send to to the API.
- * There shouldn't be any frontend-specific stuff here, and there shouldn't
- * be any API-aware stuff elsewhere in the frontend.
- *
  */
 
 class JoblyApi {
-  // Remember, the backend needs to be authorized with a token
-  // We're providing a token you can use to interact with the backend API
-  // DON'T MODIFY THIS TOKEN
+  // token for interaction with the API.
+  static token: string = "";
 
-  static token = "";
-
-  static async request(endpoint, data = {}, method = "get") {
+  static async request(endpoint: string, data: object = {}, method: AxiosRequestConfig["method"] = "get"): Promise<any> {
     console.debug("API Call:", endpoint, data, method);
 
     const url = `${BASE_URL}/${endpoint}`;
@@ -26,39 +20,45 @@ class JoblyApi {
 
     try {
       return (await axios({ url, method, data, params, headers })).data;
-    } catch (err) {
+    } catch (err: any) {
       console.error("API Error:", err.response);
       let message = err.response.data.error.message;
       throw Array.isArray(message) ? message : [message];
     }
   }
 
-  // Individual API routes
+  /***************************************************** Company  */
 
   /** Get details on a company by handle.
    *
    * Returns { handle, name, description, numEmployees, logoUrl, jobs }
    * where jobs is [{ id, title, salary, equity }, ...]
    **/
-  static async getCompany(handle) {
+  static async getCompany(handle: string): Promise<object>  {
     const res = await this.request(`companies/${handle}`);
 
     return res.company;
   }
 
-  /** Get all companies or search for specific company(s).
+  /** Get all companies (filtered by name if not undefined.).
    *
    * Returns [{ handle, name, description, numEmployees, logoUrl }, ...]
    *
    * If search is provided, filters to companies whose name contains search.
    **/
-  static async getCompanies(search) {
+  static async getCompanies(search?: string, min: number = 0, max: number = Infinity): Promise<object> {
     const res = search
-      ? await this.request(`companies/`, { nameLike: search })
+      ? await this.request(`companies/`, {
+          nameLike: search,
+          minEmployees: min,
+          maxEmployees: max,
+        })
       : await this.request(`companies/`);
 
     return res.companies;
   }
+
+  /***************************************************** Job  */
 
   /** Get all jobs or specific job(s).
    *
@@ -66,33 +66,42 @@ class JoblyApi {
    *
    * If search is provided, filters to jobs whose title contains search.
    **/
-  static async getJobs(search) {
+  static async getJobs(search?: string, min: number = 0, hasEquity = null): Promise<object> {
     const res = search
-      ? await this.request(`jobs/`, { title: search })
+      ? await this.request(`jobs/`, {
+          title: search,
+          minSalary: min,
+          hasEquity: hasEquity,
+        })
       : await this.request(`jobs/`);
     return res.jobs;
   }
 
-  /**************************************************************** User  */
+  /** Apply to a job */
 
+  static async applyToJob(username: string, id: number): Promise<any> {
+    await this.request(`users/${username}/jobs/${id}`, {}, "post");
+  }
+
+  /**************************************************************** User  */
 
   /** Register a new user.
    *
    * Returns a token.
-  **/
- static async registerUser(signupData) {
-   const res = await this.request(`auth/register`, signupData, "post");
-   return res.token;
+   **/
+  static async registerUser(data: object): Promise<string> {
+    const res = await this.request(`auth/register`, data, "post");
+    return res.token;
   }
 
   /** Login a user.
    *
    * Returns a token.
-  **/
- static async loginUser(loginData) {
-   const res = await this.request(`auth/token`, loginData, "post");
+   **/
+  static async loginUser(data: object): Promise<string> {
+    const res = await this.request(`auth/token`, data, "post");
 
-   return res.token;
+    return res.token;
   }
 
   /** Get user data.
@@ -101,7 +110,7 @@ class JoblyApi {
    * where applications is [application, ...]
    */
 
-  static async getUser(username) {
+  static async getUser(username: string): Promise<object | null> {
     const res = await this.request(`users/${username}`);
 
     return res.user;
@@ -110,8 +119,8 @@ class JoblyApi {
   /** Updates a user.
    *
    * Returns { username, firstName, lastName, email, isAdmin }.
-  **/
- static async updateUser(username, userData) {
+   **/
+  static async updateUser(username: string, userData: object): Promise<object> {
     const res = await this.request(`users/${username}`, userData, "patch");
 
     return res.user;

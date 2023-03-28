@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import CompanyCard from "./CompanyCard";
 import SearchForm from "../Common/SearchForm";
 import JoblyApi from "../Helpers/api";
