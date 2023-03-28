@@ -36,8 +36,8 @@ export interface UserInterface {
   firstName: string;
   lastName: string;
   email: string;
-  isAdmin: boolean;
-  applications: number[];
+  isAdmin?: boolean;
+  applications?: number[];
 }
 
 export interface LoginDataInterface {

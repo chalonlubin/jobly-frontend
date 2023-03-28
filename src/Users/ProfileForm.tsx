@@ -1,9 +1,13 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, FormEvent, ChangeEvent } from "react";
 import userContext from "./userContext";
 import Alert from "../Common/Alert";
 import { toast } from "react-toastify";
 import TOAST_DEFAULTS from "../Helpers/toastSettings";
+import { UserInterface } from "../Interfaces/AppInterfaces";
 
+export interface  ProfileFormPropInterface {
+  updateUser: Function
+}
 /** ProfileForm: Form for updating user profile.
  *
  * Props: update
@@ -11,12 +15,12 @@ import TOAST_DEFAULTS from "../Helpers/toastSettings";
  *
  * App -> RouteList -> ProfileForm
  **/
-function ProfileForm({ updateUser }) {
-  const { user } = useContext(userContext);
+function ProfileForm({ updateUser }: ProfileFormPropInterface): JSX.Element {
+  const user  = useContext<UserInterface>(userContext);
 
   const [status, setStatus] = useState({
-    updateMsg: [],
-    errors: [],
+    updateMsg: [] as string[],
+    errors: [] as string[],
   });
 
   const [formData, setFormData] = useState({
@@ -27,7 +31,7 @@ function ProfileForm({ updateUser }) {
   });
 
   /** Update form data field */
-  function handleChange(evt) {
+  function handleChange(evt: ChangeEvent<HTMLInputElement>): void {
     const { name, value } = evt.target;
     setFormData((f) => ({ ...f, [name]: value }));
   }
@@ -37,13 +41,13 @@ function ProfileForm({ updateUser }) {
    *    - if update works, show success message
    *    - if update fails, show error message
    **/
-  async function handleSubmit(evt) {
+  async function handleSubmit(evt: FormEvent<HTMLFormElement>) {
     evt.preventDefault();
     try {
       await updateUser(formData);
       setStatus({ updateMsg: ["Updated successfully."], errors: [] });
     } catch (e) {
-      setStatus({ updateMsg: [], errors: e });
+      setStatus({ updateMsg: [], errors: e as string[] });
       toast("❌ Update Failed!", TOAST_DEFAULTS);
     }
   }
@@ -116,7 +120,7 @@ function ProfileForm({ updateUser }) {
               <div className="d-grid mt-1">
                 <button
                   className="btn btn-outline-dark "
-                  onClick={handleSubmit}
+                  type="submit"
                 >
                   Save Changes
                 </button>
