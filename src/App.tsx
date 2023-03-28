@@ -10,41 +10,18 @@ import JoblyApi from "./Helpers/api";
 import userContext from "./Users/userContext";
 import Loader from "./Common/Loader";
 import TOAST_DEFAULTS from "./Helpers/toastSettings";
+import {
+  AppPropsInterface,
+  SignupDataInterface,
+  UserInterface,
+  LoginDataInterface,
+  UpdateDataInterface,
+} from "./Interfaces/AppInterfaces";
 
 // Key name for storing token in localStorage for "remember me" re-login
 export const TOKEN_STORAGE_ID: string = "jobly-token";
 
-interface AppPropsInterface {}
 
-interface SignupDataInterface {
-  username: string;
-  password: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-  isAdmin: boolean;
-  applications: Set<number>;
-}
-
-interface UserInterface {
-  username: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-  applications: number[];
-}
-
-interface LoginDataInterface {
-  username: string;
-  password: string;
-}
-
-interface UpdateDataInterface {
-  username: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-}
 
 /** Jobly application.
  *
