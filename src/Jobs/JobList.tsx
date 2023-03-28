@@ -6,6 +6,21 @@ import Loader from "../Common/Loader";
 import { toast } from "react-toastify";
 import TOAST_DEFAULTS from "../Helpers/toastSettings";
 
+interface Job {
+  id: number;
+  title: string;
+  salary: number;
+  equity: number;
+  companyHandle: string;
+  companyName: string;
+}
+
+interface JobListStateInterface {
+  jobList: Job[];
+  isLoading: boolean;
+  query: string | undefined;
+}
+
 /** JobList: Renders list of jobs
  *
  * Props: none
@@ -13,16 +28,17 @@ import TOAST_DEFAULTS from "../Helpers/toastSettings";
  *
  * App -> JobList -> { JobCardList, SearchForm }
  **/
-function JobList() {
-  const [jobs, setJobs] = useState({
+function JobList(): JSX.Element {
+  const [jobs, setJobs] = useState<JobListStateInterface>({
     jobList: [],
     isLoading: true,
-    query: null,
+    query: "",
   });
 
+  /** Fetches jobs when mounted from API, or when query has changed. */
   useEffect(
-    function fetchJobsWhenMounted() {
-      async function fetchJobs() {
+    function fetchJobsWhenMounted(): void {
+      async function fetchJobs(): Promise<void> {
         try {
           const jobsResult = await JoblyApi.getJobs(jobs.query);
           setJobs((j) => ({
@@ -39,8 +55,8 @@ function JobList() {
     [jobs.query]
   );
 
-  // search for jobs by title
-  function search(title) {
+  /** Search for jobs by title, setting job state with result. */
+  function search(title: string): void {
     setJobs((c) => ({ ...c, query: title }));
   }
 
@@ -48,9 +64,9 @@ function JobList() {
 
   return (
     <div className="JobList">
-      <SearchForm search={search} />
+      <SearchForm searchFor={search} />
       <div className="row"></div>
-      <JobCardList from={"JobList"} jobs={jobs.jobList} search={search} />
+      <JobCardList from={"JobList"} jobs={jobs.jobList} />
     </div>
   );
 }
