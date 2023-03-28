@@ -1,6 +1,6 @@
 export interface AppPropsInterface {}
 
-export interface SignupDataInterface {
+export interface signUpDataInterface {
   username: string;
   password: string;
   firstName: string;
@@ -29,4 +29,36 @@ export interface UpdateDataInterface {
   firstName: string;
   lastName: string;
   email: string;
+}
+
+export interface RoutePropsInterface {
+  login?: Function,
+  signUp?: Function,
+  updateUser?: Function,
+}
+
+export interface AlertPropsInterface {
+  alerts: string[];
+  type: "success" | "danger";
+}
+
+export interface SearchFormProps {
+  searchFor: (query: string) => void;
+}
+
+export interface CompanyListInterface {
+  handle: string;
+  name: string;
+  description: string;
+  numEmployees: number;
+  logoUrl: string | null;
+}
+
+export interface CompanyPropsInterface {
+  handle: string;
+  name: string;
+  description: string;
+  numEmployees: number;
+  logoUrl: string | null;
+  jobs: [];
 }

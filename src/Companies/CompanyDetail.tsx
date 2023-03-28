@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import JobCardList from "../Jobs/JobCardList";
 import JoblyApi from "../Helpers/api";
 import Loader from "../Common/Loader";
+import { CompanyPropsInterface } from "../Interfaces/AppInterfaces";
 
 /** CompanyDetail: Renders company details and jobs
  *
@@ -11,17 +12,20 @@ import Loader from "../Common/Loader";
  *
  * App -> RouteList -> CompanyDetail
  **/
-function CompanyDetail() {
-  const { handle } = useParams();
+function CompanyDetail(): JSX.Element {
+  const { handle } = useParams<{handle?: string}>();
 
-  const [company, setCompany] = useState({
-    data: {},
+  const [company, setCompany] = useState<{data: CompanyPropsInterface, isLoading: boolean}>({
+    data: {} as CompanyPropsInterface,
     isLoading: true,
   });
 
   useEffect(
     function fetchCompanyWhenMounted() {
       async function fetchCompany() {
+        if (!handle) {
+          return;
+        }
         const companyResult = await JoblyApi.getCompany(handle);
         setCompany((c) => ({
           ...c,

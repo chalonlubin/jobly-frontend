@@ -1,17 +1,17 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Alert from "../Common/Alert";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import TOAST_DEFAULTS from "../Helpers/toastSettings";
 
-/** SignupForm: Form for signing up.
+/** signUpForm: Form for signing up.
  *
- * Props: signup
+ * Props: signUp
  * State: formData, errors
  *
- * App -> RouteList -> SignupForm
+ * App -> RouteList -> signUpForm
  **/
-function SignupForm({ signup }) {
+function SignUpForm({ signUp }) {
   const navigate = useNavigate();
 
   const [errors, setErrors] = useState([]);
@@ -30,14 +30,14 @@ function SignupForm({ signup }) {
   }
 
   /** Handle form submission:
-   * - try to signup
-   *    - if signup works, redirect to homepage
-   *    - if signup fails, show error message
+   * - try to signUp
+   *    - if signUp works, redirect to homepage
+   *    - if signUp fails, show error message
    **/
   async function handleSubmit(evt) {
     evt.preventDefault();
     try {
-      await signup(formData);
+      await signUp(formData);
       navigate("/");
     } catch (e) {
       setErrors(e);
@@ -46,7 +46,7 @@ function SignupForm({ signup }) {
   }
 
   return (
-    <div className="SignupForm pt-5">
+    <div className="signUpForm pt-5">
       <div className="container col-md-6 offset-md-3 col-lg-4 offset-lg-4">
         <h3 className="mb-3 text-center fs-1">Sign Up</h3>
         <div className="card">
@@ -143,4 +143,4 @@ function SignupForm({ signup }) {
   );
 }
 
-export default SignupForm;
+export default SignUpForm;

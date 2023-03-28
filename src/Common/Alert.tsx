@@ -1,3 +1,5 @@
+import { AlertPropsInterface } from "../Interfaces/AppInterfaces"
+
 /** Alert: displays bootstrap alert(s)
  *
  * Props:
@@ -6,9 +8,9 @@
  *
  * State: none
  *
- * App -> RouteList -> {SignupForm, LoginForm, ProfileForm} -> Alert
+ * App -> RouteList -> {signUpForm, LoginForm, ProfileForm} -> Alert
  **/
-function Alert({ alerts, type }) {
+function Alert({ alerts, type }: AlertPropsInterface): JSX.Element {
   return (
     <div className="Alert">
       <div className={`alert alert-${type}`} role="alert">

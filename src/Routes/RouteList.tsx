@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import userContext from "../Users/userContext";
 import { Routes, Route, Navigate } from "react-router-dom";
 
@@ -6,17 +6,21 @@ import Homepage from "../Common/Homepage";
 import CompanyList from "../Companies/CompanyList";
 import CompanyDetail from "../Companies/CompanyDetail";
 import JobList from "../Jobs/JobList";
-import SignupForm from "../Users/SignupForm";
+import SignUpForm from "../Users/SignUpForm";
 import LoginForm from "../Users/LoginForm";
 import ProfileForm from "../Users/ProfileForm";
 import NotFoundPage from "../Common/NotFoundPage";
 
+import {
+  RoutePropsInterface
+} from "../Interfaces/AppInterfaces";
+
 /** RouteList: Routes for Jobly
  *
- * Props: signup, login, update
+ * Props: signUp, login, update
  * State: n/a
  *
- * App -> RouteList
+ * App -> RouteList -> Routes
  *
  * Routes:
  * - /: Homepage
@@ -24,14 +28,14 @@ import NotFoundPage from "../Common/NotFoundPage";
  * - /companies/:handle: CompanyDetail
  * - /jobs: JobList
  * - /profile: ProfileForm
- * - /signup: SignupForm
+ * - /signUp: signUpForm
  * - /login: LoginForm
  * - *: NotFoundPage
  *
  * If user is logged in, show all routes.
- * If not, show /signup and /login.
+ * If not, show /signUp and /login.
  **/
-function RouteList({ signup, login, updateUser }) {
+function RouteList(props: RoutePropsInterface): JSX.Element {
   const { user } = useContext(userContext);
 
   return (
@@ -44,16 +48,16 @@ function RouteList({ signup, login, updateUser }) {
           <Route path="/jobs" element={<JobList />} />
           <Route
             path="/profile"
-            element={<ProfileForm updateUser={updateUser} />}
+            element={<ProfileForm updateUser={props.updateUser} />}
           />
-          <Route path="/signup" element={<Navigate to="/" />} />
+          <Route path="/signUp" element={<Navigate to="/" />} />
           <Route path="/login" element={<Navigate to="/" />} />
         </>
       ) : (
         <>
           <Route path="/" element={<Homepage />} />
-          <Route path="/signup" element={<SignupForm signup={signup} />} />
-          <Route path="/login" element={<LoginForm login={login} />} />
+          <Route path="/signUp" element={<SignUpForm signUp={props.signUp} />} />
+          <Route path="/login" element={<LoginForm login={props.login} />} />
         </>
       )}
       <Route path="*" element={<NotFoundPage />} />

@@ -12,7 +12,7 @@ import Loader from "./Common/Loader";
 import TOAST_DEFAULTS from "./Helpers/toastSettings";
 import {
   AppPropsInterface,
-  SignupDataInterface,
+  signUpDataInterface,
   UserInterface,
   LoginDataInterface,
   UpdateDataInterface,
@@ -88,12 +88,12 @@ function App(props: AppPropsInterface): JSX.Element {
     [token]
   );
 
-  /** Handles signup.
+  /** Handles signUp.
    *
-   * Automatically logs user in by setting token upon signup.
+   * Automatically logs user in by setting token upon signUp.
    * */
-  async function signup(signupData: SignupDataInterface): Promise<void> {
-    const token: string = await JoblyApi.registerUser(signupData);
+  async function signUp(signUpData: signUpDataInterface): Promise<void> {
+    const token: string = await JoblyApi.registerUser(signUpData);
     localStorage.setItem(TOKEN_STORAGE_ID, token);
     setToken(token);
     toast("✅ Sign-up Successful!", TOAST_DEFAULTS);
@@ -164,7 +164,7 @@ function App(props: AppPropsInterface): JSX.Element {
         <BrowserRouter>
           <ToastContainer />
           <NavBar logout={logout} />
-          <RouteList signup={signup} login={login} updateUser={updateUser} />
+          <RouteList signUp={signUp} login={login} updateUser={updateUser} />
         </BrowserRouter>
       </userContext.Provider>
     </div>

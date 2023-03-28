@@ -49,7 +49,7 @@ function ProfileForm({ updateUser }) {
   }
 
   return (
-    <div className="SignupForm pt-5">
+    <div className="signUpForm pt-5">
       <div className="container col-md-6 offset-md-3 col-lg-4 offset-lg-4">
         <h3 className="m-3 py-3 text-center fs-1">Edit Profile</h3>
         <div className="card">

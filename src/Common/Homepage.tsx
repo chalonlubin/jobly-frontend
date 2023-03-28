@@ -3,7 +3,9 @@ import { Link } from "react-router-dom";
 import userContext from "../Users/userContext";
 import { useContext } from "react";
 
-/** Homepage: Renders homepage for Jobly
+/** Homepage: Homepage of site.
+ *
+ * Shows welcome message or login/register buttons.
  *
  * Props: none
  * State: none
@@ -12,10 +14,6 @@ import { useContext } from "react";
  **/
 function Homepage() {
   const { user } = useContext(userContext);
-
-  // TODO: There's a scrolling issue on the homepage.
-  // It most likely has to do with the css.
-  // I couldn't get it to mimic the issue, not sure how to fix.
 
   return (
     <section className="Homepage">
@@ -36,7 +34,7 @@ function Homepage() {
               </Link>
               <Link
                 className="btn btn-outline-light btn-lg opacity-75 m-4"
-                to="/signup"
+                to="/signUp"
               >
                 Sign up
               </Link>

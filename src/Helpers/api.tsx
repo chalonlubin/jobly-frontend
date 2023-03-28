@@ -34,7 +34,7 @@ class JoblyApi {
    * Returns { handle, name, description, numEmployees, logoUrl, jobs }
    * where jobs is [{ id, title, salary, equity }, ...]
    **/
-  static async getCompany(handle: string): Promise<object>  {
+  static async getCompany(handle: string) {
     const res = await this.request(`companies/${handle}`);
 
     return res.company;
@@ -46,15 +46,14 @@ class JoblyApi {
    *
    * If search is provided, filters to companies whose name contains search.
    **/
-  static async getCompanies(search?: string, min: number = 0, max: number = Infinity): Promise<object> {
-    const res = search
-      ? await this.request(`companies/`, {
-          nameLike: search,
-          minEmployees: min,
-          maxEmployees: max,
-        })
-      : await this.request(`companies/`);
+  static async getCompanies(search?: string, min?: number, max?: number ) {
+    const searchParams = Object.fromEntries([
+      ['nameLike', search],
+      ['minEmployees', min],
+      ['maxEmployees', max],
+    ].filter(([key, value]) => value !== undefined || ""));
 
+    let res = await this.request(`companies/`, searchParams);
     return res.companies;
   }
 
@@ -66,7 +65,7 @@ class JoblyApi {
    *
    * If search is provided, filters to jobs whose title contains search.
    **/
-  static async getJobs(search?: string, min: number = 0, hasEquity = null): Promise<object> {
+  static async getJobs(search?: string, min: number = 0, hasEquity = null) {
     const res = search
       ? await this.request(`jobs/`, {
           title: search,
@@ -79,7 +78,7 @@ class JoblyApi {
 
   /** Apply to a job */
 
-  static async applyToJob(username: string, id: number): Promise<any> {
+  static async applyToJob(username: string, id: number) {
     await this.request(`users/${username}/jobs/${id}`, {}, "post");
   }
 
@@ -89,7 +88,7 @@ class JoblyApi {
    *
    * Returns a token.
    **/
-  static async registerUser(data: object): Promise<string> {
+  static async registerUser(data: object) {
     const res = await this.request(`auth/register`, data, "post");
     return res.token;
   }
@@ -98,7 +97,7 @@ class JoblyApi {
    *
    * Returns a token.
    **/
-  static async loginUser(data: object): Promise<string> {
+  static async loginUser(data: object) {
     const res = await this.request(`auth/token`, data, "post");
 
     return res.token;
@@ -110,7 +109,7 @@ class JoblyApi {
    * where applications is [application, ...]
    */
 
-  static async getUser(username: string): Promise<object | null> {
+  static async getUser(username: string) {
     const res = await this.request(`users/${username}`);
 
     return res.user;
@@ -120,7 +119,7 @@ class JoblyApi {
    *
    * Returns { username, firstName, lastName, email, isAdmin }.
    **/
-  static async updateUser(username: string, userData: object): Promise<object> {
+  static async updateUser(username: string, userData: object) {
     const res = await this.request(`users/${username}`, userData, "patch");
 
     return res.user;

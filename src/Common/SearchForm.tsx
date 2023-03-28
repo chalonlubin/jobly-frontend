@@ -1,30 +1,32 @@
-import { useState } from "react";
+import { useState, ChangeEvent, FormEvent } from "react";
+import { SearchFormProps } from "../Interfaces/AppInterfaces";
 import "./SearchForm.css";
+
 
 /** SearchForm: Form for searching for companies or jobs
  *
- * Props: search
- * State: formData
+ * Props: searchFor (fn)
+ * State: searchTerm: string
  *
  * App -> RouteList -> { CompanyList, JobList } -> SearchForm
  **/
-function SearchForm({ search }) {
+function SearchForm({ searchFor }: SearchFormProps): JSX.Element {
   const initialFormState = {
     query: "",
   };
 
-  const [formData, setFormData] = useState(initialFormState);
+  const [searchTerm, setSearchTerm] = useState(initialFormState);
 
   /** Update form data field */
-  function handleChange(evt) {
+  function handleChange(evt: ChangeEvent<HTMLInputElement>) {
     const { name, value } = evt.target;
-    setFormData((f) => ({ ...f, [name]: value }));
+    setSearchTerm((f) => ({ ...f, [name]: value }));
   }
   /** Call search in parent & clear form. */
-  function handleSubmit(evt) {
+  function handleSubmit(evt: FormEvent<HTMLFormElement>) {
     evt.preventDefault();
-    search(formData.query);
-    setFormData(initialFormState);
+    searchFor(searchTerm.query);
+    setSearchTerm(initialFormState);
   }
 
   return (
@@ -35,7 +37,7 @@ function SearchForm({ search }) {
             type="search"
             placeholder="What're you looking for?"
             name="query"
-            value={formData.query}
+            value={searchTerm.query}
             onChange={handleChange}
             className="SearchForm-bar rounded border-secondary py-3 px-3"
           />
