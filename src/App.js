@@ -1,5 +1,3 @@
-import "./App.css";
-import "bootstrap/dist/css/bootstrap.min.css";
 import "react-toastify/dist/ReactToastify.css";
 
 import { useState, useEffect } from "react";
@@ -21,7 +19,7 @@ export const TOKEN_STORAGE_ID = "jobly-token";
  * State:
  *
  *  - token - authentication JWT for logged in users, required to be set for most API calls.
- *  It is initally read from localStorage and synced via useLocalStorage Hook.
+ *  It is initially read from localStorage and synced via useLocalStorage Hook.
  *
  *  - user -  {username, firstName, lastName, email, applications, isAdmin}
  *  This is passed around via context.
@@ -29,7 +27,7 @@ export const TOKEN_STORAGE_ID = "jobly-token";
  *  - applicationIds: for logged in users, this is a set of application Ids
  *   for applied jobs.
  *
- *  - isLoading - controls loader view
+ *  - isLoading - toggles loader view
  *
  * App -> NavBar, RouteList
  *
