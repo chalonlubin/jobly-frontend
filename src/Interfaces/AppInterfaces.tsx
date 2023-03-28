@@ -63,11 +63,23 @@ export interface CompanyPropsInterface {
   jobs: [];
 }
 
-export interface JobListInterface {
+export interface JobInterface {
     id: number,
     title: string,
     salary: number,
     equity: string,
     companyHandle: string,
     companyName: string
+}
+
+
+export interface JobListStateInterface {
+  jobList: JobInterface[];
+  isLoading: boolean;
+  query: string | undefined;
+}
+
+export interface JobCardPropsInterface {
+  jobs: JobInterface[];
+  from: string;
 }

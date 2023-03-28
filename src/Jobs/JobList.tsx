@@ -1,25 +1,11 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import JobCardList from "./JobCardList";
 import JoblyApi from "../Helpers/api";
 import SearchForm from "../Common/SearchForm";
 import Loader from "../Common/Loader";
 import { toast } from "react-toastify";
 import TOAST_DEFAULTS from "../Helpers/toastSettings";
-
-interface Job {
-  id: number;
-  title: string;
-  salary: number;
-  equity: number;
-  companyHandle: string;
-  companyName: string;
-}
-
-interface JobListStateInterface {
-  jobList: Job[];
-  isLoading: boolean;
-  query: string | undefined;
-}
+import { JobListStateInterface } from "../Interfaces/AppInterfaces";
 
 /** JobList: Renders list of jobs
  *

@@ -1,4 +1,5 @@
 import JobCard from "./JobCard";
+import { JobCardPropsInterface } from "../Interfaces/AppInterfaces";
 
 /** JobCardList: Renders a list of JobCards
  *
@@ -7,7 +8,7 @@ import JobCard from "./JobCard";
  *
  * App -> { JobList, CompanyDetail } -> JobCardList -> JobCard
  **/
-function JobCardList({ jobs, from }) {
+function JobCardList({ jobs, from }:JobCardPropsInterface): JSX.Element{
   return (
     <div className="JobCardList row">
       {jobs.length === 0 ? (
