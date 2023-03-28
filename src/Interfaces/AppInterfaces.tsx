@@ -1,4 +1,4 @@
-export interface AppPropsInterface {}
+
 
 export interface signUpDataInterface {
   username: string;
@@ -61,4 +61,13 @@ export interface CompanyPropsInterface {
   numEmployees: number;
   logoUrl: string | null;
   jobs: [];
+}
+
+export interface JobListInterface {
+    id: number,
+    title: string,
+    salary: number,
+    equity: string,
+    companyHandle: string,
+    companyName: string
 }

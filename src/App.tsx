@@ -11,7 +11,6 @@ import userContext from "./Users/userContext";
 import Loader from "./Common/Loader";
 import TOAST_DEFAULTS from "./Helpers/toastSettings";
 import {
-  AppPropsInterface,
   signUpDataInterface,
   UserInterface,
   LoginDataInterface,
@@ -40,7 +39,7 @@ export const TOKEN_STORAGE_ID: string = "jobly-token";
  *
  **/
 
-function App(props: AppPropsInterface): JSX.Element {
+function App(props: object): JSX.Element {
   const [token, setToken] = useState<string | null>(
     localStorage.getItem(TOKEN_STORAGE_ID)
   );
