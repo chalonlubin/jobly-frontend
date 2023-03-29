@@ -1,57 +1,60 @@
-import React, { useState, useContext } from "react";
-import userContext from "./userContext";
+import { useState, FormEvent, ChangeEvent } from "react";
 import Alert from "../Common/Alert";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import TOAST_DEFAULTS from "../Helpers/toastSettings";
+import { SignUpFormPropsInterface, UserInterface } from "../Types/Interfaces";
 
-/** ProfileForm: Form for updating user profile.
+
+
+
+
+/** signUpForm: Form for signing up.
  *
- * Props: update
- * State: formData, status
+ * Props: signUp
+ * State: formData, errors
  *
- * App -> RouteList -> ProfileForm
+ * App -> RouteList -> signUpForm
  **/
-function ProfileForm({ updateUser }) {
-  const { user } = useContext(userContext);
+function SignUpForm({ signUp }: SignUpFormPropsInterface): JSX.Element {
+  const navigate = useNavigate();
 
-  const [status, setStatus] = useState({
-    updateMsg: [],
-    errors: [],
-  });
-
-  const [formData, setFormData] = useState({
-    username: user.username,
-    firstName: user.firstName,
-    lastName: user.lastName,
-    email: user.email,
+  const [errors, setErrors] = useState<string[]>([]);
+  const [formData, setFormData] = useState<UserInterface>({
+    username: "",
+    password: "",
+    firstName: "",
+    lastName: "",
+    email: "",
   });
 
   /** Update form data field */
-  function handleChange(evt) {
+  function handleChange(evt: ChangeEvent<HTMLInputElement>): void {
     const { name, value } = evt.target;
     setFormData((f) => ({ ...f, [name]: value }));
   }
 
   /** Handle form submission:
-   * - try to update
-   *    - if update works, show success message
-   *    - if update fails, show error message
+   * - try to signUp
+   *    - if signUp works, redirect to homepage
+   *    - if signUp fails, show error message
    **/
-  async function handleSubmit(evt) {
+  async function handleSubmit(evt: FormEvent<HTMLFormElement>) {
     evt.preventDefault();
     try {
-      await updateUser(formData);
-      setStatus({ updateMsg: ["Updated successfully."], errors: [] });
+      await signUp(formData);
+      navigate("/");
     } catch (e) {
-      setStatus({ updateMsg: [], errors: e });
-      toast("❌ Update Failed!", TOAST_DEFAULTS);
+      setErrors(e as string[]);
+      toast("❌ Sign-up Failed!", TOAST_DEFAULTS);
     }
   }
 
+
   return (
-    <div className="SignupForm pt-5">
+    <div className="signUpForm pt-5">
       <div className="container col-md-6 offset-md-3 col-lg-4 offset-lg-4">
-        <h3 className="m-3 py-3 text-center fs-1">Edit Profile</h3>
+        <h3 className="mb-3 text-center fs-1">Sign Up</h3>
         <div className="card">
           <div className="card-body">
             <form onSubmit={handleSubmit}>
@@ -60,12 +63,31 @@ function ProfileForm({ updateUser }) {
                   Username
                 </label>
                 <input
+                  onChange={handleChange}
+                  value={formData.username}
                   name="username"
                   type="text"
                   className="form-control"
-                  value={user.username}
-                  disabled
+                  required
                 />
+              </div>
+              <div className="mb-3">
+                <label htmlFor="password" className="form-label">
+                  Password
+                </label>
+                <input
+                  onChange={handleChange}
+                  value={formData.password}
+                  name="password"
+                  type="password"
+                  className="form-control"
+                  required
+                />
+                <small className="form-text text-muted">
+                  Your password must be 5-20 characters long, contain letters
+                  and numbers, and must not contain spaces, special characters,
+                  or emoji.
+                </small>
               </div>
               <div className="mb-3">
                 <label htmlFor="username" className="form-label">
@@ -77,6 +99,7 @@ function ProfileForm({ updateUser }) {
                   name="firstName"
                   type="text"
                   className="form-control"
+                  required
                 />
               </div>
               <div className="mb-3">
@@ -89,6 +112,7 @@ function ProfileForm({ updateUser }) {
                   name="lastName"
                   type="text"
                   className="form-control"
+                  required
                 />
               </div>
               <div className="mb-3">
@@ -101,24 +125,20 @@ function ProfileForm({ updateUser }) {
                   name="email"
                   type="email"
                   className="form-control"
+                  required
                 />
               </div>
-              {status.updateMsg.length !== 0 && (
+              {errors.length > 0 && (
                 <div className="d-grid mt-4">
-                  <Alert alerts={status.updateMsg} type={"success"} />
+                  <Alert alerts={errors} type={"danger"} />
                 </div>
               )}
-              {status.errors.length !== 0 && (
-                <div className="d-grid mt-4">
-                  <Alert alerts={status.errors} type={"danger"} />
-                </div>
-              )}
-              <div className="d-grid mt-1">
+              <div className="d-grid mt-2">
                 <button
                   className="btn btn-outline-dark "
-                  onClick={handleSubmit}
+                  type="submit"
                 >
-                  Save Changes
+                  Submit
                 </button>
               </div>
             </form>
@@ -129,4 +149,4 @@ function ProfileForm({ updateUser }) {
   );
 }
 
-export default ProfileForm;
+export default SignUpForm;

@@ -1,70 +1,98 @@
-# Getting Started with Create React App
+# Jobly
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+---
 
-## Available Scripts
+Jobly is a job-search application that allows users to signup, login, search, and apply to jobs.
 
-In the project directory, you can run:
+[Demo Here](https://jobly-cl.netlify.app/](https://jobly-cl.netlify.app/), deployed with with Netlify & Railway
+**Login**: _guest_ | **Password**: _password_
 
-### `npm start`
+## 🧐 Motivation & Challenges
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+> My major motivation with the frontend was to learn more about React, especially different hooks like useState, useEffect, useContext and useParams. I also wanted to try to convert the code to TypeScript after I had time to work on it alone after my bootcamp ended. (The frontend was originally built in a 3.5 day sprint as pairs @ Rithm School). I was also really excited to explore authorization and authentication via token and local storage. I didn't focus so much on CSS, so it is a fairly bare bones app stylistically.
+>
+> As far as challenges, figuring out the TypeScript conversion was a struggle at first, as I wasn't sure exactly how deeply I should go with typing. I used strict mode as my guide, and learned some new things about TypeScript as a whole.
 
-### `npm test`
+## 💻 Tech Stack & Packages
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+** JavaScript | TypeScript | React | Bootstrap | React Testing Library |Jest **
 
-### `npm run build`
+_react-dom | react-router-dom | axios | jsonwebtoken | react-toastify_
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## ⭐️ Features
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Here is a high level overview a few of the features I am proud of:
 
-### `npm run eject`
+- Authentication and authorization handled in a secure way via local storage and token validation
+- Passes TypeScript strict mode
+- Varied uses of React Hooks
+- Infinite Scroll
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 📦 Install & Run
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```shell
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+--- clone repo ---
+cd into repo
+npm install
+npm start
 
-## Learn More
+Will be running on localhost 3000.
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 🧪 Testing
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
 
-### Code Splitting
+```shell
+$ npm i --global jest (this is a global install, ignore if you have)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+--- JEST COMMANDS ---
+jest -i (runs all tests)
+jest --coverage (shows coverage of app)
+jest {name_of_file}.test.js (to run specific file)
 
-### Analyzing the Bundle Size
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### ☑️ To-Do's
 
-### Making a Progressive Web App
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- Add testing. Order would be browser -> integration -> unit
+- Add auth via google / facebook / github
+- Add company login option, to post jobs and view applications
+- Add a way to hold a resume / CV for frequent use
+- Update styling to look presentable
+- Refactor TypeScript
 
-### Advanced Configuration
+## 👉 Credits
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+---
 
-### Deployment
+> Jobly was built while attending Rithm School as part of a 6 day sprint (3 days for front and backend each). The frontend was built with @yukdev and backend was built with @meyerj. It was refactored after graduation, for efficiency and general code cleanup.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## ⚖️ License
 
-### `npm run build` fails to minify
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```
+Copyright [2023] [Chalon Lubin]
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+```

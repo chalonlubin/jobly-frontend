@@ -1,6 +1,6 @@
 import "./Homepage.css";
 import { Link } from "react-router-dom";
-import userContext from "../Users/userContext";
+import UserContext from "../Users/userContext";
 import { useContext } from "react";
 
 /** Homepage: Renders homepage for Jobly
@@ -11,7 +11,7 @@ import { useContext } from "react";
  * App -> RouteList -> Homepage
  **/
 function Homepage() {
-  const { user } = useContext(userContext);
+  const { user } = useContext(UserContext);
 
   // TODO: There's a scrolling issue on the homepage.
   // It most likely has to do with the css.

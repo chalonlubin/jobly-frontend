@@ -1,5 +1,10 @@
 import { Link } from "react-router-dom";
 import "./CompanyCard.css";
+import { CompanyInterface } from "../Types/Interfaces";
+
+interface CompanyPropsInterface {
+  company: CompanyInterface;
+}
 
 /** CompanyCard: Renders a card for a company
  *
@@ -8,12 +13,12 @@ import "./CompanyCard.css";
  *
  * App -> RouteList -> CompanyList -> CompanyCard
  **/
-function CompanyCard({ company }) {
+function CompanyCard({ company }: CompanyPropsInterface): JSX.Element {
   return (
     <div className="d-flex justify-content-center card-deck">
       <div className="CompanyCard card mx-3 my-3">
         <div className="card-body mx-2">
-            <h5>{company.name}</h5>
+          <h5>{company.name}</h5>
           {company.logoUrl && (
             <img
               className="float-end ms-5"

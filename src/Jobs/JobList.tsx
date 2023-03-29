@@ -1,28 +1,31 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import JobCardList from "./JobCardList";
 import JoblyApi from "../Helpers/api";
 import SearchForm from "../Common/SearchForm";
 import Loader from "../Common/Loader";
 import { toast } from "react-toastify";
 import TOAST_DEFAULTS from "../Helpers/toastSettings";
+import { JobStateInterface } from "../Types/Interfaces";
 
 /** JobList: Renders list of jobs
  *
  * Props: none
  * State: jobList, isLoading, query
  *
- * App -> JobList -> { JobCardList, SearchForm }
+ * App ->  JobList -> JobCardList -> JobCard
+ * App -> CompanyDetail -> JobCardList -> JobCard
  **/
-function JobList() {
-  const [jobs, setJobs] = useState({
+function JobList(): JSX.Element {
+  const [jobs, setJobs] = useState<JobStateInterface>({
     jobList: [],
     isLoading: true,
-    query: null,
+    query: "",
   });
 
+  /** Fetches jobs when mounted from API, or when query has changed. */
   useEffect(
-    function fetchJobsWhenMounted() {
-      async function fetchJobs() {
+    function fetchJobsWhenMounted(): void {
+      async function fetchJobs(): Promise<void> {
         try {
           const jobsResult = await JoblyApi.getJobs(jobs.query);
           setJobs((j) => ({
@@ -39,8 +42,8 @@ function JobList() {
     [jobs.query]
   );
 
-  // search for jobs by title
-  function search(title) {
+  /** Search for jobs by title, setting job state with result. */
+  function search(title: string): void {
     setJobs((c) => ({ ...c, query: title }));
   }
 
@@ -48,9 +51,9 @@ function JobList() {
 
   return (
     <div className="JobList">
-      <SearchForm search={search} />
+      <SearchForm searchFor={search} />
       <div className="row"></div>
-      <JobCardList from={"JobList"} jobs={jobs.jobList} search={search} />
+      <JobCardList jobs={jobs.jobList} />
     </div>
   );
 }

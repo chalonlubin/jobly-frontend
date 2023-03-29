@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import { useState, FormEvent, ChangeEvent } from "react";
 import Alert from "../Common/Alert";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import TOAST_DEFAULTS from "../Helpers/toastSettings";
+import { LoginFormPropsInterface } from "../Types/Interfaces";
 
 /** LoginForm: Form for logging in.
  *
@@ -11,14 +12,20 @@ import TOAST_DEFAULTS from "../Helpers/toastSettings";
  *
  * App -> RouteList -> LoginForm
  **/
-function LoginForm({ login }) {
+function LoginForm({ login }: LoginFormPropsInterface): JSX.Element {
   const navigate = useNavigate();
 
-  const [errors, setErrors] = useState([]);
-  const [formData, setFormData] = useState({ username: "", password: "" });
+  const [errors, setErrors] = useState<string[]>([]);
+  const [formData, setFormData] = useState<{
+    username: string;
+    password: string;
+  }>({
+    username: "",
+    password: "",
+  });
 
   /** Update form data field */
-  function handleChange(evt) {
+  function handleChange(evt: ChangeEvent<HTMLInputElement>): void {
     const { name, value } = evt.target;
     setFormData((f) => ({ ...f, [name]: value }));
   }
@@ -28,13 +35,13 @@ function LoginForm({ login }) {
    *    - if login works, redirect to homepage
    *    - if login fails, show error message
    **/
-  async function handleSubmit(evt) {
+  async function handleSubmit(evt: FormEvent<HTMLFormElement>): Promise<void> {
     evt.preventDefault();
     try {
       await login(formData);
       navigate("/");
     } catch (e) {
-      setErrors(e);
+      setErrors(e as string[]);
       toast(`❌ Login Failed`, TOAST_DEFAULTS);
     }
   }
@@ -78,10 +85,7 @@ function LoginForm({ login }) {
                 </div>
               )}
               <div className="d-grid mt-2">
-                <button
-                  className="btn btn-outline-dark "
-                  onClick={handleSubmit}
-                >
+                <button className="btn btn-outline-dark" type="submit">
                   Submit
                 </button>
               </div>
