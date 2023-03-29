@@ -6,7 +6,8 @@ Jobly is a job-search application that allows users to signup, login, search, an
 
 [Backend Here](https://github.com/chalonlubin/jobly-backend)  
 
-[Demo Here](https://jobly-cl.netlify.app/), deployed with with Netlify & Railway.
+[Demo Here](https://jobly-cl.netlify.app/), deployed with with Netlify & Railway.  
+
 **Login**: _guest_ | **Password**: _password_
 
 ## 🧐 Motivation & Challenges
