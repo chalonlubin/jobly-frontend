@@ -1,5 +1,5 @@
 import "./JobCard.css";
-import { JobPropsInterface } from "../Interfaces/AppInterfaces";
+import { JobPropsInterface } from "../Types/Interfaces";
 
 /** JobCard: Renders a single job card
  *

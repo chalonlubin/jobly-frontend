@@ -1,6 +1,6 @@
 import "./Homepage.css";
 import { Link } from "react-router-dom";
-import userContext from "../Users/userContext";
+import UserContext from "../Users/userContext";
 import { useContext } from "react";
 
 /** Homepage: Homepage of site.
@@ -13,7 +13,7 @@ import { useContext } from "react";
  * App -> RouteList -> Homepage
  **/
 function Homepage() {
-  const { user } = useContext(userContext);
+  const { user } = useContext(UserContext);
 
   return (
     <section className="Homepage">

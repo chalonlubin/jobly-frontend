@@ -1,5 +1,5 @@
 import JobCard from "./JobCard";
-import { JobsInterface } from "../Interfaces/AppInterfaces";
+import { JobsInterface } from "../Types/Interfaces";
 
 /** JobCardList: Renders a list of JobCards
  *

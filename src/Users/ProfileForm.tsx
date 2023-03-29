@@ -1,12 +1,12 @@
-import React, { useState, useContext, FormEvent, ChangeEvent } from "react";
-import userContext from "./userContext";
+import { useState, useContext, FormEvent, ChangeEvent } from "react";
+import UserContext from "./userContext";
 import Alert from "../Common/Alert";
 import { toast } from "react-toastify";
 import TOAST_DEFAULTS from "../Helpers/toastSettings";
-import { UserInterface } from "../Interfaces/AppInterfaces";
+import { UserStateInterface } from "../Types/Interfaces";
 
-export interface  ProfileFormPropInterface {
-  updateUser: Function
+export interface ProfileFormPropInterface {
+  updateUser: Function;
 }
 /** ProfileForm: Form for updating user profile.
  *
@@ -16,7 +16,8 @@ export interface  ProfileFormPropInterface {
  * App -> RouteList -> ProfileForm
  **/
 function ProfileForm({ updateUser }: ProfileFormPropInterface): JSX.Element {
-  const user  = useContext<UserInterface>(userContext);
+  const { user } = useContext<UserStateInterface>(UserContext);
+  console.log("USER", user);
 
   const [status, setStatus] = useState({
     updateMsg: [] as string[],
@@ -118,10 +119,7 @@ function ProfileForm({ updateUser }: ProfileFormPropInterface): JSX.Element {
                 </div>
               )}
               <div className="d-grid mt-1">
-                <button
-                  className="btn btn-outline-dark "
-                  type="submit"
-                >
+                <button className="btn btn-outline-dark " type="submit">
                   Save Changes
                 </button>
               </div>

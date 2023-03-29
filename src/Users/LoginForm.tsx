@@ -3,7 +3,7 @@ import Alert from "../Common/Alert";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import TOAST_DEFAULTS from "../Helpers/toastSettings";
-import { LoginFormPropsInterface } from "../Interfaces/AppInterfaces";
+import { LoginFormPropsInterface } from "../Types/Interfaces";
 
 /** LoginForm: Form for logging in.
  *

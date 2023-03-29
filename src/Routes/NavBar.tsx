@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import userContext from "../Users/userContext";
+import UserContext from "../Users/userContext";
 
 import { NavLink } from "react-router-dom";
 
@@ -12,7 +12,7 @@ import { NavLink } from "react-router-dom";
  * Routelist -> NavBar
  **/
 function NavBar({ logout }: any): JSX.Element{
-  const { user } = useContext(userContext);
+  const { user } = useContext(UserContext);
 
   return (
     <nav className="navbar sticky-top navbar-expand-lg navbar-dark bg-dark ">

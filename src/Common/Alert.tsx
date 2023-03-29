@@ -1,4 +1,4 @@
-import { AlertPropsInterface } from "../Interfaces/AppInterfaces"
+import { AlertPropsInterface } from "../Types/Interfaces"
 
 /** Alert: displays bootstrap alert(s)
  *

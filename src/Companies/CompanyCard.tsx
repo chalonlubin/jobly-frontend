@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import "./CompanyCard.css";
-import { CompanyListInterface } from "../Interfaces/AppInterfaces";
+import { CompanyInterface } from "../Types/Interfaces";
 
 interface CompanyPropsInterface {
-  company: CompanyListInterface;
+  company: CompanyInterface;
 }
 
 /** CompanyCard: Renders a card for a company

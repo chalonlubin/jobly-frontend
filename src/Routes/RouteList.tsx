@@ -1,6 +1,7 @@
 import { useContext } from "react";
-import userContext from "../Users/userContext";
 import { Routes, Route, Navigate } from "react-router-dom";
+import { UserContextInterface } from "../Types/Interfaces"; // import UserContextInterface
+import  UserContext  from "../Users/userContext"; // import userContext using destructuring
 
 import Homepage from "../Common/Homepage";
 import CompanyList from "../Companies/CompanyList";
@@ -10,10 +11,7 @@ import SignUpForm from "../Users/SignUpForm";
 import LoginForm from "../Users/LoginForm";
 import ProfileForm from "../Users/ProfileForm";
 import NotFoundPage from "../Common/NotFoundPage";
-
-import {
-  RoutePropsInterface
-} from "../Interfaces/AppInterfaces";
+import { RoutePropsInterface } from "../Types/Interfaces";
 
 /** RouteList: Routes for Jobly
  *
@@ -36,11 +34,11 @@ import {
  * If not, show /signUp and /login.
  **/
 function RouteList(props: RoutePropsInterface): JSX.Element {
-  const { user } = useContext(userContext);
+  const userContextVal: UserContextInterface | null = useContext(UserContext);
 
   return (
     <Routes>
-      {user ? (
+      {userContextVal?.user ? (
         <>
           <Route path="/" element={<Homepage />} />
           <Route path="/companies" element={<CompanyList />} />
@@ -56,7 +54,10 @@ function RouteList(props: RoutePropsInterface): JSX.Element {
       ) : (
         <>
           <Route path="/" element={<Homepage />} />
-          <Route path="/signUp" element={<SignUpForm signUp={props.signUp} />} />
+          <Route
+            path="/signUp"
+            element={<SignUpForm signUp={props.signUp} />}
+          />
           <Route path="/login" element={<LoginForm login={props.login} />} />
         </>
       )}

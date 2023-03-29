@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { CompanyListInterface } from "../Interfaces/AppInterfaces"
+import { CompanyInterface } from "../Types/Interfaces"
 import CompanyCard from "./CompanyCard";
 import SearchForm from "../Common/SearchForm";
 import JoblyApi from "../Helpers/api";
@@ -46,7 +46,7 @@ function CompanyList(): JSX.Element {
             <h4 className="m-3 p-3">
               Select a company to see current job offerings.
             </h4>
-            {companies.map((c: CompanyListInterface) => (
+            {companies.map((c: CompanyInterface) => (
               <CompanyCard key={c.handle} company={c} />
             ))}
           </>

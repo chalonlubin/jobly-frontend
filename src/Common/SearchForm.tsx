@@ -1,5 +1,5 @@
 import { useState, ChangeEvent, FormEvent } from "react";
-import { SearchFormProps } from "../Interfaces/AppInterfaces";
+import { SearchFormProps } from "../Types/Interfaces";
 import "./SearchForm.css";
 
 

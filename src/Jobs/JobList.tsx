@@ -5,7 +5,7 @@ import SearchForm from "../Common/SearchForm";
 import Loader from "../Common/Loader";
 import { toast } from "react-toastify";
 import TOAST_DEFAULTS from "../Helpers/toastSettings";
-import { JobListStateInterface } from "../Interfaces/AppInterfaces";
+import { JobStateInterface } from "../Types/Interfaces";
 
 /** JobList: Renders list of jobs
  *
@@ -16,7 +16,7 @@ import { JobListStateInterface } from "../Interfaces/AppInterfaces";
  * App -> CompanyDetail -> JobCardList -> JobCard
  **/
 function JobList(): JSX.Element {
-  const [jobs, setJobs] = useState<JobListStateInterface>({
+  const [jobs, setJobs] = useState<JobStateInterface>({
     jobList: [],
     isLoading: true,
     query: "",

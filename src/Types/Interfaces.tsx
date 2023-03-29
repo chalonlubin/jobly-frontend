@@ -21,58 +21,44 @@ export interface SearchFormProps {
 
 /************************************************** User  */
 
-export interface signUpDataInterface {
-  username: string;
-  password: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-  isAdmin: boolean;
-  applications: Set<number>;
-}
-
 export interface UserInterface {
   username: string;
-  firstName: string;
-  lastName: string;
-  email: string;
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  password?: string;
   isAdmin?: boolean;
-  applications?: number[];
+  applications?: Set<number>;
 }
 
-export interface LoginDataInterface {
-  username: string;
-  password: string;
+export interface UserStateInterface {
+  user: UserInterface;
 }
 
-export interface UpdateDataInterface {
-  username: string;
-  firstName: string;
-  lastName: string;
-  email: string;
+export interface UserContextInterface {
+  applyToJob: Function;
+  hasAppliedToJob: Function;
+  setUser: Function;
+  user?: UserInterface | null;
 }
 
 export interface LoginFormPropsInterface {
   login: Function;
 }
 
-/************************************************** Companies  */
-
-export interface CompanyListInterface {
-  handle: string;
-  name: string;
-  description: string;
-  numEmployees: number;
-  logoUrl: string | null;
+export interface SignUpFormPropsInterface {
+  signUp: Function;
 }
 
-export interface CompanyPropsInterface {
+/************************************************** Companies  */
+
+export interface CompanyInterface {
   handle: string;
   name: string;
   description: string;
   numEmployees: number;
   logoUrl: string | null;
-  jobs: [];
+  jobs?: JobInterface[] | null;
 }
 
 /************************************************** Jobs  */
@@ -86,7 +72,7 @@ export interface JobInterface {
   companyName: string;
 }
 
-export interface JobListStateInterface {
+export interface JobStateInterface {
   jobList: JobInterface[];
   isLoading: boolean;
   query: string | undefined;

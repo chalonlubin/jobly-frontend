@@ -1,8 +1,13 @@
-import { useState } from "react";
+import { useState, FormEvent, ChangeEvent } from "react";
 import Alert from "../Common/Alert";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import TOAST_DEFAULTS from "../Helpers/toastSettings";
+import { SignUpFormPropsInterface, UserInterface } from "../Types/Interfaces";
+
+
+
+
 
 /** signUpForm: Form for signing up.
  *
@@ -11,11 +16,11 @@ import TOAST_DEFAULTS from "../Helpers/toastSettings";
  *
  * App -> RouteList -> signUpForm
  **/
-function SignUpForm({ signUp }) {
+function SignUpForm({ signUp }: SignUpFormPropsInterface): JSX.Element {
   const navigate = useNavigate();
 
-  const [errors, setErrors] = useState([]);
-  const [formData, setFormData] = useState({
+  const [errors, setErrors] = useState<string[]>([]);
+  const [formData, setFormData] = useState<UserInterface>({
     username: "",
     password: "",
     firstName: "",
@@ -24,7 +29,7 @@ function SignUpForm({ signUp }) {
   });
 
   /** Update form data field */
-  function handleChange(evt) {
+  function handleChange(evt: ChangeEvent<HTMLInputElement>): void {
     const { name, value } = evt.target;
     setFormData((f) => ({ ...f, [name]: value }));
   }
@@ -34,16 +39,17 @@ function SignUpForm({ signUp }) {
    *    - if signUp works, redirect to homepage
    *    - if signUp fails, show error message
    **/
-  async function handleSubmit(evt) {
+  async function handleSubmit(evt: FormEvent<HTMLFormElement>) {
     evt.preventDefault();
     try {
       await signUp(formData);
       navigate("/");
     } catch (e) {
-      setErrors(e);
+      setErrors(e as string[]);
       toast("❌ Sign-up Failed!", TOAST_DEFAULTS);
     }
   }
+
 
   return (
     <div className="signUpForm pt-5">
@@ -130,7 +136,7 @@ function SignUpForm({ signUp }) {
               <div className="d-grid mt-2">
                 <button
                   className="btn btn-outline-dark "
-                  onClick={handleSubmit}
+                  type="submit"
                 >
                   Submit
                 </button>

@@ -7,15 +7,10 @@ import jwt_decode from "jwt-decode";
 import NavBar from "./Routes/NavBar";
 import RouteList from "./Routes/RouteList";
 import JoblyApi from "./Helpers/api";
-import userContext from "./Users/userContext";
+import UserContext from "./Users/userContext";
 import Loader from "./Common/Loader";
 import TOAST_DEFAULTS from "./Helpers/toastSettings";
-import {
-  signUpDataInterface,
-  UserInterface,
-  LoginDataInterface,
-  UpdateDataInterface,
-} from "./Interfaces/AppInterfaces";
+import { UserInterface } from "./Types/Interfaces";
 
 // Key name for storing token in localStorage for "remember me" re-login
 export const TOKEN_STORAGE_ID: string = "jobly-token";
@@ -39,14 +34,15 @@ export const TOKEN_STORAGE_ID: string = "jobly-token";
  *
  **/
 
-function App(props: object): JSX.Element {
+function App(): JSX.Element {
   const [token, setToken] = useState<string | null>(
     localStorage.getItem(TOKEN_STORAGE_ID)
   );
   const [user, setUser] = useState<UserInterface | null>(null);
-  const [applicationIds, setApplicationIds] = useState<Set<number>>(
+  const [applicationIds, setApplicationIds] = useState<Set<number | null>>(
     new Set<number>([])
   );
+
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   console.debug(
@@ -59,71 +55,85 @@ function App(props: object): JSX.Element {
     token
   );
 
-  useEffect(
-    function loadUserInfo(): void {
-      async function getUser(): Promise<any> {
+  useEffect(() => {
+    async function getUser(): Promise<void> {
+      try {
         if (token) {
-          try {
-            const { username } = jwt_decode(token) as { username: string };
-            // Give token to API class so it can use it to call the API.
-            JoblyApi.token = token;
-            let currentUser: any = await JoblyApi.getUser(username);
-            setUser(currentUser);
-            setApplicationIds(new Set(currentUser.applications));
-            setIsLoading(false);
-          } catch (err) {
-            console.error("App loadUserInfo: problem loading", err);
-            toast("❌ Database error", TOAST_DEFAULTS);
-            setUser(null);
-            setIsLoading(false);
-          }
+          const { username } = jwt_decode(token) as { username: string };
+          // Give token to API class so it can use it to call the API.
+          JoblyApi.token = token;
+          const currentUser = await JoblyApi.getUser(username);
+          setUser(currentUser);
+          setApplicationIds(new Set(currentUser.applications));
         } else {
           setUser(null);
-          setIsLoading(false);
         }
+      } catch (err) {
+        console.error("App loadUserInfo: problem loading", err);
+        toast("❌ Database error", TOAST_DEFAULTS);
+        setUser(null);
+      } finally {
+        setIsLoading(false);
       }
-      getUser();
-    },
-    [token]
-  );
+    }
+    getUser();
+  }, [token]);
 
   /** Handles signUp.
    *
    * Automatically logs user in by setting token upon signUp.
    * */
-  async function signUp(signUpData: signUpDataInterface): Promise<void> {
-    const token: string = await JoblyApi.registerUser(signUpData);
-    localStorage.setItem(TOKEN_STORAGE_ID, token);
-    setToken(token);
-    toast("✅ Sign-up Successful!", TOAST_DEFAULTS);
+  async function signUp(signUpData: UserInterface): Promise<void> {
+    try {
+      const token = await JoblyApi.registerUser(signUpData);
+      setToken(token);
+      toast("✅ Sign-up Successful!", TOAST_DEFAULTS);
+      localStorage.setItem(TOKEN_STORAGE_ID, token);
+    } catch (err) {
+      console.error("App signUp: problem signing up", err);
+      toast("❌ Failed to sign up. Please try again later.", TOAST_DEFAULTS);
+    }
   }
 
   /** Handles login.
    *
    * Will update local storage with token.
    */
-  async function login(loginData: LoginDataInterface): Promise<void> {
-    const token: string = await JoblyApi.loginUser(loginData);
-    localStorage.setItem(TOKEN_STORAGE_ID, token);
-    setToken(token);
-    toast("🚀 Login Successful!", TOAST_DEFAULTS);
+  async function login(loginData: UserInterface): Promise<void> {
+    try {
+      const token = await JoblyApi.loginUser(loginData);
+      setToken(token);
+      toast("🚀 Login Successful!", TOAST_DEFAULTS);
+      localStorage.setItem(TOKEN_STORAGE_ID, token);
+    } catch (err) {
+      console.error("App login: problem logging in", err);
+      toast("❌ Failed to login. Please try again later.", TOAST_DEFAULTS);
+    }
   }
 
   /** Handle user profile update */
-  async function updateUser(updateData: UpdateDataInterface): Promise<void> {
-    const { username, firstName, lastName, email } = updateData;
-    const user: any = await JoblyApi.updateUser(username, {
-      firstName,
-      lastName,
-      email,
-    });
-    setUser(user);
-    toast("👍 Update Successful!", TOAST_DEFAULTS);
+  async function updateUser(updateData: UserInterface): Promise<void> {
+    try {
+      const { username, firstName, lastName, email } = updateData;
+      const updatedUser: UserInterface = await JoblyApi.updateUser(username, {
+        firstName,
+        lastName,
+        email,
+      });
+      setUser(updatedUser);
+      toast("👍 Update Successful!", TOAST_DEFAULTS);
+    } catch (err) {
+      console.error("App updateUser: problem updating user", err);
+      toast(
+        "❌ Failed to update user. Please try again later.",
+        TOAST_DEFAULTS
+      );
+    }
   }
 
   /** Checks if a job has been applied for. */
   function hasAppliedToJob(id: number): boolean {
-    return applicationIds.has(id);
+    return applicationIds?.has(id) ?? false;
   }
 
   /** Handles applying to a job
@@ -140,9 +150,9 @@ function App(props: object): JSX.Element {
     if (hasAppliedToJob(id))
       return toast("👌 You've already applied.", TOAST_DEFAULTS);
 
-      JoblyApi.applyToJob(user.username, id);
-      setApplicationIds(new Set([...applicationIds, id]));
-      toast("👌 Application Successful", TOAST_DEFAULTS);
+    JoblyApi.applyToJob(user.username, id);
+    setApplicationIds(new Set([...applicationIds, id]));
+    toast("👌 Application Successful", TOAST_DEFAULTS);
   }
 
   /** Handle logout */
@@ -157,7 +167,7 @@ function App(props: object): JSX.Element {
 
   return (
     <div className="App">
-      <userContext.Provider
+      <UserContext.Provider
         value={{ user, setUser, hasAppliedToJob, applyToJob }}
       >
         <BrowserRouter>
@@ -165,7 +175,7 @@ function App(props: object): JSX.Element {
           <NavBar logout={logout} />
           <RouteList signUp={signUp} login={login} updateUser={updateUser} />
         </BrowserRouter>
-      </userContext.Provider>
+      </UserContext.Provider>
     </div>
   );
 }
