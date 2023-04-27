@@ -1,6 +1,7 @@
 import JobCard from "./JobCard";
 import { JobsInterface } from "../Types/Interfaces";
 
+
 /** JobCardList: Renders a list of JobCards
  *
  * Props: jobs, from
@@ -9,6 +10,7 @@ import { JobsInterface } from "../Types/Interfaces";
  * App -> { JobList, CompanyDetail } -> JobCardList -> JobCard
  **/
 function JobCardList({ jobs }: JobsInterface ): JSX.Element{
+
   return (
     <div className="JobCardList row">
       {jobs.length === 0 ? (
@@ -17,7 +19,7 @@ function JobCardList({ jobs }: JobsInterface ): JSX.Element{
         </div>
       ) : (
         jobs.map((job) => {
-          return <JobCard key={job.id} job={job}/>;
+          return <JobCard key={job.id} job={job} />;
         })
       )}
     </div>

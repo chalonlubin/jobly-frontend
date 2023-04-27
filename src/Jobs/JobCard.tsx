@@ -1,5 +1,7 @@
 import "./JobCard.css";
 import { JobPropsInterface } from "../Types/Interfaces";
+import { useContext } from "react";
+import UserContext from "../Users/userContext";
 
 /** JobCard: Renders a single job card
  *
@@ -9,9 +11,10 @@ import { JobPropsInterface } from "../Types/Interfaces";
  * JobList -> JobCard
  * CompanyDetail -> JobCard
  **/
-function Job({job}: JobPropsInterface): JSX.Element {
+function Job({ job }: JobPropsInterface): JSX.Element {
+  const { hasAppliedToJob, applyToJob } = useContext(UserContext);
 
-  const { title, salary, equity, companyName } = job;
+  const { id, title, salary, equity, companyName } = job;
 
   return (
     <div className="d-flex justify-content-center col-xs-12 col-sm-10 col-md-6 col-lg-6 ">
@@ -29,12 +32,20 @@ function Job({job}: JobPropsInterface): JSX.Element {
           <p className="card-text font-monospace">
             Equity: {`${(Number(equity) * 100).toFixed(1)}%`}
           </p>
-          {/* For applications later, we can toggle with two images */}
-          {/* <img
-            src="/apply.png"
-            alt="apply"
-            className="Job-icon m-3 position-absolute bottom-0 end-0"
-          /> */}
+          {hasAppliedToJob(id) ? (
+            <img
+              src="/accept.png"
+              alt="apply"
+              className="Job-icon m-3 position-absolute bottom-0 end-0 "
+            />
+          ) : (
+            <img
+              src="/apply.png"
+              alt="apply"
+              className="Job-icon m-3 position-absolute bottom-0 end-0"
+              onClick={() => applyToJob(id)}
+            />
+          )}
         </div>
       </div>
     </div>

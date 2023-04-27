@@ -70,6 +70,7 @@ export interface JobInterface {
   equity: string;
   companyHandle: string;
   companyName: string;
+  applied: boolean;
 }
 
 export interface JobStateInterface {
