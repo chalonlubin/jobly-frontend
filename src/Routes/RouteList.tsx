@@ -4,7 +4,7 @@ import { UserContextInterface } from "../Types/Interfaces"; // import UserContex
 import  UserContext  from "../Users/userContext"; // import userContext using destructuring
 
 import Homepage from "../Common/Homepage";
-import CompanyList from "../Companies/CompanyList";
+import CompanyCardList from "../Companies/CompanyCardList";
 import CompanyDetail from "../Companies/CompanyDetail";
 import JobList from "../Jobs/JobList";
 import SignUpForm from "../Users/SignUpForm";
@@ -41,7 +41,7 @@ function RouteList(props: RoutePropsInterface): JSX.Element {
       {userContextVal?.user ? (
         <>
           <Route path="/" element={<Homepage />} />
-          <Route path="/companies" element={<CompanyList />} />
+          <Route path="/companies" element={<CompanyCardList />} />
           <Route path="/companies/:handle" element={<CompanyDetail />} />
           <Route path="/jobs" element={<JobList />} />
           <Route

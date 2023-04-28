@@ -1,15 +1,16 @@
 import { useState, useEffect } from "react";
 import { SearchFormProps } from "../Types/Interfaces";
-import "./SearchForm.css";
+import "./SearchBar.css";
 import debounce from "lodash/debounce";
 
 function SearchForm({ searchFor }: SearchFormProps): JSX.Element {
   const [searchTerm, setSearchTerm] = useState("");
 
   const handleChange = (evt: any) => {
-    const query = evt.target.value;
+    const  query  = evt.target.value;
     setSearchTerm(query);
   };
+
 
   useEffect(() => {
     const debouncedSearch = debounce(() => {
