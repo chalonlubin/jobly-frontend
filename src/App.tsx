@@ -33,6 +33,7 @@ function App(): JSX.Element {
     isLoading,
     signUp,
     login,
+    guestLogin,
     updateUser,
     hasAppliedToJob,
     applyToJob,
@@ -46,7 +47,7 @@ function App(): JSX.Element {
       <UserContext.Provider value={{ user, hasAppliedToJob, applyToJob }}>
         <BrowserRouter>
           <ToastContainer />
-          <NavBar logout={logout} />
+          <NavBar logout={logout} guestLogin={guestLogin} />
           <RouteList signUp={signUp} login={login} updateUser={updateUser} />
         </BrowserRouter>
       </UserContext.Provider>

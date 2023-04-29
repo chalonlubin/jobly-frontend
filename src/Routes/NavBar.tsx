@@ -11,7 +11,7 @@ import { NavLink } from "react-router-dom";
  *
  * Routelist -> NavBar
  **/
-function NavBar({ logout }: any): JSX.Element{
+function NavBar({ logout, guestLogin }: any): JSX.Element{
   const { user } = useContext(UserContext);
 
   return (
@@ -25,7 +25,7 @@ function NavBar({ logout }: any): JSX.Element{
             width="30"
             height="24"
           ></img>
-          Jobly
+          <span className="">Jobly</span>
         </NavLink>
         <button
           className="navbar-toggler"
@@ -73,7 +73,12 @@ function NavBar({ logout }: any): JSX.Element{
                 </li>
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/signUp">
-                    signUp
+                    Sign Up
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink className="nav-link" onClick={guestLogin} to="/">
+                    Guest Access
                   </NavLink>
                 </li>
               </>
