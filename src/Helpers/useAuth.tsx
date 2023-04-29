@@ -88,6 +88,22 @@ export function useAuth() {
     }
   }
 
+  /** Handles guest login.
+   *
+   * Will update local storage with token.
+   */
+  async function guestLogin(loginData: UserInterface): Promise<void> {
+    try {
+      const token = await JoblyApi.loginUser({username: "guest", password: "password"});
+      setToken(token);
+      toast("🚀 Public Guest Login Successful", TOAST_DEFAULTS);
+      localStorage.setItem(TOKEN_STORAGE_ID, token);
+    } catch (err) {
+      console.error("App login: problem logging in", err);
+      toast("❌ Failed to login. Please try again later.", TOAST_DEFAULTS);
+    }
+  }
+
   /** Handle user profile update */
   async function updateUser(updateData: UserInterface): Promise<void> {
     try {
@@ -147,6 +163,7 @@ export function useAuth() {
     isLoading,
     signUp,
     login,
+    guestLogin,
     updateUser,
     hasAppliedToJob,
     applyToJob,

@@ -1,7 +1,5 @@
 .Homepage {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -17,33 +15,22 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
-  filter: brightness(60%);
+  filter: brightness(80%);
 }
 
-/* bg1: https://media1.giphy.com/media/xTiTniuHdUjpOlNo1q/giphy.gif?cid=ecf05e47tub74bghxwcokwion7sogvugxhzxghba2uip86hu&rid=giphy.gif&ct=g (Cloud colors)*/
-
-/* <iframe src="https://giphy.com/embed/HknSLLEbzZCoM" width="480" height="247" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/cat-smoke-cloud-HknSLLEbzZCoM">via GIPHY</a></p> */
-
 .Homepage-content {
-  position: relative;
+  position: absolute;
   font-family: "Monserrat", sans-serif;
   color: white;
   text-align: center;
-  margin: 0.625rem;
-  bottom: 15%;
+  margin-top: 50%;
 }
 .Homepage-title {
   font-size: 4rem;
   font-weight: 600;
-  margin-bottom: 0;
-  /* text-shadow: 8px 8px 0 rgba(255,0,180,0.5); */
-  /* text-shadow: 5px 5px 0px #eee, 7px 7px 0px #707070; */
-  text-shadow: 0 0 10px rgb(147, 128, 128), 0 0 20px #fff, 0 0 30px #fff,
-    0 0 40px #2431a9, 0 0 70px #ff00de, 0 0 80px #ff00de, 0 0 100px #ff00de,
-    0 0 150px #ff00de;
 }
 .Homepage-subtitle {
   font-size: 2rem;
   font-weight: 200;
-  margin-top: 1rem;
 }
+

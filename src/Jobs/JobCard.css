@@ -2,7 +2,7 @@
 
 .Job {
   width: 20rem;
-  height: 15rem;
+  height: 13rem;
   border: rgb(0, 0, 0) solid 3px;
   box-shadow: 1px 1px 1px 1px rgb(0, 0, 0);
 }
@@ -11,7 +11,3 @@ h2 {
   text-decoration: solid;
 }
 
-.Job-icon {
-  width: 3rem;
-  height: 3rem;
-}

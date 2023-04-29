@@ -15,6 +15,8 @@ import { useContext } from "react";
 function Homepage() {
   const { user } = useContext(UserContext);
 
+
+
   return (
     <section className="Homepage">
       <div className="Homepage-content">

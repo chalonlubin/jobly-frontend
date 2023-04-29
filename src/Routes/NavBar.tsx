@@ -15,7 +15,7 @@ function NavBar({ logout }: any): JSX.Element{
   const { user } = useContext(UserContext);
 
   return (
-    <nav className="navbar sticky-top navbar-expand-lg navbar-dark bg-dark ">
+    <nav className="navbar sticky-top navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
         <NavLink className="navbar-brand" to="/">
           <img

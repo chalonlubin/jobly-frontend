@@ -51,7 +51,7 @@ function JobList(): JSX.Element {
               <h4 className="m-3 p-3 text-center">
                 Select a company to see current job offerings.
               </h4>
-              <div className="row my-2">
+              <div className="row">
                 {displayedJobs.map((c: JobInterface) => (
                   <div key={c.id} className="col-12 col-md-6 col-lg-4">
                     <Job job={c} />
