@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { SearchFormProps } from "../Types/Interfaces";
-import "./SearchBar.css";
+
 import debounce from "lodash/debounce";
 
 function SearchForm({ searchFor }: SearchFormProps): JSX.Element {
@@ -31,16 +31,16 @@ function SearchForm({ searchFor }: SearchFormProps): JSX.Element {
   };
 
   return (
-    <div className="SearchForm d-flex justify-content-center">
+    <div className="center">
       <form onSubmit={handleSubmit}>
-        <div className="input-group mb-4 mt-5">
+        <div className="input-group">
           <input
             type="text"
             placeholder="What're you looking for?"
             name="query"
             value={searchTerm}
             onChange={handleChange}
-            className="SearchForm-bar rounded border-secondary py-3 px-3"
+            className="SearchForm-bar py-2 px-2"
           />
         </div>
       </form>

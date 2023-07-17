@@ -42,3 +42,10 @@ body {
   font-size: 1rem;
   color:rgb(0, 53, 0)
 }
+
+/* SearchBar */
+input.SearchForm-bar {
+  width: 20rem;
+  border: 2px solid black;
+  border-radius: 5px;
+}

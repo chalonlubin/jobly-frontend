@@ -22,10 +22,10 @@ function Homepage() {
             <div className="btn btn-white btn-sm bg-white mb-3 text-success disabled">
               Build your future with us.
             </div>
-            <h1 className="hero-c2a">Find your dream job with Jobly.</h1>
+            <h1 className="hero-c2a">Land your dream job with Jobly.</h1>
             <p className="py-1 fw-semibold">
-              Accelerate your job search, where applying is the easiest part of
-              the journey.
+              Accelerate your job search with Jobly. We take the pain out of
+              applications.
             </p>
             <div className="d-flex gap-3 mt-4 justify-content-between">
               <Link className="btn btn-light btn-lg" to="/jobs">
