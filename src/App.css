@@ -52,5 +52,12 @@ input.SearchForm-bar {
   border-radius: 5px;
 }
 
+.search-alert {
+  font-weight: 600;
+  font-size: 1.25rem;
+  margin: 1rem;
+  padding: 1rem;
+}
+
 
 

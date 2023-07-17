@@ -40,7 +40,7 @@ function Homepage() {
             <div className="btn btn-white btn-sm bg-white mb-3 text-success disabled">
               Build your future with us.
             </div>
-            <h3 className="hero-c2a">Welcome back, <br/> {user.firstName}!</h3>
+            <h3 className="hero-c2a">Welcome back, <br/> {user.firstName} {user.lastName}!</h3>
             <div className="d-flex gap-3 mt-4 justify-content-between">
               <Link className="btn btn-light btn-lg" to="/jobs">
                 The Search Continues!
