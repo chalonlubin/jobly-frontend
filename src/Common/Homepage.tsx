@@ -37,19 +37,13 @@ function Homepage() {
         )}
         {user && (
           <>
-            <h3 className="p-3 m-3">Welcome back, {user.firstName}!</h3>
-            <div className="d-flex justify-content-evenly">
-              <Link
-                className="btn btn-outline-light btn-lg opacity-75 m-4"
-                to="/companies"
-              >
-                Companies
-              </Link>
-              <Link
-                className="btn btn-outline-light btn-lg opacity-75 m-4"
-                to="/jobs"
-              >
-                Jobs
+            <div className="btn btn-white btn-sm bg-white mb-3 text-success disabled">
+              Build your future with us.
+            </div>
+            <h3 className="hero-c2a">Welcome back, <br/> {user.firstName}!</h3>
+            <div className="d-flex gap-3 mt-4 justify-content-between">
+              <Link className="btn btn-light btn-lg" to="/jobs">
+                The Search Continues!
               </Link>
             </div>
           </>

@@ -60,7 +60,7 @@ function JobList(): JSX.Element {
           <div className="d-flex justify-content-center">
             <div className="container mx-auto">
               <h2 className="search-alert center p-3 m-3">
-                Apply with the click of a button
+                Apply with the click of a button!
               </h2>
               <div className="flex row">
                 {displayedJobs.map((c: JobInterface) => (
