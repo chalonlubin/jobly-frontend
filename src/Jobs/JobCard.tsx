@@ -18,7 +18,7 @@ function Job({ job }: JobPropsInterface): JSX.Element {
   return (
     <div className="job-card card shadow my-3 py-1">
       <div className="card-body">
-        <h2 className="job-title card-title fs-4">{title}</h2>
+        <div className="job-title card-title fs-4">{title}</div>
         {companyName && (
           <p className="job-subtitle card-subtitle pb-4">{companyName}</p>
         )}

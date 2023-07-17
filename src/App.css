@@ -1,6 +1,7 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 @import url('https://fonts.googleapis.com/css2?family=Bitter:wght@400;700&family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;900&display=swap');
 @import "./Jobs/Jobs.css";
+@import "./Companies/CompanyCard.css";
 
 html,
 body {

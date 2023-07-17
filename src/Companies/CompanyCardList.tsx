@@ -4,7 +4,7 @@ import CompanyCard from "./CompanyCard";
 import SearchForm from "../Common/SearchBar";
 import JoblyApi from "../Helpers/api";
 import Loader from "../Common/Loader";
-import "./CompanyCardList.css";
+
 
 function CompanyList(): JSX.Element {
   const [companies, setCompanies] = useState<CompanyInterface[]>([]);
