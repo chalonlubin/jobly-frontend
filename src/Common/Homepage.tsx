@@ -1,4 +1,3 @@
-import "./Homepage.css";
 import { Link } from "react-router-dom";
 import UserContext from "../Users/userContext";
 import { useContext } from "react";
@@ -15,32 +14,25 @@ import { useContext } from "react";
 function Homepage() {
   const { user } = useContext(UserContext);
 
-
-
   return (
-    <section className="Homepage">
-      <div className="Homepage-content">
-        <h1 className="Homepage-title"> Jobly </h1>
+    <section className="hero center" style={{ height: "92.5vh" }}>
+      <div className="p-2 d-flex-column">
         {!user && (
           <>
-            <h2 className="Homepage-subtitle">
-              {" "}
-              A job search engine like no other.{" "}
-            </h2>
-            <div className="d-flex justify-content-evenly">
-              <Link
-                className="btn btn-outline-light btn-lg opacity-75 m-4"
-                to="/login"
-              >
-                Log in
-              </Link>
-              <Link
-                className="btn btn-outline-light btn-lg opacity-75 m-4"
-                to="/signUp"
-              >
-                Sign up
+            <div className="btn btn-white btn-sm bg-white mb-3 text-success disabled">
+              Build your future with us.
+            </div>
+            <h1 className="hero-c2a">Find your dream job with Jobly.</h1>
+            <p className="py-1 fw-semibold">
+              Accelerate your job search, where applying is the easiest part of
+              the journey.
+            </p>
+            <div className="d-flex gap-3 mt-4 justify-content-between">
+              <Link className="btn btn-light btn-lg" to="/jobs">
+                Explore Jobs
               </Link>
             </div>
+            <div className="d-flex gap-3 mt-4 justify-content-evenly"></div>
           </>
         )}
         {user && (
@@ -63,6 +55,7 @@ function Homepage() {
           </>
         )}
       </div>
+      {/* <div>Photo here!</div> */}
     </section>
   );
 }

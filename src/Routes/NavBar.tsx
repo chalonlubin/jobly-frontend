@@ -1,8 +1,6 @@
 import { useContext } from "react";
 import UserContext from "../Users/userContext";
-
 import { NavLink } from "react-router-dom";
-
 
 /** NavBar: Navigation bar for site
  *
@@ -11,21 +9,14 @@ import { NavLink } from "react-router-dom";
  *
  * Routelist -> NavBar
  **/
-function NavBar({ logout, guestLogin }: any): JSX.Element{
+function NavBar({ logout, guestLogin }: any): JSX.Element {
   const { user } = useContext(UserContext);
 
   return (
-    <nav className="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+    <nav className="navbar navbar-expand-md bg-white">
       <div className="container-fluid">
-        <NavLink className="navbar-brand" to="/">
-          <img
-            src="logo512.png"
-            alt="jobs icon"
-            className="d-inline-block m-2"
-            width="30"
-            height="24"
-          ></img>
-          <span className="">Jobly</span>
+        <NavLink className="logo navbar-brand" to="/">
+          Jobly
         </NavLink>
         <button
           className="navbar-toggler"
@@ -38,7 +29,10 @@ function NavBar({ logout, guestLogin }: any): JSX.Element{
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <div
+          className="navbar-items collapse navbar-collapse "
+          id="navbarTogglerDemo02"
+        >
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0 d-flex align-items-center">
             {user && (
               <>
@@ -59,13 +53,18 @@ function NavBar({ logout, guestLogin }: any): JSX.Element{
                 </li>
                 <li className="nav-item ">
                   <NavLink className="nav-link" onClick={logout} to="/">
-                    Log Out {user.username}
+                    Log Out
                   </NavLink>
                 </li>
               </>
             )}
             {!user && (
               <>
+                <li className="nav-item">
+                  <NavLink className="nav-link" onClick={guestLogin} to="/">
+                    Guest Access
+                  </NavLink>
+                </li>
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/login">
                     Login
@@ -74,11 +73,6 @@ function NavBar({ logout, guestLogin }: any): JSX.Element{
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/signUp">
                     Sign Up
-                  </NavLink>
-                </li>
-                <li className="nav-item">
-                  <NavLink className="nav-link" onClick={guestLogin} to="/">
-                    Guest Access
                   </NavLink>
                 </li>
               </>

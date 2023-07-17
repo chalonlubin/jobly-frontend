@@ -58,6 +58,7 @@ function RouteList(props: RoutePropsInterface): JSX.Element {
             path="/signUp"
             element={<SignUpForm signUp={props.signUp} />}
           />
+          <Route path="/jobs" element={<JobList />} />
           <Route path="/login" element={<LoginForm login={props.login} />} />
         </>
       )}
