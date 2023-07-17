@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 
 
-import Navbar from "./Routes/Navbar";
+import Navbar from "./Routes/NavBar";
 import RouteList from "./Routes/RouteList";
 import UserContext from "./Users/userContext";
 import Loader from "./Common/Loader";
