@@ -1,0 +1,23 @@
+/* Styles for JobCard.js */
+
+.job-card {
+  min-width: 23rem;
+  overflow: none;
+}
+
+.job-title {
+  max-width: 17rem;
+  min-width: 15rem;
+  font-weight: 800;
+}
+.job-subtitle {
+  font-weight: 500;
+  font-size: 1rem;
+  color: rgb(0, 53, 0);
+}
+.search-alert {
+  font-weight: 600;
+  font-size: 1.25rem;
+  margin: 1rem;
+  padding: 1rem;
+}

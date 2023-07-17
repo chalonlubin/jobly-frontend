@@ -7,10 +7,9 @@ function SearchForm({ searchFor }: SearchFormProps): JSX.Element {
   const [searchTerm, setSearchTerm] = useState("");
 
   const handleChange = (evt: any) => {
-    const  query  = evt.target.value;
+    const query = evt.target.value;
     setSearchTerm(query);
   };
-
 
   useEffect(() => {
     const debouncedSearch = debounce(() => {
@@ -31,12 +30,12 @@ function SearchForm({ searchFor }: SearchFormProps): JSX.Element {
   };
 
   return (
-    <div className="center">
+    <div className="center py-3">
       <form onSubmit={handleSubmit}>
         <div className="input-group">
           <input
             type="text"
-            placeholder="What're you looking for?"
+            placeholder="Search by company or job title"
             name="query"
             value={searchTerm}
             onChange={handleChange}
@@ -49,4 +48,3 @@ function SearchForm({ searchFor }: SearchFormProps): JSX.Element {
 }
 
 export default SearchForm;
-

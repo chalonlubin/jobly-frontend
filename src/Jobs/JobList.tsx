@@ -5,6 +5,15 @@ import SearchForm from "../Common/SearchBar";
 import Loader from "../Common/Loader";
 import { JobInterface } from "../Types/Interfaces";
 
+
+
+/** JobList: Renders entire list of jobs
+ *
+ * Props: none
+ * State: jobs, query, page
+ *
+ * App -> { JobList, CompanyDetail } -> JobCardList -> JobCard
+ **/
 function JobList(): JSX.Element {
   const [jobs, setJobList] = useState<JobInterface[]>([]);
   const [query, setQuery] = useState<string>("");
@@ -40,20 +49,25 @@ function JobList(): JSX.Element {
   );
 
   return (
-    <div className="JobList">
+    <div className="container">
       <SearchForm searchFor={search} />
       <>
         {displayedJobs.length === 0 ? (
-          <h4 className="m-3 p-2">Sorry, no results were found!</h4>
+          <h2 className="search-alert center">
+            Sorry, no results were found....
+          </h2>
         ) : (
           <div className="d-flex justify-content-center">
             <div className="container mx-auto">
-              <h4 className="m-3 p-3 text-center">
-                Select a company to see current job offerings.
-              </h4>
-              <div className="row">
+              <h2 className="search-alert center p-3 m-3">
+                Apply with the click of a button
+              </h2>
+              <div className="flex row">
                 {displayedJobs.map((c: JobInterface) => (
-                  <div key={c.id} className="col-12 col-md-6 col-lg-4">
+                  <div
+                    key={c.id}
+                    className="col-12 col-sm-4 col-md-12 col-lg-6"
+                  >
                     <Job job={c} />
                   </div>
                 ))}
