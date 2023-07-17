@@ -48,12 +48,10 @@ function CompanyDetail(): JSX.Element {
   if (company.isLoading) return <Loader />;
 
   return (
-    <div className="CompanyDetail">
-      <h4 className="text-uppercase m-3 p-3 font-weight-bold fs-2 text-white">
-        {company.data.name}
-      </h4>
-      <p className="text-white m-2 p-2 fs-4 fst-italic text-center">
-        {company.data.description}
+    <div className="container">
+      <h2 className="company-title text-center">{company.data.name}</h2>
+      <p className="m-2 p-2 text-center">
+        <em>{company.data.description}</em>
       </p>
       <JobCardList jobs={company.data.jobs ?? []} />
     </div>

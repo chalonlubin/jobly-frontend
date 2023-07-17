@@ -17,11 +17,11 @@ function Homepage() {
   return (
     <section className="hero center" style={{ height: "92.5vh" }}>
       <div className="p-2 d-flex-column">
+        <div className="btn btn-white btn-sm bg-white mb-3 text-success disabled">
+          Build your future with us!
+        </div>
         {!user && (
           <>
-            <div className="btn btn-white btn-sm bg-white mb-3 text-success disabled">
-              Build your future with us.
-            </div>
             <h1 className="hero-c2a">Land your dream job with Jobly.</h1>
             <p className="py-1 fw-semibold">
               Accelerate your job search with Jobly. We take the pain out of
@@ -37,13 +37,12 @@ function Homepage() {
         )}
         {user && (
           <>
-            <div className="btn btn-white btn-sm bg-white mb-3 text-success disabled">
-              Build your future with us.
-            </div>
-            <h3 className="hero-c2a">Welcome back, <br/> {user.firstName} {user.lastName}!</h3>
+            <h3 className="hero-c2a">
+              Welcome back, <br /> {user.firstName} {user.lastName}!
+            </h3>
             <div className="d-flex gap-3 mt-4 justify-content-between">
               <Link className="btn btn-light btn-lg" to="/jobs">
-                The Search Continues!
+              Continue the search 🙌
               </Link>
             </div>
           </>

@@ -26,9 +26,9 @@ function Job({ job }: JobPropsInterface): JSX.Element {
           {salary && (
             <p className="card-text">Salary: ${salary.toLocaleString()}</p>
           )}
-          <p className="card-text">
+          <div className="card-text">
             Equity: {`${(Number(equity) * 100).toFixed(1)}%`}
-          </p>
+          </div>
         </div>
         {hasAppliedToJob(id) ? (
           <button

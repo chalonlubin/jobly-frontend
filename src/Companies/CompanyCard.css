@@ -1,14 +1,6 @@
 .company-card {
-  width: 50%;
+  width: 65%;
   max-height: 15%;
-}
-
-.company-image {
-  /* width: 20px;
-  height: 20px; */
-  /* position: relative; */
-  /* right: auto; */
-  /* bottom: 36px; */
 }
 
 .company-title {

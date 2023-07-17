@@ -41,16 +41,16 @@ function CompanyList(): JSX.Element {
   );
 
   return (
-    <div className="CompanyList">
+    <div className="company-list">
       <SearchForm searchFor={search} />
-      <div className="CompanyList-empty col-md-12 text-center mt-2 fs-2">
+      <div className="col-md-12 text-center mt-2 fs-2">
         {displayedCompanies.length === 0 ? (
-          <h4 className="m-3 p-3">Sorry, no results were found!</h4>
+          <div className="search-alert">Sorry, no results were found!</div>
         ) : (
           <>
-            <h4 className="m-3 p-3">
+            <div className="search-alert">
               Select a company to see current job offerings.
-            </h4>
+            </div>
             {displayedCompanies.map((c: CompanyInterface) => (
               <CompanyCard key={c.handle} company={c} />
             ))}
