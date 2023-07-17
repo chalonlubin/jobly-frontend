@@ -86,3 +86,13 @@ export interface JobPropsInterface {
 export interface JobsInterface {
   jobs: JobInterface[];
 }
+
+export interface ApplicationInterface {
+  id: number;
+  title: string;
+  salary: number;
+  equity: string;
+  companyHandle: string;
+  companyName: string;
+  applied: boolean;
+}

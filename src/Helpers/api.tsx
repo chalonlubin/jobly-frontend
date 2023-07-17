@@ -1,4 +1,5 @@
 import axios, { AxiosRequestConfig } from "axios";
+import { ApplicationInterface } from "../Types/Interfaces";
 
 const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001";
 
@@ -11,7 +12,11 @@ class JoblyApi {
   // token for interaction with the API.
   static token: string = "";
 
-  static async request(endpoint: string, data: object = {}, method: AxiosRequestConfig["method"] = "get"): Promise<any> {
+  static async request(
+    endpoint: string,
+    data: object = {},
+    method: AxiosRequestConfig["method"] = "get"
+  ): Promise<any> {
     console.debug("API Call:", endpoint, data, method);
 
     const url = `${BASE_URL}/${endpoint}`;
@@ -46,12 +51,14 @@ class JoblyApi {
    *
    * If search is provided, filters to companies whose name contains search.
    **/
-  static async getCompanies(search?: string, min?: number, max?: number ) {
-    const searchParams = Object.fromEntries([
-      ['nameLike', search],
-      ['minEmployees', min],
-      ['maxEmployees', max],
-    ].filter(([key, value]) => value !== undefined || ""));
+  static async getCompanies(search?: string, min?: number, max?: number) {
+    const searchParams = Object.fromEntries(
+      [
+        ["nameLike", search],
+        ["minEmployees", min],
+        ["maxEmployees", max],
+      ].filter(([key, value]) => value !== undefined || "")
+    );
 
     let res = await this.request(`companies/`, searchParams);
     return res.companies;
@@ -123,6 +130,15 @@ class JoblyApi {
     const res = await this.request(`users/${username}`, userData, "patch");
 
     return res.user;
+  }
+
+  /** Get all active applications for a user.
+   *
+   * Returns [{ id, title, salary, equity, companyHandle, companyName }, ...]
+   * */
+  static async getUserApplications(username: string): Promise<ApplicationInterface[]> {
+    const res = await this.request(`users/${username}/applications`);
+    return res.applications;
   }
 }
 
