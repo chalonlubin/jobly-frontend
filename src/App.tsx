@@ -1,13 +1,15 @@
+import { ToastContainer } from "react-toastify";
+import { BrowserRouter } from "react-router-dom";
+import { useAuth } from "./Helpers/useAuth";
+
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 
-import { ToastContainer } from "react-toastify";
-import { BrowserRouter } from "react-router-dom";
+
 import Navbar from "./Routes/Navbar";
 import RouteList from "./Routes/RouteList";
 import UserContext from "./Users/userContext";
 import Loader from "./Common/Loader";
-import { useAuth } from "./Helpers/useAuth";
 
 /** Jobly application.
  *

@@ -5,13 +5,10 @@ import { UserInterface } from "../Types/Interfaces";
 import { toast } from "react-toastify";
 import TOAST_DEFAULTS from "../Helpers/toastSettings";
 
-
 // Key name for storing token in localStorage for "remember me" re-login
 export const TOKEN_STORAGE_ID: string = "jobly-token";
 
 export function useAuth() {
-
-
   const [token, setToken] = useState<string | null>(
     localStorage.getItem(TOKEN_STORAGE_ID)
   );
@@ -94,7 +91,10 @@ export function useAuth() {
    */
   async function guestLogin(loginData: UserInterface): Promise<void> {
     try {
-      const token = await JoblyApi.loginUser({username: "guest", password: "password"});
+      const token = await JoblyApi.loginUser({
+        username: "guest",
+        password: "password",
+      });
       setToken(token);
       toast("🚀 Public Guest Login Successful", TOAST_DEFAULTS);
       localStorage.setItem(TOKEN_STORAGE_ID, token);
@@ -128,7 +128,6 @@ export function useAuth() {
   function hasAppliedToJob(id: number): boolean {
     return applicationIds?.has(id) ?? false;
   }
-
 
   /** Handles applying to a job
    *

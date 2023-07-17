@@ -8,7 +8,7 @@ const TOAST_DEFAULTS: ToastOptions = {
   pauseOnHover: false,
   draggable: true,
   progress: undefined,
-  theme: "dark",
+  theme: "light",
 };
 
 export default TOAST_DEFAULTS
