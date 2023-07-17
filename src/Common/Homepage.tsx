@@ -1,4 +1,3 @@
-import "./Homepage.css";
 import { Link } from "react-router-dom";
 import UserContext from "../Users/userContext";
 import { useContext } from "react";
@@ -16,51 +15,40 @@ function Homepage() {
   const { user } = useContext(UserContext);
 
   return (
-    <section className="Homepage">
-      <div className="Homepage-content">
-        <h1 className="Homepage-title"> Jobly </h1>
+    <section className="hero center" style={{ height: "92.5vh" }}>
+      <div className="p-2 d-flex-column">
+        <div className="btn btn-white btn-sm bg-white mb-3 text-success disabled">
+          Build your future with us!
+        </div>
         {!user && (
           <>
-            <h2 className="Homepage-subtitle">
-              {" "}
-              A job search engine like no other.{" "}
-            </h2>
-            <div className="d-flex justify-content-evenly">
-              <Link
-                className="btn btn-outline-light btn-lg opacity-75 m-4"
-                to="/login"
-              >
-                Log in
-              </Link>
-              <Link
-                className="btn btn-outline-light btn-lg opacity-75 m-4"
-                to="/signUp"
-              >
-                Sign up
+            <h1 className="hero-c2a">Land your dream job with Jobly.</h1>
+            <p className="py-1 fw-semibold">
+              Accelerate your job search with Jobly. We take the pain out of
+              applications.
+            </p>
+            <div className="d-flex gap-3 mt-4 justify-content-between">
+              <Link className="btn btn-light btn-lg" to="/jobs">
+                Explore Jobs
               </Link>
             </div>
+            <div className="d-flex gap-3 mt-4 justify-content-evenly"></div>
           </>
         )}
         {user && (
           <>
-            <h3 className="p-3 m-3">Welcome back, {user.firstName}!</h3>
-            <div className="d-flex justify-content-evenly">
-              <Link
-                className="btn btn-outline-light btn-lg opacity-75 m-4"
-                to="/companies"
-              >
-                Companies
-              </Link>
-              <Link
-                className="btn btn-outline-light btn-lg opacity-75 m-4"
-                to="/jobs"
-              >
-                Jobs
+            <h3 className="hero-c2a">
+              Welcome back, <br /> {user.firstName} {user.lastName}!
+            </h3>
+            <div className="d-flex gap-3 mt-4 justify-content-between">
+              <Link className="btn btn-light btn-lg" to="/jobs">
+              Continue the search 🙌
               </Link>
             </div>
           </>
         )}
       </div>
+      {/* <div>Photo here!</div> */}
     </section>
   );
 }

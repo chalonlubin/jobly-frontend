@@ -1,29 +1,18 @@
-.CompanyCard {
-  width: 75%;
-  max-height: 10%;
-  border: rgb(177, 177, 177) solid 3px;
-  box-shadow: 1px 1px 1px 1px rgb(0, 0, 0);
+.company-card {
+  width: 65%;
+  max-height: 15%;
 }
 
-.CompanyCard img {
-  width: 70px;
-  position: relative;
-  right: auto;
-  bottom: 36px;
+.company-title {
+  font-weight: 800;
 }
 
-h5 {
-  font-size: 1.5rem;
-  font-weight: bold;
-  font-family: "Roboto", sans-serif;
+.company-describe {
+  font-size: 1rem;
+  font-weight: 100;
 }
 
-.Job {
-  width: 350px;
-  height: 250px;
-}
 
-h4 {
-  color: white;
-  text-shadow: 2px 2px 4px #811de4;
-}
+
+
+

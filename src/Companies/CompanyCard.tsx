@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import "./CompanyCard.css";
 import { CompanyInterface } from "../Types/Interfaces";
 
 interface CompanyPropsInterface {
@@ -16,17 +15,22 @@ interface CompanyPropsInterface {
 function CompanyCard({ company }: CompanyPropsInterface): JSX.Element {
   return (
     <div className="d-flex justify-content-center card-deck">
-      <div className="CompanyCard card mx-3 my-3">
-        <div className="card-body mx-2">
-          <h5>{company.name}</h5>
-          {company.logoUrl && (
-            <img
-              className="float-end ms-5"
-              src={company.logoUrl}
-              alt={company.name}
-            />
-          )}
-          <p className="fs-5 text-muted">{company.description}</p>
+      <div className="company-card card shadow my-3 py-1">
+        <div className="card-body m-1 ">
+          <div className="company-title fs-4">{company.name}</div>
+          <div className="company-image float-sm-none float-md-end p-2">
+            {company.logoUrl && (
+              <img
+                src={company.logoUrl}
+                alt={company.name}
+                width={140}
+                height={100}
+              />
+            )}
+          </div>
+          <p className="company-describe text-sm-center text-md-start p-2">
+            {company.description}
+          </p>
           <Link
             className="stretched-link"
             to={`/companies/${company.handle}`}

@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "module": "ES6",
     "target": "ES2015",
     "lib": [
       "dom",
@@ -13,7 +12,7 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
-    "forceConsistentCasingInFileNames": true,
+    "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": true,
     "module": "esnext",
     "moduleResolution": "node",

@@ -1,0 +1,61 @@
+@import "~bootstrap/dist/css/bootstrap.css";
+@import url("https://fonts.googleapis.com/css2?family=Bitter:wght@400;700&family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;900&display=swap");
+@import "./Jobs/Jobs.css";
+@import "./Companies/CompanyCard.css";
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.App {
+  background-color: white;
+  font-family: "Inter", sans-serif;
+  min-height: 100vh;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Homepage */
+.hero {
+  background-color: #e4f5ee;
+}
+.hero-c2a {
+  font-weight: 900;
+  font-size: 3rem;
+}
+
+/* Navbar */
+.logo {
+  font-weight: 900;
+  color: rgb(0, 53, 0);
+  font-size: 2rem;
+}
+
+.navbar-items {
+  font-weight: 700;
+  font-size: 1rem;
+  color: rgb(0, 53, 0);
+}
+
+/* SearchBar */
+input.SearchForm-bar {
+  width: 20rem;
+  border: 2px solid black;
+  border-radius: 5px;
+}
+
+.heading-minor {
+  font-weight: 600;
+  font-size: 1.25rem;
+  margin: 1rem;
+  padding: 1rem;
+}
