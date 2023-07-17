@@ -45,10 +45,10 @@ function CompanyList(): JSX.Element {
       <SearchForm searchFor={search} />
       <div className="col-md-12 text-center mt-2 fs-2">
         {displayedCompanies.length === 0 ? (
-          <div className="search-alert">Sorry, no results were found!</div>
+          <div className="heading-minor">Sorry, no results were found!</div>
         ) : (
           <>
-            <div className="search-alert">
+            <div className="heading-minor">
               Select a company to see current job offerings.
             </div>
             {displayedCompanies.map((c: CompanyInterface) => (

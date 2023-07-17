@@ -3,7 +3,7 @@ import "./App.css";
 
 import { ToastContainer } from "react-toastify";
 import { BrowserRouter } from "react-router-dom";
-import NavBar from "./Routes/NavBar";
+import Navbar from "./Routes/Navbar";
 import RouteList from "./Routes/RouteList";
 import UserContext from "./Users/userContext";
 import Loader from "./Common/Loader";
@@ -24,7 +24,7 @@ import { useAuth } from "./Helpers/useAuth";
  *
  *  - isLoading - toggles loader view
  *
- * App -> NavBar, RouteList
+ * App -> Navbar, RouteList
  *
  **/
 
@@ -48,7 +48,7 @@ function App(): JSX.Element {
       <UserContext.Provider value={{ user, hasAppliedToJob, applyToJob }}>
         <BrowserRouter>
           <ToastContainer />
-          <NavBar logout={logout} guestLogin={guestLogin} />
+          <Navbar logout={logout} guestLogin={guestLogin} />
           <RouteList signUp={signUp} login={login} updateUser={updateUser} />
         </BrowserRouter>
       </UserContext.Provider>

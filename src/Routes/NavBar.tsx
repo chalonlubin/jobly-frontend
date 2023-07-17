@@ -1,22 +1,22 @@
 import { useContext } from "react";
-import UserContext from "../Users/userContext";
 import { NavLink } from "react-router-dom";
+import UserContext from "../Users/userContext";
 
 /** NavBar: Navigation bar for site
  *
  * Props: logout (fn)
  * State: n/a
  *
- * Routelist -> NavBar
+ * Routelist -> Navbar
  **/
-function NavBar({ logout, guestLogin }: any): JSX.Element {
+function Navbar({ logout, guestLogin }: any): JSX.Element {
   const { user } = useContext(UserContext);
 
   return (
     <nav className="navbar navbar-expand-md bg-white">
       <div className="container-fluid">
         <NavLink className="logo navbar-brand" to="/">
-          Jobly
+          Jobly.
         </NavLink>
         <button
           className="navbar-toggler"
@@ -85,4 +85,4 @@ function NavBar({ logout, guestLogin }: any): JSX.Element {
   );
 }
 
-export default NavBar;
+export default Navbar;

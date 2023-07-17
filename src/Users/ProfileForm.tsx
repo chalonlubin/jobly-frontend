@@ -55,7 +55,7 @@ function ProfileForm({ updateUser }: ProfileFormPropInterface): JSX.Element {
 
   return (
     <div className="container col-md-6 offset-md-3 col-lg-4 offset-lg-4">
-      <div className="search-alert text-center">Edit Profile</div>
+      <div className="heading-minor text-center">Edit Profile</div>
       <div className="card">
         <div className="card-body">
           <form onSubmit={handleSubmit}>
