@@ -17,7 +17,7 @@ export interface ProfileFormPropInterface {
  **/
 function ProfileForm({ updateUser }: ProfileFormPropInterface): JSX.Element {
   const { user } = useContext<UserStateInterface>(UserContext);
-  console.log("USER", user);
+  // console.log("USER", user);
 
   const [status, setStatus] = useState({
     updateMsg: [] as string[],

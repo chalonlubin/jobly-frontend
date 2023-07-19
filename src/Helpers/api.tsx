@@ -17,7 +17,7 @@ class JoblyApi {
     data: object = {},
     method: AxiosRequestConfig["method"] = "get"
   ): Promise<any> {
-    console.debug("API Call:", endpoint, data, method);
+    // console.debug("API Call:", endpoint, data, method);
 
     const url = `${BASE_URL}/${endpoint}`;
     const headers = { Authorization: `Bearer ${JoblyApi.token}` };
@@ -136,7 +136,9 @@ class JoblyApi {
    *
    * Returns [{ id, title, salary, equity, companyHandle, companyName }, ...]
    * */
-  static async getUserApplications(username: string): Promise<ApplicationInterface[]> {
+  static async getUserApplications(
+    username: string
+  ): Promise<ApplicationInterface[]> {
     const res = await this.request(`users/${username}/applications`);
     return res.applications;
   }

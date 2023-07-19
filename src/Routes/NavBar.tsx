@@ -19,7 +19,7 @@ function Navbar({ logout, guestLogin }: any): JSX.Element {
           Jobly.
         </NavLink>
         <button
-          className="navbar-toggler"
+          className="navbar-toggler border shadow-sm"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarTogglerDemo02"
@@ -27,7 +27,7 @@ function Navbar({ logout, guestLogin }: any): JSX.Element {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span className="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon text-black"></span>
         </button>
         <div
           className="navbar-items collapse navbar-collapse "

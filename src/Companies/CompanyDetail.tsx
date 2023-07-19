@@ -49,7 +49,7 @@ function CompanyDetail(): JSX.Element {
 
   return (
     <div className="container">
-      <h2 className="company-title text-center">{company.data.name}</h2>
+      <h2 className="company-title text-center p-2 m-2">{company.data.name}</h2>
       <p className="m-2 p-2 text-center">
         <em>{company.data.description}</em>
       </p>

@@ -15,10 +15,10 @@ function Homepage() {
   const { user } = useContext(UserContext);
 
   return (
-    <section className="hero center" style={{ height: "92.5vh" }}>
+    <section className="hero container center">
       <div className="p-2 d-flex-column">
         <div className="btn btn-white btn-sm bg-white mb-3 text-success disabled">
-          Build your future with us!
+          Build your future with us 🚀
         </div>
         {!user && (
           <>
@@ -38,7 +38,7 @@ function Homepage() {
         {user && (
           <>
             <h3 className="hero-c2a">
-              Welcome back, <br /> {user.firstName} {user.lastName}!
+              Welcome Back, <br /> {user.firstName} {user.lastName}!
             </h3>
             <div className="d-flex gap-3 mt-4 justify-content-between">
               <Link className="btn btn-light btn-lg" to="/jobs">

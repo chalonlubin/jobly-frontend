@@ -10,12 +10,13 @@ body {
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  display: block;
 }
 
 .App {
-  background-color: white;
   font-family: "Inter", sans-serif;
   min-height: 100vh;
+  background-color: #e4f5ee;
 }
 
 .center {
@@ -27,10 +28,11 @@ body {
 /* Homepage */
 .hero {
   background-color: #e4f5ee;
+  min-height: calc(100vh - 100px);
 }
 .hero-c2a {
   font-weight: 900;
-  font-size: 3rem;
+  font-size: 4.25rem;
 }
 
 /* Navbar */
