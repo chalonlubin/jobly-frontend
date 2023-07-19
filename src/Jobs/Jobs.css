@@ -1,13 +1,16 @@
 /* Styles for JobCard.js */
 
 .job-card {
-  min-width: 23rem;
+  width: clamp(25rem, 25rem);
   overflow: none;
 }
 
 .job-title {
-  max-width: 17rem;
-  min-width: 15rem;
+  max-width: 14rem;
+  /* @media screen and (min-width: 768px) {
+    max-width: 20rem;
+  } */
+  /* min-width: 15rem; */
   font-weight: 800;
 }
 .job-subtitle {

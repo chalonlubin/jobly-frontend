@@ -5,8 +5,6 @@ import SearchForm from "../Common/SearchBar";
 import Loader from "../Common/Loader";
 import { JobInterface } from "../Types/Interfaces";
 
-
-
 /** JobList: Renders entire list of jobs
  *
  * Props: none
@@ -62,12 +60,9 @@ function JobList(): JSX.Element {
               <h2 className="heading-minor center p-3 m-3">
                 Apply with the click of a button!
               </h2>
-              <div className="flex row">
+              <div className="row">
                 {displayedJobs.map((c: JobInterface) => (
-                  <div
-                    key={c.id}
-                    className="col-12 col-sm-4 col-md-12 col-lg-6"
-                  >
+                  <div key={c.id} className="col-md-12 col-lg-6">
                     <Job job={c} />
                   </div>
                 ))}
@@ -77,7 +72,7 @@ function JobList(): JSX.Element {
                   <button
                     key={i + 1}
                     className={`btn btn${
-                      i + 1 === page ? "-primary" : "-secondary"
+                      i + 1 === page ? "-success" : "-outline-success"
                     } m-1`}
                     onClick={() => handlePageChange(i + 1)}
                   >

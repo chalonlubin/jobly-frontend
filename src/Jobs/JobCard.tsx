@@ -32,7 +32,7 @@ function Job({ job }: JobPropsInterface): JSX.Element {
         </div>
         {hasAppliedToJob(id) ? (
           <button
-            className="btn btn-sm btn-success position-absolute top-0 end-0 m-3"
+            className="btn btn-sm btn-success position-absolute top-0 end-0 m-4"
             disabled
           >
             Applied
