@@ -19,15 +19,15 @@ export function useAuth() {
 
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  console.debug(
-    "App",
-    "applicationIds=",
-    applicationIds,
-    "currentUser=",
-    user,
-    "token=",
-    token
-  );
+  // console.debug(
+  //   "App",
+  //   "applicationIds=",
+  //   applicationIds,
+  //   "currentUser=",
+  //   user,
+  //   "token=",
+  //   token
+  // );
 
   useEffect(() => {
     async function getUser(): Promise<void> {

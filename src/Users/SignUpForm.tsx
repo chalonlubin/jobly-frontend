@@ -52,14 +52,14 @@ function SignUpForm({ signUp }: SignUpFormPropsInterface): JSX.Element {
 
 
   return (
-    <div className="signUpForm pt-5">
+
       <div className="container col-md-6 offset-md-3 col-lg-4 offset-lg-4">
-        <h3 className="mb-3 text-center fs-1">Sign Up</h3>
-        <div className="card">
+        <h3 className="m-3 text-center heading-minor">Sign Up</h3>
+        <div className="card shadow-lg">
           <div className="card-body">
             <form onSubmit={handleSubmit}>
               <div className="mb-3">
-                <label htmlFor="username" className="form-label">
+                <label htmlFor="username" className="form-label text-muted">
                   Username
                 </label>
                 <input
@@ -67,12 +67,12 @@ function SignUpForm({ signUp }: SignUpFormPropsInterface): JSX.Element {
                   value={formData.username}
                   name="username"
                   type="text"
-                  className="form-control"
+                  className="form-control shadow-sm"
                   required
                 />
               </div>
               <div className="mb-3">
-                <label htmlFor="password" className="form-label">
+                <label htmlFor="password" className="form-label text-muted">
                   Password
                 </label>
                 <input
@@ -80,7 +80,7 @@ function SignUpForm({ signUp }: SignUpFormPropsInterface): JSX.Element {
                   value={formData.password}
                   name="password"
                   type="password"
-                  className="form-control"
+                  className="form-control shadow-sm"
                   required
                 />
                 <small className="form-text text-muted">
@@ -90,7 +90,7 @@ function SignUpForm({ signUp }: SignUpFormPropsInterface): JSX.Element {
                 </small>
               </div>
               <div className="mb-3">
-                <label htmlFor="username" className="form-label">
+                <label htmlFor="username" className="form-label text-muted">
                   First Name
                 </label>
                 <input
@@ -98,12 +98,12 @@ function SignUpForm({ signUp }: SignUpFormPropsInterface): JSX.Element {
                   value={formData.firstName}
                   name="firstName"
                   type="text"
-                  className="form-control"
+                  className="form-control shadow-sm"
                   required
                 />
               </div>
               <div className="mb-3">
-                <label htmlFor="username" className="form-label">
+                <label htmlFor="username" className="form-label text-muted">
                   Last Name
                 </label>
                 <input
@@ -111,12 +111,12 @@ function SignUpForm({ signUp }: SignUpFormPropsInterface): JSX.Element {
                   value={formData.lastName}
                   name="lastName"
                   type="text"
-                  className="form-control"
+                  className="form-control shadow-sm"
                   required
                 />
               </div>
               <div className="mb-3">
-                <label htmlFor="username" className="form-label">
+                <label htmlFor="username" className="form-label text-muted">
                   Email
                 </label>
                 <input
@@ -124,7 +124,7 @@ function SignUpForm({ signUp }: SignUpFormPropsInterface): JSX.Element {
                   value={formData.email}
                   name="email"
                   type="email"
-                  className="form-control"
+                  className="form-control shadow-sm"
                   required
                 />
               </div>
@@ -135,7 +135,7 @@ function SignUpForm({ signUp }: SignUpFormPropsInterface): JSX.Element {
               )}
               <div className="d-grid mt-2">
                 <button
-                  className="btn btn-outline-dark "
+                  className="btn btn-outline-success"
                   type="submit"
                 >
                   Submit
@@ -145,7 +145,7 @@ function SignUpForm({ signUp }: SignUpFormPropsInterface): JSX.Element {
           </div>
         </div>
       </div>
-    </div>
+
   );
 }
 
