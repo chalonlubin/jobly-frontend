@@ -17,15 +17,14 @@ function Homepage() {
   return (
     <section className="hero container center">
       <div className="p-2 d-flex-column">
-        <div className="btn btn-white btn-sm bg-white mb-3 text-success disabled">
-          Build your future with us 🚀
+        <div className="btn btn-outline-success bg-white btn-sm mb-3 text-success fw-bold disabled">
+          Let's build your future together 🚀
         </div>
         {!user && (
           <>
-            <h1 className="hero-c2a">Land your dream job with Jobly.</h1>
+            <h1 className="hero-c2a">Land the job of your dreams with Jobly.</h1>
             <p className="py-1 fw-semibold">
-              Accelerate your job search with Jobly. We take the pain out of
-              applications.
+              Accelerate your search with one-click applications, pay transparency, and much more.
             </p>
             <div className="d-flex gap-3 mt-4 justify-content-between">
               <Link className="btn btn-light btn-lg" to="/jobs">
@@ -41,7 +40,7 @@ function Homepage() {
               Welcome Back, <br /> {user.firstName} {user.lastName}!
             </h3>
             <div className="d-flex gap-3 mt-4 justify-content-between">
-              <Link className="btn btn-light btn-lg" to="/jobs">
+              <Link className="btn btn-light btn-lg fw-bold" to="/jobs">
               Continue the search 🙌
               </Link>
             </div>
